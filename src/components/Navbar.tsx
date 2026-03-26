@@ -10,7 +10,7 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="container flex items-center justify-between h-16">
         <a href="/" className="flex items-center gap-2">
-          <img src={sbcLogo} alt="Simplify Business Consultancy" width={36} height={36} className="h-9 w-auto" />
+          <img src={sbcLogo} alt="Simplify Business Consultancy" width={44} height={44} className="h-11 w-auto" />
           <span className="font-heading text-lg font-bold text-primary tracking-tight hidden sm:inline">Simplify Business Consultancy</span>
         </a>
 

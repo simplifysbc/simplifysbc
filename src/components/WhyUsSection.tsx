@@ -25,7 +25,7 @@ const WhyUsSection = () => (
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
         >
-          <span className="text-accent font-medium text-sm uppercase tracking-widest">Why RuralEdge</span>
+          <span className="text-accent font-medium text-sm uppercase tracking-widest"><span className="text-accent font-medium text-sm uppercase tracking-widest">Why Simplify</span></span>
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mt-3 mb-6">
             Built for Businesses That Build America
           </h2>

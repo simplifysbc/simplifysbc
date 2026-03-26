@@ -9,11 +9,11 @@ const stats = [
 ];
 
 const reasons = [
-  "We understand the unique challenges of rural operations",
-  "AI solutions sized and priced for small & mid-market businesses",
-  "On-site and remote support — wherever you are",
-  "Proven ROI within the first 90 days",
-  "No jargon, no fluff — just results",
+  "We know how rural businesses actually operate",
+  "AI tools sized and priced for small and mid-size companies",
+  "On-site and remote support wherever you are",
+  "Proven return on investment within the first 90 days",
+  "Straight talk, real results, no buzzwords",
 ];
 
 const WhyUsSection = () => (
@@ -30,7 +30,7 @@ const WhyUsSection = () => (
             Built for Businesses That Build America
           </h2>
           <p className="text-muted-foreground mb-8 leading-relaxed">
-            Big-city consulting firms don't get rural America. We do. Our team has deep roots in small-town operations, agriculture, manufacturing, and local government — and we pair that knowledge with cutting-edge AI and automation.
+            Big consulting firms don't get rural America. We do. Our team grew up in small towns and has worked across agriculture, manufacturing, and local government. We pair that real-world experience with modern AI and automation.
           </p>
           <ul className="space-y-4">
             {reasons.map((r) => (

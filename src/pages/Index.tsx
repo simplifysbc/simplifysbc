@@ -4,6 +4,7 @@ import ServicesSection from "@/components/ServicesSection";
 import WhyUsSection from "@/components/WhyUsSection";
 import CtaSection from "@/components/CtaSection";
 import Footer from "@/components/Footer";
+import ChatBot from "@/components/ChatBot";
 
 const Index = () => (
   <div className="min-h-screen">
@@ -13,6 +14,7 @@ const Index = () => (
     <WhyUsSection />
     <CtaSection />
     <Footer />
+    <ChatBot />
   </div>
 );
 

@@ -15,7 +15,7 @@ const Footer = () => (
             </a>
           ))}
         </div>
-        <p className="text-xs"><p className="text-xs">© 2026 Simplify Business Consultancy. All rights reserved.</p></p>
+        <p className="text-xs">© 2026 Simplify Business Consultancy. All rights reserved.</p>
       </div>
     </div>
   </footer>

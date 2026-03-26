@@ -28,7 +28,7 @@ const Navbar = () => {
               {item}
             </a>
           ))}
-          <Button size="sm">Newsletter</Button>
+          <Button size="sm">Get Started</Button>
         </div>
 
         <button className="lg:hidden text-foreground" onClick={() => setOpen(!open)}>
@@ -48,7 +48,7 @@ const Navbar = () => {
               {item}
             </a>
           ))}
-          <Button size="sm" className="w-full">Newsletter</Button>
+          <Button size="sm" className="w-full">Get Started</Button>
         </div>
       )}
     </nav>

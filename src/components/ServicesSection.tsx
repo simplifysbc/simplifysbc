@@ -5,32 +5,32 @@ const services = [
   {
     icon: Workflow,
     title: "Process Optimization",
-    desc: "Audit and redesign your workflows to eliminate bottlenecks, reduce costs, and boost throughput.",
+    desc: "We look at how your business runs day to day, find what's slowing you down, and fix it so things move faster and cost less.",
   },
   {
     icon: Bot,
     title: "AI & Automation",
-    desc: "Deploy smart automation for invoicing, scheduling, inventory, and customer management.",
+    desc: "Put repetitive tasks on autopilot. From invoicing to scheduling, we set up tools that do the busy work for you.",
   },
   {
     icon: Cpu,
     title: "Digital Transformation",
-    desc: "Transition from paper-based systems to modern digital platforms — at your pace.",
+    desc: "Move from paper and spreadsheets to modern systems that save time and keep everything in one place.",
   },
   {
     icon: BarChart3,
     title: "Data & Analytics",
-    desc: "Turn your data into actionable insights with dashboards and reporting tailored to your business.",
+    desc: "See what's actually happening in your business with clear dashboards and reports built around your goals.",
   },
   {
     icon: Users,
     title: "Change Management",
-    desc: "Train your team and build internal capability so improvements stick long after we leave.",
+    desc: "We train your team and stick around until everyone is comfortable, so improvements last well beyond our engagement.",
   },
   {
     icon: ShieldCheck,
     title: "Compliance & Security",
-    desc: "Ensure your processes meet industry standards while keeping your data safe and private.",
+    desc: "Stay on the right side of regulations while keeping your business data locked down and private.",
   },
 ];
 
@@ -48,7 +48,7 @@ const ServicesSection = () => (
           End-to-End Business Process Solutions
         </h2>
         <p className="text-muted-foreground mt-4">
-          From initial assessment to full implementation, we deliver solutions that fit the unique needs of rural enterprises.
+          From first look to full rollout, we build solutions that fit the way rural businesses actually work.
         </p>
       </motion.div>
 

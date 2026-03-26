@@ -25,7 +25,7 @@ const HeroSection = () => (
           Modernize Your Rural Business with Smart Automation
         </h1>
         <p className="text-lg text-primary-foreground/80 max-w-xl leading-relaxed">
-          We help businesses in rural America simplify their operations, adopt AI tools, and grow with confidence, no matter where they're located.
+          We help businesses in rural America cut waste, bring in more revenue, and build operations that actually scale. No matter where you're located.
         </p>
         <div className="flex flex-wrap gap-4 pt-2">
           <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 gap-2">

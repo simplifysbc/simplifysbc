@@ -4,7 +4,7 @@ import { CheckCircle2 } from "lucide-react";
 const stats = [
   { value: "150+", label: "Rural Businesses Served" },
   { value: "40%", label: "Avg. Cost Reduction" },
-  { value: "98%", label: "Client Satisfaction" },
+  { value: "2.5×", label: "Avg. Revenue Growth" },
   { value: "12", label: "States Covered" },
 ];
 
@@ -12,7 +12,7 @@ const reasons = [
   "We know how rural businesses actually operate",
   "AI tools sized and priced for small and mid-size companies",
   "On-site and remote support wherever you are",
-  "Proven return on investment within the first 90 days",
+  "Clients see real profit growth within the first 90 days",
   "Straight talk, real results, no buzzwords",
 ];
 

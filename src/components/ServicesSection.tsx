@@ -5,7 +5,7 @@ const services = [
   {
     icon: Workflow,
     title: "Process Optimization",
-    desc: "We look at how your business runs day to day, find what's slowing you down, and fix it so things move faster and cost less.",
+    desc: "We look at how your business runs day to day, find what's slowing you down, and fix it so you keep more of what you earn.",
   },
   {
     icon: Bot,
@@ -20,7 +20,7 @@ const services = [
   {
     icon: BarChart3,
     title: "Data & Analytics",
-    desc: "See what's actually happening in your business with clear dashboards and reports built around your goals.",
+    desc: "See what's actually happening in your business with clear dashboards that help you spot where you're leaving money on the table.",
   },
   {
     icon: Users,

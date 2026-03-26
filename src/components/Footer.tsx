@@ -3,7 +3,7 @@ const Footer = () => (
     <div className="container">
       <div className="flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="font-heading text-lg font-bold text-primary-foreground">
-          RuralEdge<span className="text-accent">.</span>
+          Simplify<span className="text-accent">.</span>
         </div>
         <div className="flex gap-8 text-sm">
           {["Services", "About", "Contact", "Privacy"].map((item) => (
@@ -12,7 +12,7 @@ const Footer = () => (
             </a>
           ))}
         </div>
-        <p className="text-xs">© 2026 RuralEdge Consulting. All rights reserved.</p>
+        <p className="text-xs"><p className="text-xs">© 2026 Simplify Business Consultancy. All rights reserved.</p></p>
       </div>
     </div>
   </footer>

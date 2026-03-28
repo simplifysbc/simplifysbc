@@ -41,11 +41,9 @@ const Navbar = () => {
             )}
           </div>
 
-          {["About", "Results", "Contact"].map((item) => (
-            <a key={item} href={`#${item.toLowerCase()}`} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-              {item}
-            </a>
-          ))}
+          <a href="#about" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">About</a>
+          <a href="/resources" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Resources</a>
+          <a href="#contact" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Contact</a>
           <Button size="sm">Get Started</Button>
         </div>
 
@@ -64,11 +62,9 @@ const Navbar = () => {
               </a>
             ))}
           </div>
-          {["About", "Results", "Contact"].map((item) => (
-            <a key={item} href={`#${item.toLowerCase()}`} onClick={() => setOpen(false)} className="block text-sm font-medium text-muted-foreground hover:text-foreground">
-              {item}
-            </a>
-          ))}
+          <a href="#about" onClick={() => setOpen(false)} className="block text-sm font-medium text-muted-foreground hover:text-foreground">About</a>
+          <a href="/resources" onClick={() => setOpen(false)} className="block text-sm font-medium text-muted-foreground hover:text-foreground">Resources</a>
+          <a href="#contact" onClick={() => setOpen(false)} className="block text-sm font-medium text-muted-foreground hover:text-foreground">Contact</a>
           <Button size="sm" className="w-full">Get Started</Button>
         </div>
       )}

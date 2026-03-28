@@ -9,6 +9,7 @@ import ServiceAutomation from "./pages/ServiceAutomation.tsx";
 import ServiceOptimization from "./pages/ServiceOptimization.tsx";
 import ServiceDigital from "./pages/ServiceDigital.tsx";
 import ServiceWorkflow from "./pages/ServiceWorkflow.tsx";
+import Resources from "./pages/Resources.tsx";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/resources" element={<Resources />} />
           <Route path="/services/automation" element={<ServiceAutomation />} />
           <Route path="/services/optimization" element={<ServiceOptimization />} />
           <Route path="/services/digital-transformation" element={<ServiceDigital />} />

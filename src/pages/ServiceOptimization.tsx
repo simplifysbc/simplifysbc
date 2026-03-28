@@ -1,22 +1,30 @@
 import { motion } from "framer-motion";
-import { ArrowLeft, TrendingUp, Target, Layers, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, TrendingUp, Target, Layers, Star, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import heroImg from "@/assets/service-optimization.jpg";
 
 const benefits = [
-  { icon: TrendingUp, title: "Boost Revenue by 20–35%", desc: "Streamlined processes mean fewer bottlenecks, faster delivery, and happier customers." },
-  { icon: Target, title: "Eliminate Waste", desc: "We identify redundant steps, manual workarounds, and cost leaks across your operations." },
-  { icon: Layers, title: "Scalable Processes", desc: "Build systems that grow with you — whether you hire 2 people or 200." },
+  { icon: TrendingUp, title: "Boost Revenue by 20 to 35%", desc: "Smoother processes mean fewer holdups, faster delivery, and happier customers." },
+  { icon: Target, title: "Eliminate Waste", desc: "We find redundant steps, manual workarounds, and cost leaks across your operations." },
+  { icon: Layers, title: "Scalable Processes", desc: "Build systems that grow with you, whether you hire 2 people or 200." },
 ];
 
 const steps = [
-  { num: "01", title: "Discovery & Assessment", desc: "We map out your existing processes end-to-end, interviewing team members and observing real workflows." },
-  { num: "02", title: "Bottleneck Analysis", desc: "Using data-driven methods, we identify exactly where time and money are being lost." },
-  { num: "03", title: "Solution Design", desc: "We design optimized workflows tailored to your specific industry, team size, and budget." },
-  { num: "04", title: "Implementation & Training", desc: "We roll out improvements alongside your team and train everyone until the new processes stick." },
+  { num: "01", title: "Discovery and Assessment", desc: "We map out your existing processes end to end, talking with team members and observing real workflows." },
+  { num: "02", title: "Analysis", desc: "Using data and direct observation, we pinpoint exactly where time and money are being lost." },
+  { num: "03", title: "Solution Design", desc: "We design improved workflows tailored to your specific industry, team size, and budget." },
+  { num: "04", title: "Implementation and Training", desc: "We roll out improvements alongside your team and train everyone until the new processes stick." },
 ];
+
+const testimonial = {
+  name: "James Redford",
+  role: "General Manager, Redford Manufacturing",
+  location: "Pikeville, Kentucky",
+  quote: "They looked at our whole operation and found problems we didn't even know we had. Within 90 days our costs dropped by 35%. The team was hands on and never made us feel like we were behind.",
+  result: "35% cost reduction in 90 days",
+};
 
 const ServiceOptimization = () => (
   <div className="min-h-screen">
@@ -36,7 +44,7 @@ const ServiceOptimization = () => (
             Business Process Optimization Services
           </h1>
           <p className="text-lg text-primary-foreground/80 max-w-xl leading-relaxed">
-            Most businesses lose 20–30% of revenue to inefficient processes they don't even realize exist. We find those leaks, fix them, and build systems that keep your business running like a well-oiled machine.
+            Most businesses lose 20 to 30% of revenue to inefficient processes they don't even realize exist. We find those leaks, fix them, and build systems that keep your business running smoothly.
           </p>
           <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
             Request a Process Audit
@@ -65,7 +73,7 @@ const ServiceOptimization = () => (
 
     <section className="py-20 bg-card">
       <div className="container max-w-4xl">
-        <h2 className="font-heading text-3xl font-bold text-foreground text-center mb-12">Our 4-Step Optimization Process</h2>
+        <h2 className="font-heading text-3xl font-bold text-foreground text-center mb-12">Our 4 Step Optimization Process</h2>
         <div className="space-y-8">
           {steps.map((s, i) => (
             <motion.div key={s.num} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
@@ -81,10 +89,33 @@ const ServiceOptimization = () => (
       </div>
     </section>
 
+    <section className="py-20 bg-background">
+      <div className="container max-w-3xl">
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+          className="relative p-10 rounded-lg bg-card border border-border">
+          <Quote className="text-accent/15 absolute top-6 right-6" size={48} />
+          <div className="flex gap-1 mb-4">
+            {Array.from({ length: 5 }).map((_, j) => (
+              <Star key={j} className="text-accent fill-accent" size={16} />
+            ))}
+          </div>
+          <p className="text-foreground leading-relaxed mb-6">"{testimonial.quote}"</p>
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="font-heading font-semibold text-foreground">{testimonial.name}</p>
+              <p className="text-muted-foreground text-sm">{testimonial.role}</p>
+              <p className="text-muted-foreground text-xs">{testimonial.location}</p>
+            </div>
+            <span className="px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-medium">{testimonial.result}</span>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+
     <section className="py-20 bg-primary text-center">
       <div className="container max-w-2xl space-y-6">
         <h2 className="font-heading text-3xl font-bold text-primary-foreground">Stop Leaving Money on the Table</h2>
-        <p className="text-primary-foreground/80">Let us show you exactly where your business is leaking time and revenue — and how to fix it.</p>
+        <p className="text-primary-foreground/80">Let us show you exactly where your business is losing time and revenue, and how to fix it.</p>
         <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">Get Your Free Audit</Button>
       </div>
     </section>

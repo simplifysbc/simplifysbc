@@ -10,8 +10,8 @@ const stats = [
 
 const reasons = [
   "We know how rural businesses actually operate",
-  "AI tools sized and priced for small and mid-size companies",
-  "On-site and remote support wherever you are",
+  "AI tools sized and priced for small and mid size companies",
+  "On site and remote support wherever you are",
   "Clients see real profit growth within the first 90 days",
   "Straight talk, real results, no buzzwords",
 ];

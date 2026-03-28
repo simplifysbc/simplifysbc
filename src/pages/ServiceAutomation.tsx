@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
-import { ArrowLeft, Bot, Clock, DollarSign, Zap, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, Bot, Clock, DollarSign, Zap, CheckCircle2, Star, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import heroImg from "@/assets/service-automation.jpg";
 
 const benefits = [
-  { icon: Clock, title: "Save 15+ Hours Weekly", desc: "Automate invoicing, scheduling, inventory tracking, and customer follow-ups." },
+  { icon: Clock, title: "Save 15+ Hours Weekly", desc: "Automate invoicing, scheduling, inventory tracking, and customer follow ups." },
   { icon: DollarSign, title: "Reduce Operating Costs", desc: "Cut manual labor expenses by up to 40% with smart automation tools." },
   { icon: Zap, title: "Faster Response Times", desc: "Automated alerts and workflows mean nothing falls through the cracks." },
 ];
@@ -14,17 +14,24 @@ const benefits = [
 const features = [
   "Automated invoicing and payment reminders",
   "Smart inventory tracking and reorder alerts",
-  "Customer communication workflows (email & SMS)",
+  "Customer communication workflows (email and SMS)",
   "Appointment scheduling and calendar sync",
   "Expense tracking and financial reporting",
   "Employee task management and assignment",
 ];
 
+const testimonial = {
+  name: "Sarah Mitchell",
+  role: "Owner, Mitchell Family Farms",
+  location: "Granville, Iowa",
+  quote: "We were drowning in manual paperwork. SBC set up automated systems that handle our invoicing, inventory, and orders. We got 20 hours a week back and our team can finally focus on what actually matters.",
+  result: "20+ hours saved weekly",
+};
+
 const ServiceAutomation = () => (
   <div className="min-h-screen">
     <Navbar />
 
-    {/* Hero */}
     <section className="relative min-h-[60vh] flex items-center pt-16 overflow-hidden">
       <div className="absolute inset-0">
         <img src={heroImg} alt="Automation for small rural businesses" width={1920} height={1080} className="w-full h-full object-cover" />
@@ -39,7 +46,7 @@ const ServiceAutomation = () => (
             Automation for Small Rural Businesses
           </h1>
           <p className="text-lg text-primary-foreground/80 max-w-xl leading-relaxed">
-            Running a small business in a rural area means wearing many hats. We help you put the repetitive stuff on autopilot so you can focus on what matters most — growing your business and serving your community.
+            Running a small business in a rural area means wearing many hats. We help you put the repetitive stuff on autopilot so you can focus on what matters most. Growing your business and serving your community.
           </p>
           <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
             Get a Free Automation Audit
@@ -48,7 +55,6 @@ const ServiceAutomation = () => (
       </div>
     </section>
 
-    {/* Benefits */}
     <section className="py-20 bg-background">
       <div className="container">
         <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground text-center mb-12">Why Automate Your Business?</h2>
@@ -67,7 +73,6 @@ const ServiceAutomation = () => (
       </div>
     </section>
 
-    {/* Features List */}
     <section className="py-20 bg-card">
       <div className="container max-w-3xl">
         <h2 className="font-heading text-3xl font-bold text-foreground text-center mb-10">What We Automate</h2>
@@ -82,7 +87,29 @@ const ServiceAutomation = () => (
       </div>
     </section>
 
-    {/* CTA */}
+    <section className="py-20 bg-background">
+      <div className="container max-w-3xl">
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+          className="relative p-10 rounded-lg bg-card border border-border">
+          <Quote className="text-accent/15 absolute top-6 right-6" size={48} />
+          <div className="flex gap-1 mb-4">
+            {Array.from({ length: 5 }).map((_, j) => (
+              <Star key={j} className="text-accent fill-accent" size={16} />
+            ))}
+          </div>
+          <p className="text-foreground leading-relaxed mb-6">"{testimonial.quote}"</p>
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="font-heading font-semibold text-foreground">{testimonial.name}</p>
+              <p className="text-muted-foreground text-sm">{testimonial.role}</p>
+              <p className="text-muted-foreground text-xs">{testimonial.location}</p>
+            </div>
+            <span className="px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-medium">{testimonial.result}</span>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+
     <section className="py-20 bg-primary text-center">
       <div className="container max-w-2xl space-y-6">
         <h2 className="font-heading text-3xl font-bold text-primary-foreground">Ready to Automate?</h2>

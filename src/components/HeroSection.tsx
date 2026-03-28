@@ -19,7 +19,7 @@ const HeroSection = () => (
         className="max-w-2xl space-y-6"
       >
         <span className="inline-block px-4 py-1.5 rounded-full bg-accent/20 text-accent text-sm font-medium border border-accent/30">
-          AI-Powered Rural Consulting
+          AI Powered Rural Consulting
         </span>
         <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground leading-tight">
           Modernize Your Rural Business with Smart Automation

@@ -1,26 +1,51 @@
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import ContactForm from "@/components/ContactForm";
 
 const CtaSection = () => (
   <section id="contact" className="py-24 bg-primary">
     <div className="container">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="text-center max-w-2xl mx-auto space-y-6"
-      >
-        <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-foreground">
-          Ready to Transform Your Operations?
-        </h2>
-        <p className="text-primary-foreground/70 text-lg">
-          Book a free 30 minute call. We'll look at how your business runs today and show you exactly where you can cut costs, grow revenue, and free up your time.
-        </p>
-        <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 gap-2">
-          Book Your Free Call <ArrowRight size={18} />
-        </Button>
-      </motion.div>
+      <div className="grid md:grid-cols-2 gap-12 items-start max-w-5xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="space-y-6"
+        >
+          <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-foreground">
+            Ready to Transform Your Operations?
+          </h2>
+          <p className="text-primary-foreground/70 text-lg">
+            Book a free 30 minute call. We will look at how your business runs today and show you exactly where you can cut costs, grow revenue, and free up your time.
+          </p>
+          <div className="space-y-4 text-primary-foreground/80">
+            <div className="flex items-center gap-3">
+              <span className="w-2 h-2 rounded-full bg-accent" />
+              <span>No obligation, just a friendly conversation</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="w-2 h-2 rounded-full bg-accent" />
+              <span>Get a personalized action plan for your business</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="w-2 h-2 rounded-full bg-accent" />
+              <span>We respond within 24 hours</span>
+            </div>
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className="bg-primary-foreground/5 rounded-xl p-6 md:p-8 border border-primary-foreground/10"
+        >
+          <h3 className="text-xl font-heading font-semibold text-primary-foreground mb-6">
+            Send Us a Message
+          </h3>
+          <ContactForm />
+        </motion.div>
+      </div>
     </div>
   </section>
 );

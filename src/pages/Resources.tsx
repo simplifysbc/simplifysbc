@@ -6,52 +6,58 @@ import Footer from "@/components/Footer";
 
 const articles = [
   {
-    title: "How a Small Farm in Iowa Saved 20 Hours a Week with Automation",
+    title: "How Automation Can Transform Rural Businesses in the USA",
     excerpt:
-      "Mitchell Family Farms was buried in paperwork. We helped them set up automated inventory tracking, order management, and invoicing. Here is what changed.",
+      "Rural businesses face unique challenges. Limited staff, tight budgets, and manual processes eat up valuable hours. Automation is changing the game for small town companies across America.",
     category: "Case Study",
     date: "March 2026",
-    readTime: "5 min read",
+    readTime: "7 min read",
+    slug: "/resources/how-automation-can-transform-rural-businesses",
   },
   {
-    title: "5 Signs Your Rural Business Is Ready for Digital Tools",
+    title: "10 Affordable Automation Tools for Small Rural Businesses",
     excerpt:
-      "Not sure if it is time to go digital? If you recognize any of these five patterns in your day to day, the answer is probably yes.",
+      "You do not need a massive budget to start automating. Here are ten powerful tools that cost little or nothing to get started and can save your business hours every week.",
     category: "Guide",
-    date: "February 2026",
-    readTime: "4 min read",
+    date: "March 2026",
+    readTime: "6 min read",
+    slug: "/resources/affordable-automation-tools",
   },
   {
-    title: "Why Process Optimization Matters More Than New Technology",
+    title: "How AI Is Helping Small Town Businesses Compete in 2026",
     excerpt:
-      "Most businesses rush to buy new software before fixing what is already broken. We explain why getting your processes right comes first.",
-    category: "Insight",
+      "AI is no longer reserved for tech giants. Small town businesses across America are using AI powered tools to work smarter, serve customers better, and grow revenue.",
+    category: "Case Study",
+    date: "March 2026",
+    readTime: "8 min read",
+    slug: "/resources/ai-helping-small-town-businesses",
+  },
+  {
+    title: "How to Streamline Operations in a Small Rural Business",
+    excerpt:
+      "Running a small rural business means wearing many hats. Streamlining your operations is about doing things smarter so you have more time for what matters.",
+    category: "Guide",
     date: "February 2026",
     readTime: "6 min read",
+    slug: "/resources/streamline-operations-rural-business",
   },
   {
-    title: "From Paper to Profit: A Manufacturing Company's Digital Journey",
+    title: "Common Inefficiencies in Rural Businesses (and How to Fix Them)",
     excerpt:
-      "Redford Manufacturing in Kentucky went from clipboards and spreadsheets to a fully connected operation. Their costs dropped 35% in the first quarter.",
-    category: "Case Study",
-    date: "January 2026",
-    readTime: "7 min read",
+      "Every business has inefficiencies. But in rural businesses where teams are small and resources are tight, those inefficiencies hit harder. Here is how to fix them.",
+    category: "Insight",
+    date: "February 2026",
+    readTime: "5 min read",
+    slug: "/resources/common-inefficiencies-rural-businesses",
   },
   {
-    title: "Low Bandwidth, Big Results: Going Digital in Areas with Spotty Internet",
+    title: "How to Reduce Operational Costs in Small Town Companies",
     excerpt:
-      "Rural does not mean disconnected. We share practical strategies for building digital systems that work reliably even when the internet does not.",
-    category: "Guide",
+      "Cutting costs does not mean cutting corners. There are practical ways to reduce what you spend on operations while improving the quality of your work.",
+    category: "Insight",
     date: "January 2026",
     readTime: "5 min read",
-  },
-  {
-    title: "The True Cost of Manual Processes (And How to Fix It)",
-    excerpt:
-      "We break down exactly how much time and money the average small business loses to manual work, and what to do about it.",
-    category: "Insight",
-    date: "December 2025",
-    readTime: "4 min read",
+    slug: "/resources/reduce-operational-costs",
   },
 ];
 
@@ -91,13 +97,14 @@ const Resources = () => (
       <div className="container">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {articles.map((a, i) => (
-            <motion.article
+            <motion.a
               key={a.title}
+              href={a.slug}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
-              className="group p-6 rounded-lg bg-card border border-border hover:border-accent/40 hover:shadow-lg transition-all duration-300 flex flex-col"
+              className="group p-6 rounded-lg bg-card border border-border hover:border-accent/40 hover:shadow-lg transition-all duration-300 flex flex-col cursor-pointer"
             >
               <div className="flex items-center gap-3 mb-4">
                 <span
@@ -121,7 +128,7 @@ const Resources = () => (
                   <Clock size={12} /> {a.readTime}
                 </span>
               </div>
-            </motion.article>
+            </motion.a>
           ))}
         </div>
       </div>

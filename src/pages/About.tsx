@@ -128,13 +128,16 @@ const About = () => (
 
     <section className="py-20 bg-primary text-center">
       <div className="container max-w-2xl space-y-6">
+        <p className="text-primary-foreground/50 italic text-sm">Simplifying Business, Empowering Communities</p>
         <h2 className="font-heading text-3xl font-bold text-primary-foreground">Let's Keep It Simple</h2>
         <p className="text-primary-foreground/80 text-lg">
           We believe you do not need complicated systems to grow. You need the right ones. If you are ready to make your business run more smoothly, we are here to help.
         </p>
-        <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 gap-2">
-          Book Your Free Call <ArrowRight size={18} />
-        </Button>
+        <a href="/#contact">
+          <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 gap-2">
+            Book Your Free Call <ArrowRight size={18} />
+          </Button>
+        </a>
       </div>
     </section>
 

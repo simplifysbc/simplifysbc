@@ -19,7 +19,7 @@ const HeroSection = () => (
         className="max-w-2xl space-y-6"
       >
         <span className="inline-block px-4 py-1.5 rounded-full bg-accent/20 text-accent text-sm font-medium border border-accent/30">
-          AI Powered Rural Consulting
+          Simplifying Business, Empowering Communities
         </span>
         <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground leading-tight">
           Modernize Your Rural Business with Smart Automation
@@ -28,12 +28,16 @@ const HeroSection = () => (
           We help businesses in rural America cut waste, bring in more revenue, and build operations that actually scale. No matter where you're located.
         </p>
         <div className="flex flex-wrap gap-4 pt-2">
-          <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 gap-2">
-            Schedule a Free Consultation <ArrowRight size={18} />
-          </Button>
-          <Button size="lg" variant="outline" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10">
-            See Our Results
-          </Button>
+          <a href="#contact">
+            <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 gap-2">
+              Schedule a Free Consultation <ArrowRight size={18} />
+            </Button>
+          </a>
+          <a href="/resources">
+            <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 gap-2">
+              See Our Resources <ArrowRight size={18} />
+            </Button>
+          </a>
         </div>
       </motion.div>
     </div>

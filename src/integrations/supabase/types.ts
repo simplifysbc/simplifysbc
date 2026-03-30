@@ -14,6 +14,39 @@ export type Database = {
   }
   public: {
     Tables: {
+      career_applications: {
+        Row: {
+          created_at: string | null
+          cv_url: string | null
+          email: string
+          full_name: string
+          id: string
+          message: string | null
+          phone: string | null
+          position: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          cv_url?: string | null
+          email: string
+          full_name: string
+          id?: string
+          message?: string | null
+          phone?: string | null
+          position?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          cv_url?: string | null
+          email?: string
+          full_name?: string
+          id?: string
+          message?: string | null
+          phone?: string | null
+          position?: string | null
+        }
+        Relationships: []
+      }
       contact_submissions: {
         Row: {
           created_at: string | null

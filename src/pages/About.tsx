@@ -4,9 +4,15 @@ import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Testimonials from "@/components/Testimonials";
+import SEO from "@/components/SEO";
 
 const About = () => (
   <div className="min-h-screen">
+    <SEO
+      title="About Us – Rural Business Consulting Experts"
+      description="Learn how Simplify Business Consultancy helps small and rural businesses across the USA streamline operations, reduce costs, and grow with simple automation and process improvement."
+      canonical="/about"
+    />
     <Navbar />
 
     <section className="pt-28 pb-16 bg-background">

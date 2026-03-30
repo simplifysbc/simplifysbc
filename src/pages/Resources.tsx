@@ -3,6 +3,7 @@ import { ArrowRight, Calendar, Clock, Tag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 
 const articles = [
   {
@@ -69,6 +70,11 @@ const categoryColors: Record<string, string> = {
 
 const Resources = () => (
   <div className="min-h-screen">
+    <SEO
+      title="Resources – Guides, Case Studies & Automation Insights"
+      description="Explore practical guides, real case studies, and expert insights on automation, AI, and process improvement for small and rural businesses in the USA."
+      canonical="/resources"
+    />
     <Navbar />
 
     <section className="pt-28 pb-16 bg-background">

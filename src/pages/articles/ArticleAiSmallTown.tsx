@@ -4,9 +4,22 @@ import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Testimonials from "@/components/Testimonials";
+import SEO from "@/components/SEO";
 
 const ArticleAiSmallTown = () => (
   <div className="min-h-screen">
+    <SEO
+      title="How AI Is Helping Small Town Businesses Compete in 2026"
+      description="AI is no longer just for big companies. Learn how small town businesses across America use AI for customer service, inventory, marketing, and financial management in 2026."
+      canonical="/resources/ai-helping-small-town-businesses"
+      type="article"
+      article={{
+        author: "Simplify Business Consultancy",
+        publishedDate: "2026-03-05",
+        section: "Case Study",
+        tags: ["AI for small businesses", "small town AI tools", "artificial intelligence rural businesses", "AI customer service", "AI inventory management"],
+      }}
+    />
     <Navbar />
 
     <article className="pt-28 pb-16 bg-background">

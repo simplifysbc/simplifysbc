@@ -4,9 +4,22 @@ import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Testimonials from "@/components/Testimonials";
+import SEO from "@/components/SEO";
 
 const ArticleStreamlineOperations = () => (
   <div className="min-h-screen">
+    <SEO
+      title="How to Streamline Operations in a Small Rural Business"
+      description="Step-by-step guide to streamlining operations in your rural business. Map processes, find bottlenecks, eliminate waste, and automate repetitive tasks to save 60% admin time."
+      canonical="/resources/streamline-operations-rural-business"
+      type="article"
+      article={{
+        author: "Simplify Business Consultancy",
+        publishedDate: "2026-02-20",
+        section: "Guide",
+        tags: ["streamline business operations", "rural business efficiency", "process improvement small business", "reduce admin time", "workflow optimization"],
+      }}
+    />
     <Navbar />
 
     <article className="pt-28 pb-16 bg-background">

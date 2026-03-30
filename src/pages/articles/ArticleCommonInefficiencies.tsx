@@ -20,6 +20,7 @@ const ArticleCommonInefficiencies = () => (
         tags: ["business inefficiencies", "rural business problems", "fix business processes", "small business productivity", "operational efficiency"],
       }}
     />
+    <Navbar />
 
     <article className="pt-28 pb-16 bg-background">
       <div className="container max-w-3xl">

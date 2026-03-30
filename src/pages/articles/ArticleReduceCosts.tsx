@@ -20,6 +20,7 @@ const ArticleReduceCosts = () => (
         tags: ["reduce operational costs", "small town business savings", "cut business expenses", "cost reduction strategies", "small business budget optimization"],
       }}
     />
+    <Navbar />
 
     <article className="pt-28 pb-16 bg-background">
       <div className="container max-w-3xl">

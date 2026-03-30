@@ -20,6 +20,7 @@ const ArticleStreamlineOperations = () => (
         tags: ["streamline business operations", "rural business efficiency", "process improvement small business", "reduce admin time", "workflow optimization"],
       }}
     />
+    <Navbar />
 
     <article className="pt-28 pb-16 bg-background">
       <div className="container max-w-3xl">

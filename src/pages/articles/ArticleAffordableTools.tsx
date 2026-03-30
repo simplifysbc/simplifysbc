@@ -20,6 +20,7 @@ const ArticleAffordableTools = () => (
         tags: ["affordable automation tools", "small business software", "free business tools", "rural business technology", "automation on a budget"],
       }}
     />
+    <Navbar />
 
     <article className="pt-28 pb-16 bg-background">
       <div className="container max-w-3xl">

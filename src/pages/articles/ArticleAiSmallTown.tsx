@@ -20,6 +20,7 @@ const ArticleAiSmallTown = () => (
         tags: ["AI for small businesses", "small town AI tools", "artificial intelligence rural businesses", "AI customer service", "AI inventory management"],
       }}
     />
+    <Navbar />
 
     <article className="pt-28 pb-16 bg-background">
       <div className="container max-w-3xl">

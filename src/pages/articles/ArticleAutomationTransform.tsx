@@ -20,6 +20,7 @@ const ArticleAutomationTransform = () => (
         tags: ["rural business automation", "small business automation USA", "process automation", "cost reduction rural businesses", "automation tools small companies"],
       }}
     />
+    <Navbar />
 
     <article className="pt-28 pb-16 bg-background">
       <div className="container max-w-3xl">

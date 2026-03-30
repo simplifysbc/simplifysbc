@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import heroImg from "@/assets/service-optimization.jpg";
+import SEO from "@/components/SEO";
 
 const benefits = [
   { icon: TrendingUp, title: "Boost Revenue by 20 to 35%", desc: "Smoother processes mean fewer holdups, faster delivery, and happier customers." },
@@ -28,6 +29,11 @@ const testimonial = {
 
 const ServiceOptimization = () => (
   <div className="min-h-screen">
+    <SEO
+      title="Business Process Optimization Services for Small Businesses"
+      description="Boost revenue by 20-35% with expert process optimization. We find inefficiencies, eliminate waste, and build scalable systems for rural and small businesses in the USA."
+      canonical="/services/optimization"
+    />
     <Navbar />
 
     <section className="relative min-h-[60vh] flex items-center pt-16 overflow-hidden">

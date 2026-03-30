@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import heroImg from "@/assets/service-workflow.jpg";
+import SEO from "@/components/SEO";
 
 const offerings = [
   { icon: GitBranch, title: "Workflow Mapping and Design", desc: "We document your current workflows, find what's not working, and design better alternatives tailored to your industry." },
@@ -31,6 +32,11 @@ const testimonial = {
 
 const ServiceWorkflow = () => (
   <div className="min-h-screen">
+    <SEO
+      title="Workflow Automation Consulting USA – Expert Guidance"
+      description="Replace manual workflows with intelligent automation. Workflow mapping, tool integration, performance dashboards, and team training for American businesses of all sizes."
+      canonical="/services/workflow-consulting"
+    />
     <Navbar />
 
     <section className="relative min-h-[60vh] flex items-center pt-16 overflow-hidden">

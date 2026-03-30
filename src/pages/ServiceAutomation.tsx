@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import heroImg from "@/assets/service-automation.jpg";
+import SEO from "@/components/SEO";
 
 const benefits = [
   { icon: Clock, title: "Save 15+ Hours Weekly", desc: "Automate invoicing, scheduling, inventory tracking, and customer follow ups." },
@@ -30,6 +31,11 @@ const testimonial = {
 
 const ServiceAutomation = () => (
   <div className="min-h-screen">
+    <SEO
+      title="Automation for Small Rural Businesses – Save Time & Cut Costs"
+      description="Automate invoicing, scheduling, inventory, and customer follow-ups for your rural business. Save 15+ hours weekly with affordable automation tools and expert setup."
+      canonical="/services/automation"
+    />
     <Navbar />
 
     <section className="relative min-h-[60vh] flex items-center pt-16 overflow-hidden">

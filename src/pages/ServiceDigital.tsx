@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import heroImg from "@/assets/service-digital.jpg";
+import SEO from "@/components/SEO";
 
 const pillars = [
   { icon: Cloud, title: "Cloud Migration", desc: "Move from local servers and spreadsheets to secure cloud platforms accessible from anywhere, even with limited bandwidth." },
@@ -23,6 +24,11 @@ const testimonial = {
 
 const ServiceDigital = () => (
   <div className="min-h-screen">
+    <SEO
+      title="Digital Transformation for Rural Companies in the USA"
+      description="Go digital without losing what makes your business special. Cloud migration, mobile-first tools, and low-bandwidth solutions designed for rural companies across America."
+      canonical="/services/digital-transformation"
+    />
     <Navbar />
 
     <section className="relative min-h-[60vh] flex items-center pt-16 overflow-hidden">

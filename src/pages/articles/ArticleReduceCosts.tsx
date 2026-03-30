@@ -4,10 +4,22 @@ import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Testimonials from "@/components/Testimonials";
+import SEO from "@/components/SEO";
 
 const ArticleReduceCosts = () => (
   <div className="min-h-screen">
-    <Navbar />
+    <SEO
+      title="How to Reduce Operational Costs in Small Town Companies"
+      description="Practical ways to cut operational costs without cutting corners. Audit spending, automate labor, consolidate tools, go digital, and negotiate with vendors for real savings."
+      canonical="/resources/reduce-operational-costs"
+      type="article"
+      article={{
+        author: "Simplify Business Consultancy",
+        publishedDate: "2026-01-15",
+        section: "Insight",
+        tags: ["reduce operational costs", "small town business savings", "cut business expenses", "cost reduction strategies", "small business budget optimization"],
+      }}
+    />
 
     <article className="pt-28 pb-16 bg-background">
       <div className="container max-w-3xl">

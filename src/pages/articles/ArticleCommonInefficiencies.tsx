@@ -4,10 +4,22 @@ import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Testimonials from "@/components/Testimonials";
+import SEO from "@/components/SEO";
 
 const ArticleCommonInefficiencies = () => (
   <div className="min-h-screen">
-    <Navbar />
+    <SEO
+      title="Common Inefficiencies in Rural Businesses and How to Fix Them"
+      description="Identify and fix the top 5 inefficiencies hurting rural businesses: manual data entry, paper records, unclear communication, no standard processes, and underused tools."
+      canonical="/resources/common-inefficiencies-rural-businesses"
+      type="article"
+      article={{
+        author: "Simplify Business Consultancy",
+        publishedDate: "2026-02-10",
+        section: "Insight",
+        tags: ["business inefficiencies", "rural business problems", "fix business processes", "small business productivity", "operational efficiency"],
+      }}
+    />
 
     <article className="pt-28 pb-16 bg-background">
       <div className="container max-w-3xl">

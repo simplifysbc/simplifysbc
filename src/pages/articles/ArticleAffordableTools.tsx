@@ -4,10 +4,22 @@ import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Testimonials from "@/components/Testimonials";
+import SEO from "@/components/SEO";
 
 const ArticleAffordableTools = () => (
   <div className="min-h-screen">
-    <Navbar />
+    <SEO
+      title="10 Affordable Automation Tools for Small Rural Businesses"
+      description="Budget-friendly automation tools for small businesses. From Zapier to HubSpot CRM, discover 10 powerful tools that cost little or nothing and save hours every week."
+      canonical="/resources/affordable-automation-tools"
+      type="article"
+      article={{
+        author: "Simplify Business Consultancy",
+        publishedDate: "2026-03-10",
+        section: "Guide",
+        tags: ["affordable automation tools", "small business software", "free business tools", "rural business technology", "automation on a budget"],
+      }}
+    />
 
     <article className="pt-28 pb-16 bg-background">
       <div className="container max-w-3xl">

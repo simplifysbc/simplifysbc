@@ -5,6 +5,7 @@ interface SEOProps {
   description: string;
   canonical?: string;
   type?: "website" | "article";
+  image?: string;
   article?: {
     author: string;
     publishedDate: string;
@@ -23,12 +24,14 @@ const SEO = ({
   description,
   canonical,
   type = "website",
+  image,
   article,
   faqItems,
   organizationSchema,
 }: SEOProps) => {
   const fullTitle = `${title} | ${SITE_NAME}`;
   const url = canonical ? `${SITE_URL}${canonical}` : SITE_URL;
+  const ogImage = image ? `${SITE_URL}${image}` : `${SITE_URL}/og-image.jpg`;
 
   const schemas: object[] = [];
 
@@ -108,8 +111,14 @@ const SEO = ({
       <meta property="og:description" content={description} />
       <meta property="og:type" content={type} />
       <meta property="og:url" content={url} />
+      <meta property="og:image" content={ogImage} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:site_name" content={SITE_NAME} />
+      <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={ogImage} />
       {schemas.map((schema, i) => (
         <script key={i} type="application/ld+json">
           {JSON.stringify(schema)}

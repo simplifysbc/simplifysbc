@@ -101,7 +101,7 @@ const ArticleCommonInefficiencies = () => (
       <div className="container max-w-2xl space-y-6">
         <h2 className="font-heading text-3xl font-bold text-primary-foreground">Let Us Find Your Inefficiencies</h2>
         <p className="text-primary-foreground/80">We do a free business review and show you exactly where you are losing time and money.</p>
-        <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">Book Your Free Call</Button>
+        <a href="/#contact"><Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">Book Your Free Call</Button></a>
       </div>
     </section>
 

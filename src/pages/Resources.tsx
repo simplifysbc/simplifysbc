@@ -149,12 +149,14 @@ const Resources = () => (
           Book a free call and we will show you exactly where your business can
           save time and grow revenue.
         </p>
-        <Button
-          size="lg"
-          className="bg-accent text-accent-foreground hover:bg-accent/90 gap-2"
-        >
-          Book Your Free Call <ArrowRight size={18} />
-        </Button>
+        <a href="/#contact">
+          <Button
+            size="lg"
+            className="bg-accent text-accent-foreground hover:bg-accent/90 gap-2"
+          >
+            Book Your Free Call <ArrowRight size={18} />
+          </Button>
+        </a>
       </div>
     </section>
 

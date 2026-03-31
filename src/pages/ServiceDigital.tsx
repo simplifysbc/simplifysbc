@@ -47,9 +47,11 @@ const ServiceDigital = () => (
           <p className="text-lg text-primary-foreground/80 max-w-xl leading-relaxed">
             Going digital doesn't mean losing what makes your business special. We help rural companies adopt modern technology that fits their unique challenges, from limited connectivity to lean teams.
           </p>
-          <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
-            Start Your Digital Journey
-          </Button>
+          <a href="/#contact">
+            <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
+              Start Your Digital Journey
+            </Button>
+          </a>
         </motion.div>
       </div>
     </section>
@@ -100,7 +102,7 @@ const ServiceDigital = () => (
       <div className="container max-w-2xl space-y-6">
         <h2 className="font-heading text-3xl font-bold text-primary-foreground">Your Location Should Never Limit Your Potential</h2>
         <p className="text-primary-foreground/80">Let's build a digital foundation that puts your rural business on equal footing with anyone, anywhere.</p>
-        <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">Book a Free Strategy Call</Button>
+        <a href="/#contact"><Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">Book a Free Strategy Call</Button></a>
       </div>
     </section>
 

@@ -90,7 +90,7 @@ const ArticleAutomationTransform = () => (
       <div className="container max-w-2xl space-y-6">
         <h2 className="font-heading text-3xl font-bold text-primary-foreground">Ready to Automate Your Business?</h2>
         <p className="text-primary-foreground/80">Book a free call and we will show you exactly where automation can save you time and money.</p>
-        <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">Book Your Free Call</Button>
+        <a href="/#contact"><Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">Book Your Free Call</Button></a>
       </div>
     </section>
 

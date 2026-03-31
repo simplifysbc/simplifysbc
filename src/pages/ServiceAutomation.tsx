@@ -54,9 +54,11 @@ const ServiceAutomation = () => (
           <p className="text-lg text-primary-foreground/80 max-w-xl leading-relaxed">
             Running a small business in a rural area means wearing many hats. We help you put the repetitive stuff on autopilot so you can focus on what matters most. Growing your business and serving your community.
           </p>
-          <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
-            Get a Free Automation Audit
-          </Button>
+          <a href="/#contact">
+            <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
+              Get a Free Automation Audit
+            </Button>
+          </a>
         </motion.div>
       </div>
     </section>

@@ -125,7 +125,7 @@ const ServiceWorkflow = () => (
       <div className="container max-w-2xl space-y-6">
         <h2 className="font-heading text-3xl font-bold text-primary-foreground">Let's Get Your Business Running Smoother</h2>
         <p className="text-primary-foreground/80">Get a free workflow assessment and see exactly how automation can transform your operations.</p>
-        <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">Get Free Assessment</Button>
+        <a href="/#contact"><Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">Get Free Assessment</Button></a>
       </div>
     </section>
 

@@ -122,7 +122,7 @@ const ServiceAutomation = () => (
       <div className="container max-w-2xl space-y-6">
         <h2 className="font-heading text-3xl font-bold text-primary-foreground">Ready to Automate?</h2>
         <p className="text-primary-foreground/80">Schedule a free consultation and discover how much time and money your business can save with smart automation.</p>
-        <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">Schedule Free Consultation</Button>
+        <a href="/#contact"><Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">Schedule Free Consultation</Button></a>
       </div>
     </section>
 

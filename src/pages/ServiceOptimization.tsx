@@ -124,7 +124,7 @@ const ServiceOptimization = () => (
       <div className="container max-w-2xl space-y-6">
         <h2 className="font-heading text-3xl font-bold text-primary-foreground">Stop Leaving Money on the Table</h2>
         <p className="text-primary-foreground/80">Let us show you exactly where your business is losing time and revenue, and how to fix it.</p>
-        <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">Get Your Free Audit</Button>
+        <a href="/#contact"><Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">Get Your Free Audit</Button></a>
       </div>
     </section>
 

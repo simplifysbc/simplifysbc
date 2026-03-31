@@ -55,9 +55,11 @@ const ServiceWorkflow = () => (
           <p className="text-lg text-primary-foreground/80 max-w-xl leading-relaxed">
             From coast to coast, we help American businesses replace manual, error prone workflows with intelligent automation that saves time, cuts costs, and drives growth.
           </p>
-          <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
-            Talk to a Workflow Expert
-          </Button>
+          <a href="/#contact">
+            <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
+              Talk to a Workflow Expert
+            </Button>
+          </a>
         </motion.div>
       </div>
     </section>

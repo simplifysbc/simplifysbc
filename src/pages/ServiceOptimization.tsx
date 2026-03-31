@@ -52,9 +52,11 @@ const ServiceOptimization = () => (
           <p className="text-lg text-primary-foreground/80 max-w-xl leading-relaxed">
             Most businesses lose 20 to 30% of revenue to inefficient processes they don't even realize exist. We find those leaks, fix them, and build systems that keep your business running smoothly.
           </p>
-          <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
-            Request a Process Audit
-          </Button>
+          <a href="/#contact">
+            <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
+              Request a Process Audit
+            </Button>
+          </a>
         </motion.div>
       </div>
     </section>

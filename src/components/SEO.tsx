@@ -5,6 +5,7 @@ interface SEOProps {
   description: string;
   canonical?: string;
   type?: "website" | "article";
+  image?: string;
   article?: {
     author: string;
     publishedDate: string;

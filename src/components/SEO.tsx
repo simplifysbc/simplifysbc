@@ -24,12 +24,14 @@ const SEO = ({
   description,
   canonical,
   type = "website",
+  image,
   article,
   faqItems,
   organizationSchema,
 }: SEOProps) => {
   const fullTitle = `${title} | ${SITE_NAME}`;
   const url = canonical ? `${SITE_URL}${canonical}` : SITE_URL;
+  const ogImage = image ? `${SITE_URL}${image}` : `${SITE_URL}/og-image.jpg`;
 
   const schemas: object[] = [];
 

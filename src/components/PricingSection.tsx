@@ -83,7 +83,9 @@ const PricingSection = () => (
             <p className={`text-sm mt-2 ${plan.featured ? "text-primary-foreground/70" : "text-muted-foreground"}`}>
               {plan.best}
             </p>
-            <div className="mt-6 mb-6" />
+            <p className={`text-sm mt-4 mb-6 italic ${plan.featured ? "text-primary-foreground/80" : "text-muted-foreground"}`}>
+              Contact us for a customized quote tailored to your business needs
+            </p>
             <ul className="space-y-3 flex-1">
               {plan.features.map((f) => (
                 <li key={f} className="flex items-start gap-3">

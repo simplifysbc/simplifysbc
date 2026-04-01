@@ -19,6 +19,15 @@ const features = [
   "Appointment scheduling and calendar sync",
   "Expense tracking and financial reporting",
   "Employee task management and assignment",
+  "Logistics and distribution route planning",
+  "Storage usage monitoring and alerts",
+  "Processing and order fulfillment workflows",
+  "Predictive equipment maintenance scheduling",
+  "AI-powered weather forecasting for planning",
+  "Digital marketplace listing and management",
+  "Livestock and animal health monitoring",
+  "Crop growth and field condition tracking",
+  "Farm field operations and harvest scheduling",
 ];
 
 const testimonial = {

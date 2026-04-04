@@ -13,14 +13,14 @@ export default async function handler(req: any, res: any) {
       port: 465,
       secure: true,
       auth: {
-        user: "your@email.com",   // 🔴 replace
-        pass: "yourpassword",     // 🔴 replace
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
       },
     });
 
     await transporter.sendMail({
-      from: `"Website Contact" <your@email.com>`,
-      to: "your@email.com",
+      from: `"Website Contact" <${process.env.SMTP_USER}>`,
+      to: process.env.SMTP_USER,
       subject: "New Contact Form Message",
       html: `
         <h3>New Message</h3>

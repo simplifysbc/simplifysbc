@@ -1,5 +1,4 @@
 import sbcLogo from "@/assets/sbc-logo.png";
-import { ShieldCheck, Award, Headphones } from "lucide-react";
 
 const Footer = () => (
   <>
@@ -22,6 +21,7 @@ const Footer = () => (
     <footer className="py-12 bg-foreground text-primary-foreground/60">
       <div className="container">
         <p className="text-center text-sm italic text-primary-foreground/40 mb-6">Simplifying Business, Empowering Communities</p>
+
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <a href="/" className="flex items-center gap-2">
             <img src={sbcLogo} alt="Simplify Business Consultancy" width={44} height={44} className="h-11 w-auto brightness-0 invert" />
@@ -35,32 +35,10 @@ const Footer = () => (
             <a href="/#contact" className="hover:text-primary-foreground transition-colors">Contact</a>
             <a href="/#careers" className="hover:text-primary-foreground transition-colors">Careers</a>
           </div>
-          <p className="text-xs">© 2026 Simplify Business Consultancy. All rights reserved.</p>
-        </div>
-
-        {/* Trust strip */}
-        <div className="py-10 px-6 md:px-12 border-t border-primary-foreground/10 mt-8">
-          <div className="grid md:grid-cols-3 gap-6 text-center md:text-left">
-            <div className="flex flex-col gap-2 items-center md:items-start">
-              <ShieldCheck className="text-accent" size={28} />
-              <h3 className="text-primary-foreground font-semibold text-base">Secure Payments</h3>
-              <p className="text-sm">Encrypted transactions via SSL</p>
-            </div>
-            <div className="flex flex-col gap-2 items-center md:items-start">
-              <Award className="text-accent" size={28} />
-              <h3 className="text-primary-foreground font-semibold text-base">Proven Expertise</h3>
-              <p className="text-sm">Trusted consulting for business growth</p>
-            </div>
-            <div className="flex flex-col gap-2 items-center md:items-start">
-              <Headphones className="text-accent" size={28} />
-              <h3 className="text-primary-foreground font-semibold text-base">Dedicated Support</h3>
-              <p className="text-sm">Responsive and reliable assistance</p>
-            </div>
-          </div>
         </div>
 
         {/* Payment section */}
-        <div className="mt-8 text-center">
+        <div className="mt-10 pt-8 border-t border-primary-foreground/10 text-center">
           <p className="text-sm font-medium mb-1 text-primary-foreground">Pay Safely With Us</p>
           <p className="text-xs text-primary-foreground/50 mb-4">
             Payments are encrypted and securely transmitted over SSL.
@@ -74,15 +52,9 @@ const Footer = () => (
           </div>
         </div>
 
-        {/* Micro-conversion block */}
-        <div className="mt-8 pt-6 border-t border-primary-foreground/10 text-center md:text-left">
-          <p className="text-sm text-primary-foreground/60 mb-3">Need help choosing the right service?</p>
-          <a
-            href="/#contact"
-            className="text-sm font-medium underline hover:opacity-80 text-primary-foreground"
-          >
-            Request a Free Consultation
-          </a>
+        {/* Copyright */}
+        <div className="mt-8 pt-6 border-t border-primary-foreground/10 text-center">
+          <p className="text-xs">© 2026 Simplify Business Consultancy. All rights reserved.</p>
         </div>
       </div>
     </footer>

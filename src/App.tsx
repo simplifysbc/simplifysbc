@@ -10,6 +10,7 @@ import ServiceOptimization from "./pages/ServiceOptimization.tsx";
 import ServiceDigital from "./pages/ServiceDigital.tsx";
 import ServiceWorkflow from "./pages/ServiceWorkflow.tsx";
 import Resources from "./pages/Resources.tsx";
+import Blog from "./pages/Blog.tsx";
 import About from "./pages/About.tsx";
 import ArticleAutomationTransform from "./pages/articles/ArticleAutomationTransform.tsx";
 import ArticleAffordableTools from "./pages/articles/ArticleAffordableTools.tsx";
@@ -30,6 +31,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
           <Route path="/resources" element={<Resources />} />
+          <Route path="/blog" element={<Blog />} />
           <Route path="/resources/how-automation-can-transform-rural-businesses" element={<ArticleAutomationTransform />} />
           <Route path="/resources/affordable-automation-tools" element={<ArticleAffordableTools />} />
           <Route path="/resources/ai-helping-small-town-businesses" element={<ArticleAiSmallTown />} />

@@ -43,6 +43,7 @@ const Navbar = () => {
 
           <a href="/about" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">About</a>
           <a href="/resources" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Resources</a>
+          <a href="/blog" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Blog</a>
           <a href="#contact" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Contact</a>
           <a href="#contact"><Button size="sm">Get Started</Button></a>
         </div>

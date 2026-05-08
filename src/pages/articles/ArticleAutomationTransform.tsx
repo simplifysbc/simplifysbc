@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Testimonials from "@/components/Testimonials";
 import SEO from "@/components/SEO";
+import ShareBar from "@/components/ShareBar";
 
 const ArticleAutomationTransform = () => (
   <div className="min-h-screen">
@@ -40,6 +41,8 @@ const ArticleAutomationTransform = () => (
           <h1 className="font-heading text-3xl md:text-4xl font-bold text-foreground leading-tight mb-6">
             How Automation Can Transform Rural Businesses in the USA
           </h1>
+
+          <ShareBar title={"How Automation Can Transform Rural Businesses in the USA"} url="/resources/how-automation-can-transform-rural-businesses" />
 
           <div className="prose prose-lg max-w-none text-foreground/90 space-y-6">
             <p>

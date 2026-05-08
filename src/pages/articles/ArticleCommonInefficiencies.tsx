@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Testimonials from "@/components/Testimonials";
 import SEO from "@/components/SEO";
+import ShareBar from "@/components/ShareBar";
 
 const ArticleCommonInefficiencies = () => (
   <div className="min-h-screen">
@@ -40,6 +41,8 @@ const ArticleCommonInefficiencies = () => (
           <h1 className="font-heading text-3xl md:text-4xl font-bold text-foreground leading-tight mb-6">
             Common Inefficiencies in Rural Businesses (and How to Fix Them)
           </h1>
+
+          <ShareBar title={"Common Inefficiencies in Rural Businesses and How to Fix Them"} url="/resources/common-inefficiencies-rural-businesses" />
 
           <div className="prose prose-lg max-w-none text-foreground/90 space-y-6">
             <p>

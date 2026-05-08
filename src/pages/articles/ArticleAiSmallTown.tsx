@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Testimonials from "@/components/Testimonials";
 import SEO from "@/components/SEO";
+import ShareBar from "@/components/ShareBar";
 
 const ArticleAiSmallTown = () => (
   <div className="min-h-screen">
@@ -40,6 +41,8 @@ const ArticleAiSmallTown = () => (
           <h1 className="font-heading text-3xl md:text-4xl font-bold text-foreground leading-tight mb-6">
             How AI Is Helping Small Town Businesses Compete in 2026
           </h1>
+
+          <ShareBar title={"How AI Is Helping Small Town Businesses Compete in 2026"} url="/resources/ai-helping-small-town-businesses" />
 
           <div className="prose prose-lg max-w-none text-foreground/90 space-y-6">
             <p>

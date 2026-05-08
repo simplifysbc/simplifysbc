@@ -31,6 +31,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
           <Route path="/resources" element={<Resources />} />
+          <Route path="/blog" element={<Blog />} />
           <Route path="/resources/how-automation-can-transform-rural-businesses" element={<ArticleAutomationTransform />} />
           <Route path="/resources/affordable-automation-tools" element={<ArticleAffordableTools />} />
           <Route path="/resources/ai-helping-small-town-businesses" element={<ArticleAiSmallTown />} />

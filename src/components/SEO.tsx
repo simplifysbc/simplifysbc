@@ -115,10 +115,17 @@ const SEO = ({
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:site_name" content={SITE_NAME} />
+      {article && <meta property="article:published_time" content={article.publishedDate} />}
+      {article && <meta property="article:author" content={article.author} />}
+      {article && <meta property="article:section" content={article.section} />}
+      {article?.tags.map((tag) => (
+        <meta key={tag} property="article:tag" content={tag} />
+      ))}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
+      <meta name="twitter:site" content="@simplifysbc" />
       {schemas.map((schema, i) => (
         <script key={i} type="application/ld+json">
           {JSON.stringify(schema)}

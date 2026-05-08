@@ -18,6 +18,7 @@ import ArticleAiSmallTown from "./pages/articles/ArticleAiSmallTown.tsx";
 import ArticleStreamlineOperations from "./pages/articles/ArticleStreamlineOperations.tsx";
 import ArticleCommonInefficiencies from "./pages/articles/ArticleCommonInefficiencies.tsx";
 import ArticleReduceCosts from "./pages/articles/ArticleReduceCosts.tsx";
+import RouteTracker from "./components/RouteTracker.tsx";
 
 const queryClient = new QueryClient();
 

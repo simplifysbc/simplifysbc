@@ -19,6 +19,7 @@ import ArticleStreamlineOperations from "./pages/articles/ArticleStreamlineOpera
 import ArticleCommonInefficiencies from "./pages/articles/ArticleCommonInefficiencies.tsx";
 import ArticleReduceCosts from "./pages/articles/ArticleReduceCosts.tsx";
 import RouteTracker from "./components/RouteTracker.tsx";
+import CookieConsent from "./components/CookieConsent.tsx";
 
 const queryClient = new QueryClient();
 

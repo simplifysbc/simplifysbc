@@ -11,6 +11,7 @@ import ServiceDigital from "./pages/ServiceDigital.tsx";
 import ServiceWorkflow from "./pages/ServiceWorkflow.tsx";
 import Resources from "./pages/Resources.tsx";
 import Blog from "./pages/Blog.tsx";
+import BlogPost from "./pages/BlogPost.tsx";
 import About from "./pages/About.tsx";
 import ArticleAutomationTransform from "./pages/articles/ArticleAutomationTransform.tsx";
 import ArticleAffordableTools from "./pages/articles/ArticleAffordableTools.tsx";

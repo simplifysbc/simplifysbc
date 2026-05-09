@@ -98,22 +98,27 @@ const Blog = () => (
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.06 }}
-              className="group p-6 rounded-lg bg-card border border-border hover:border-accent/40 hover:shadow-lg transition-all duration-300 flex flex-col"
+              className="group rounded-lg bg-card border border-border hover:border-accent/40 hover:shadow-lg transition-all duration-300 flex flex-col"
             >
-              <h2 className="font-heading text-lg font-semibold text-foreground mb-3 group-hover:text-accent transition-colors">
-                {p.title}
-              </h2>
-              <p className="text-muted-foreground text-sm leading-relaxed mb-6 flex-1">
-                {p.excerpt}
-              </p>
-              <div className="flex items-center justify-between text-xs text-muted-foreground pt-4 border-t border-border">
-                <span className="flex items-center gap-1">
-                  <Calendar size={12} /> {p.date}
+              <Link to={`/blog/${p.slug}`} className="p-6 flex flex-col flex-1">
+                <h2 className="font-heading text-lg font-semibold text-foreground mb-3 group-hover:text-accent transition-colors">
+                  {p.title}
+                </h2>
+                <p className="text-muted-foreground text-sm leading-relaxed mb-6 flex-1">
+                  {p.excerpt}
+                </p>
+                <div className="flex items-center justify-between text-xs text-muted-foreground pt-4 border-t border-border">
+                  <span className="flex items-center gap-1">
+                    <Calendar size={12} /> {p.date}
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <Clock size={12} /> {p.readTime}
+                  </span>
+                </div>
+                <span className="mt-4 inline-flex items-center gap-1 text-accent text-sm font-medium group-hover:gap-2 transition-all">
+                  Read post <ArrowRight size={14} />
                 </span>
-                <span className="flex items-center gap-1">
-                  <Clock size={12} /> {p.readTime}
-                </span>
-              </div>
+              </Link>
             </motion.article>
           ))}
         </div>

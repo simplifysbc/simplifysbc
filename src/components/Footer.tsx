@@ -57,6 +57,13 @@ const Footer = () => (
             <a href="/#packages" className="hover:text-primary-foreground transition-colors">Packages</a>
             <a href="/#contact" className="hover:text-primary-foreground transition-colors">Contact</a>
             <a href="/#careers" className="hover:text-primary-foreground transition-colors">Careers</a>
+            <button
+              type="button"
+              onClick={() => window.openCookieSettings?.()}
+              className="hover:text-primary-foreground transition-colors"
+            >
+              Cookie Settings
+            </button>
           </div>
           <div className="flex flex-col items-center md:items-end gap-3">
             <div className="flex items-center gap-3">

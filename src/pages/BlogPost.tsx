@@ -295,6 +295,16 @@ const BlogPost = () => {
               {post.title}
             </h1>
 
+            <div className="rounded-lg overflow-hidden border border-border mb-6 aspect-[16/9] bg-muted">
+              <img
+                src={post.image}
+                alt={post.imageAlt}
+                width={1280}
+                height={720}
+                className="w-full h-full object-cover"
+              />
+            </div>
+
             <ShareBar title={post.title} url={url} />
 
             <div className="prose prose-lg max-w-none text-foreground/90 space-y-6">

@@ -8,6 +8,13 @@ import SEO from "@/components/SEO";
 import ShareBar from "@/components/ShareBar";
 import NotFound from "./NotFound";
 
+import imgPaperwork from "@/assets/blog/manual-paperwork-fix.jpg";
+import imgFollowUps from "@/assets/blog/customer-follow-ups.jpg";
+import imgHardware from "@/assets/blog/hardware-store-process-wins.jpg";
+import imgCloud from "@/assets/blog/cloud-tools-slow-internet.jpg";
+import imgMap from "@/assets/blog/map-your-process.jpg";
+import imgReady from "@/assets/blog/ready-for-automation.jpg";
+
 type Section = { heading?: string; body: string };
 type Post = {
   slug: string;
@@ -17,6 +24,8 @@ type Post = {
   publishedDate: string;
   readTime: string;
   tags: string[];
+  image: string;
+  imageAlt: string;
   intro: string;
   sections: Section[];
   closing: string;

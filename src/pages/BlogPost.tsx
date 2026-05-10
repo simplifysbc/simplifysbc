@@ -8,6 +8,13 @@ import SEO from "@/components/SEO";
 import ShareBar from "@/components/ShareBar";
 import NotFound from "./NotFound";
 
+import imgPaperwork from "@/assets/blog/manual-paperwork-fix.jpg";
+import imgFollowUps from "@/assets/blog/customer-follow-ups.jpg";
+import imgHardware from "@/assets/blog/hardware-store-process-wins.jpg";
+import imgCloud from "@/assets/blog/cloud-tools-slow-internet.jpg";
+import imgMap from "@/assets/blog/map-your-process.jpg";
+import imgReady from "@/assets/blog/ready-for-automation.jpg";
+
 type Section = { heading?: string; body: string };
 type Post = {
   slug: string;
@@ -17,6 +24,8 @@ type Post = {
   publishedDate: string;
   readTime: string;
   tags: string[];
+  image: string;
+  imageAlt: string;
   intro: string;
   sections: Section[];
   closing: string;
@@ -31,6 +40,8 @@ const POSTS: Post[] = [
     date: "May 8, 2026",
     publishedDate: "2026-05-08",
     readTime: "5 min read",
+    image: imgPaperwork,
+    imageAlt: "Stacks of paper invoices and a vintage calculator on a wooden desk in a small rural office",
     tags: ["paperwork", "admin", "small business", "rural business"],
     intro:
       "Most small town businesses we visit are losing four to ten hours every week to paperwork that nobody really reads. Invoices get re-typed. Job sheets get re-entered. Receipts get filed twice. The work feels normal because it has always been done that way.",
@@ -62,6 +73,8 @@ const POSTS: Post[] = [
     date: "May 1, 2026",
     publishedDate: "2026-05-01",
     readTime: "6 min read",
+    image: imgFollowUps,
+    imageAlt: "Friendly small town service worker waving goodbye to a customer with a smartphone in hand",
     tags: ["customer follow up", "CRM", "service business", "automation"],
     intro:
       "Most service jobs end the same way. The customer pays, you say thanks, and you both move on. Six months later they need the same service and call somebody else because your name slipped their mind.",
@@ -93,6 +106,8 @@ const POSTS: Post[] = [
     date: "April 24, 2026",
     publishedDate: "2026-04-24",
     readTime: "7 min read",
+    image: imgHardware,
+    imageAlt: "Family run rural hardware store interior with wooden shelves of tools and paint cans",
     tags: ["case study", "hardware store", "process improvement", "rural business"],
     intro:
       "A family hardware store in a town of 4,000 people asked us for help. They were busy, profitable, and exhausted. The owners worked twelve hour days, six days a week. Here is what changed in 90 days.",
@@ -124,6 +139,8 @@ const POSTS: Post[] = [
     date: "April 17, 2026",
     publishedDate: "2026-04-17",
     readTime: "5 min read",
+    image: imgCloud,
+    imageAlt: "Laptop on a farmhouse table with a barn and rural fields visible through the window",
     tags: ["cloud tools", "rural internet", "offline mode", "small business software"],
     intro:
       "Rural internet is a real thing. Speeds drop, connections cut out, and big software updates can take a full day. The good news is plenty of cloud tools are built to work even when your bars are low.",
@@ -155,6 +172,8 @@ const POSTS: Post[] = [
     date: "April 10, 2026",
     publishedDate: "2026-04-10",
     readTime: "6 min read",
+    image: imgMap,
+    imageAlt: "Wall covered in colorful sticky notes and arrows mapping a business workflow",
     tags: ["process mapping", "small business", "operations", "automation"],
     intro:
       "You cannot improve what you cannot see. A simple process map shows every step a job takes from the first phone call to the final invoice. Most owners discover three or four wasted steps in the first hour.",
@@ -186,6 +205,8 @@ const POSTS: Post[] = [
     date: "April 3, 2026",
     publishedDate: "2026-04-03",
     readTime: "4 min read",
+    image: imgReady,
+    imageAlt: "Rural small business owner in a flannel shirt looking thoughtfully at a tablet in a workshop",
     tags: ["automation", "rural business", "readiness", "small business"],
     intro:
       "Automation is not just for big companies. The trick is knowing when your business is ready. Here are five honest signs we look for before we recommend it.",
@@ -273,6 +294,16 @@ const BlogPost = () => {
             <h1 className="font-heading text-3xl md:text-4xl font-bold text-foreground leading-tight mb-6">
               {post.title}
             </h1>
+
+            <div className="rounded-lg overflow-hidden border border-border mb-6 aspect-[16/9] bg-muted">
+              <img
+                src={post.image}
+                alt={post.imageAlt}
+                width={1280}
+                height={720}
+                className="w-full h-full object-cover"
+              />
+            </div>
 
             <ShareBar title={post.title} url={url} />
 

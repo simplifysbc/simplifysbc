@@ -8,6 +8,14 @@ import SEO from "@/components/SEO";
 
 const posts = [
   {
+    title: "How Smart Irrigation Automation Is Transforming Small and Mid-Sized Farms in the USA",
+    excerpt:
+      "Smart irrigation and agtech automation are helping small and mid-sized USA farms cut water waste, lower labor costs, and run fields remotely.",
+    date: "May 15, 2026",
+    readTime: "9 min read",
+    slug: "smart-irrigation-automation-usa-farms",
+  },
+  {
     title: "Why Rural Businesses Lose Hours to Manual Paperwork (and How to Fix It)",
     excerpt:
       "Paperwork is silently draining time from small town businesses. Here is a simple weekly habit to cut hours of admin work and free your team for real work.",

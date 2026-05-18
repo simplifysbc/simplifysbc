@@ -20,6 +20,8 @@ import imgMap from "@/assets/blog/map-your-process.jpg?w=1280&format=webp";
 import imgMapSet from "@/assets/blog/map-your-process.jpg?w=480;800;1280&format=webp&as=srcset";
 import imgReady from "@/assets/blog/ready-for-automation.jpg?w=1280&format=webp";
 import imgReadySet from "@/assets/blog/ready-for-automation.jpg?w=480;800;1280&format=webp&as=srcset";
+import imgIrrigation from "@/assets/blog/smart-irrigation-automation.jpg?w=1280&format=webp";
+import imgIrrigationSet from "@/assets/blog/smart-irrigation-automation.jpg?w=480;800;1280&format=webp&as=srcset";
 
 type Section = { heading?: string; body: string };
 type Post = {

@@ -31,6 +31,7 @@ type Post = {
   readTime: string;
   tags: string[];
   image: string;
+  imageSrcSet: string;
   imageAlt: string;
   intro: string;
   sections: Section[];

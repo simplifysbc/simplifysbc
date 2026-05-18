@@ -311,9 +311,13 @@ const BlogPost = () => {
             <div className="rounded-lg overflow-hidden border border-border mb-6 aspect-[16/9] bg-muted">
               <img
                 src={post.image}
+                srcSet={post.imageSrcSet}
+                sizes="(max-width: 768px) 100vw, 768px"
                 alt={post.imageAlt}
                 width={1280}
                 height={720}
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover"
               />
             </div>

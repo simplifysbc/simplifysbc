@@ -48,6 +48,7 @@ const POSTS: Post[] = [
     publishedDate: "2026-05-08",
     readTime: "5 min read",
     image: imgPaperwork,
+    imageSrcSet: imgPaperworkSet,
     imageAlt: "Stacks of paper invoices and a vintage calculator on a wooden desk in a small rural office",
     tags: ["paperwork", "admin", "small business", "rural business"],
     intro:
@@ -81,6 +82,7 @@ const POSTS: Post[] = [
     publishedDate: "2026-05-01",
     readTime: "6 min read",
     image: imgFollowUps,
+    imageSrcSet: imgFollowUpsSet,
     imageAlt: "Friendly small town service worker waving goodbye to a customer with a smartphone in hand",
     tags: ["customer follow up", "CRM", "service business", "automation"],
     intro:
@@ -114,6 +116,7 @@ const POSTS: Post[] = [
     publishedDate: "2026-04-24",
     readTime: "7 min read",
     image: imgHardware,
+    imageSrcSet: imgHardwareSet,
     imageAlt: "Family run rural hardware store interior with wooden shelves of tools and paint cans",
     tags: ["case study", "hardware store", "process improvement", "rural business"],
     intro:
@@ -147,6 +150,7 @@ const POSTS: Post[] = [
     publishedDate: "2026-04-17",
     readTime: "5 min read",
     image: imgCloud,
+    imageSrcSet: imgCloudSet,
     imageAlt: "Laptop on a farmhouse table with a barn and rural fields visible through the window",
     tags: ["cloud tools", "rural internet", "offline mode", "small business software"],
     intro:
@@ -180,6 +184,7 @@ const POSTS: Post[] = [
     publishedDate: "2026-04-10",
     readTime: "6 min read",
     image: imgMap,
+    imageSrcSet: imgMapSet,
     imageAlt: "Wall covered in colorful sticky notes and arrows mapping a business workflow",
     tags: ["process mapping", "small business", "operations", "automation"],
     intro:
@@ -213,6 +218,7 @@ const POSTS: Post[] = [
     publishedDate: "2026-04-03",
     readTime: "4 min read",
     image: imgReady,
+    imageSrcSet: imgReadySet,
     imageAlt: "Rural small business owner in a flannel shirt looking thoughtfully at a tablet in a workshop",
     tags: ["automation", "rural business", "readiness", "small business"],
     intro:

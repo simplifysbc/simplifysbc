@@ -8,12 +8,18 @@ import SEO from "@/components/SEO";
 import ShareBar from "@/components/ShareBar";
 import NotFound from "./NotFound";
 
-import imgPaperwork from "@/assets/blog/manual-paperwork-fix.jpg";
-import imgFollowUps from "@/assets/blog/customer-follow-ups.jpg";
-import imgHardware from "@/assets/blog/hardware-store-process-wins.jpg";
-import imgCloud from "@/assets/blog/cloud-tools-slow-internet.jpg";
-import imgMap from "@/assets/blog/map-your-process.jpg";
-import imgReady from "@/assets/blog/ready-for-automation.jpg";
+import imgPaperwork from "@/assets/blog/manual-paperwork-fix.jpg?w=1280&format=webp";
+import imgPaperworkSet from "@/assets/blog/manual-paperwork-fix.jpg?w=480;800;1280&format=webp&as=srcset";
+import imgFollowUps from "@/assets/blog/customer-follow-ups.jpg?w=1280&format=webp";
+import imgFollowUpsSet from "@/assets/blog/customer-follow-ups.jpg?w=480;800;1280&format=webp&as=srcset";
+import imgHardware from "@/assets/blog/hardware-store-process-wins.jpg?w=1280&format=webp";
+import imgHardwareSet from "@/assets/blog/hardware-store-process-wins.jpg?w=480;800;1280&format=webp&as=srcset";
+import imgCloud from "@/assets/blog/cloud-tools-slow-internet.jpg?w=1280&format=webp";
+import imgCloudSet from "@/assets/blog/cloud-tools-slow-internet.jpg?w=480;800;1280&format=webp&as=srcset";
+import imgMap from "@/assets/blog/map-your-process.jpg?w=1280&format=webp";
+import imgMapSet from "@/assets/blog/map-your-process.jpg?w=480;800;1280&format=webp&as=srcset";
+import imgReady from "@/assets/blog/ready-for-automation.jpg?w=1280&format=webp";
+import imgReadySet from "@/assets/blog/ready-for-automation.jpg?w=480;800;1280&format=webp&as=srcset";
 
 type Section = { heading?: string; body: string };
 type Post = {

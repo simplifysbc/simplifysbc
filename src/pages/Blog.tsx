@@ -8,6 +8,14 @@ import SEO from "@/components/SEO";
 
 const posts = [
   {
+    title: "Why Rural Businesses and SMB Farms Need Operational Automation in 2026",
+    excerpt:
+      "Rural business automation in 2026: how SMB farms and small operators cut downtime, gain visibility, and boost ROI with workflow automation.",
+    date: "May 22, 2026",
+    readTime: "10 min read",
+    slug: "rural-business-automation-2026",
+  },
+  {
     title: "How Smart Irrigation Automation Is Transforming Small and Mid-Sized Farms in the USA",
     excerpt:
       "Smart irrigation and agtech automation are helping small and mid-sized USA farms cut water waste, lower labor costs, and run fields remotely.",

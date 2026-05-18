@@ -8,12 +8,18 @@ import SEO from "@/components/SEO";
 import ShareBar from "@/components/ShareBar";
 import NotFound from "./NotFound";
 
-import imgPaperwork from "@/assets/blog/manual-paperwork-fix.jpg";
-import imgFollowUps from "@/assets/blog/customer-follow-ups.jpg";
-import imgHardware from "@/assets/blog/hardware-store-process-wins.jpg";
-import imgCloud from "@/assets/blog/cloud-tools-slow-internet.jpg";
-import imgMap from "@/assets/blog/map-your-process.jpg";
-import imgReady from "@/assets/blog/ready-for-automation.jpg";
+import imgPaperwork from "@/assets/blog/manual-paperwork-fix.jpg?w=1280&format=webp";
+import imgPaperworkSet from "@/assets/blog/manual-paperwork-fix.jpg?w=480;800;1280&format=webp&as=srcset";
+import imgFollowUps from "@/assets/blog/customer-follow-ups.jpg?w=1280&format=webp";
+import imgFollowUpsSet from "@/assets/blog/customer-follow-ups.jpg?w=480;800;1280&format=webp&as=srcset";
+import imgHardware from "@/assets/blog/hardware-store-process-wins.jpg?w=1280&format=webp";
+import imgHardwareSet from "@/assets/blog/hardware-store-process-wins.jpg?w=480;800;1280&format=webp&as=srcset";
+import imgCloud from "@/assets/blog/cloud-tools-slow-internet.jpg?w=1280&format=webp";
+import imgCloudSet from "@/assets/blog/cloud-tools-slow-internet.jpg?w=480;800;1280&format=webp&as=srcset";
+import imgMap from "@/assets/blog/map-your-process.jpg?w=1280&format=webp";
+import imgMapSet from "@/assets/blog/map-your-process.jpg?w=480;800;1280&format=webp&as=srcset";
+import imgReady from "@/assets/blog/ready-for-automation.jpg?w=1280&format=webp";
+import imgReadySet from "@/assets/blog/ready-for-automation.jpg?w=480;800;1280&format=webp&as=srcset";
 
 type Section = { heading?: string; body: string };
 type Post = {
@@ -25,6 +31,7 @@ type Post = {
   readTime: string;
   tags: string[];
   image: string;
+  imageSrcSet: string;
   imageAlt: string;
   intro: string;
   sections: Section[];
@@ -41,6 +48,7 @@ const POSTS: Post[] = [
     publishedDate: "2026-05-08",
     readTime: "5 min read",
     image: imgPaperwork,
+    imageSrcSet: imgPaperworkSet,
     imageAlt: "Stacks of paper invoices and a vintage calculator on a wooden desk in a small rural office",
     tags: ["paperwork", "admin", "small business", "rural business"],
     intro:
@@ -74,6 +82,7 @@ const POSTS: Post[] = [
     publishedDate: "2026-05-01",
     readTime: "6 min read",
     image: imgFollowUps,
+    imageSrcSet: imgFollowUpsSet,
     imageAlt: "Friendly small town service worker waving goodbye to a customer with a smartphone in hand",
     tags: ["customer follow up", "CRM", "service business", "automation"],
     intro:
@@ -107,6 +116,7 @@ const POSTS: Post[] = [
     publishedDate: "2026-04-24",
     readTime: "7 min read",
     image: imgHardware,
+    imageSrcSet: imgHardwareSet,
     imageAlt: "Family run rural hardware store interior with wooden shelves of tools and paint cans",
     tags: ["case study", "hardware store", "process improvement", "rural business"],
     intro:
@@ -140,6 +150,7 @@ const POSTS: Post[] = [
     publishedDate: "2026-04-17",
     readTime: "5 min read",
     image: imgCloud,
+    imageSrcSet: imgCloudSet,
     imageAlt: "Laptop on a farmhouse table with a barn and rural fields visible through the window",
     tags: ["cloud tools", "rural internet", "offline mode", "small business software"],
     intro:
@@ -173,6 +184,7 @@ const POSTS: Post[] = [
     publishedDate: "2026-04-10",
     readTime: "6 min read",
     image: imgMap,
+    imageSrcSet: imgMapSet,
     imageAlt: "Wall covered in colorful sticky notes and arrows mapping a business workflow",
     tags: ["process mapping", "small business", "operations", "automation"],
     intro:
@@ -206,6 +218,7 @@ const POSTS: Post[] = [
     publishedDate: "2026-04-03",
     readTime: "4 min read",
     image: imgReady,
+    imageSrcSet: imgReadySet,
     imageAlt: "Rural small business owner in a flannel shirt looking thoughtfully at a tablet in a workshop",
     tags: ["automation", "rural business", "readiness", "small business"],
     intro:
@@ -298,9 +311,13 @@ const BlogPost = () => {
             <div className="rounded-lg overflow-hidden border border-border mb-6 aspect-[16/9] bg-muted">
               <img
                 src={post.image}
+                srcSet={post.imageSrcSet}
+                sizes="(max-width: 768px) 100vw, 768px"
                 alt={post.imageAlt}
                 width={1280}
                 height={720}
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover"
               />
             </div>

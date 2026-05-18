@@ -423,7 +423,7 @@ const BlogPost = () => {
                       {s.heading}
                     </h2>
                   )}
-                  <p>{s.body}</p>
+                  <p className="whitespace-pre-line">{s.body}</p>
                 </div>
               ))}
 

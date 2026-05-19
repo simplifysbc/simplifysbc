@@ -24,6 +24,8 @@ import imgIrrigation from "@/assets/blog/smart-irrigation-automation.jpg?w=1280&
 import imgIrrigationSet from "@/assets/blog/smart-irrigation-automation.jpg?w=480;800;1280&format=webp&as=srcset";
 import imgRuralOps from "@/assets/blog/rural-operational-automation-2026.jpg?w=1280&format=webp";
 import imgRuralOpsSet from "@/assets/blog/rural-operational-automation-2026.jpg?w=480;800;1280&format=webp&as=srcset";
+import imgColdStorage from "@/assets/blog/cold-storage-automation.jpg?w=1280&format=webp";
+import imgColdStorageSet from "@/assets/blog/cold-storage-automation.jpg?w=480;800;1280&format=webp&as=srcset";
 
 type Section = { heading?: string; body: string };
 type Post = {

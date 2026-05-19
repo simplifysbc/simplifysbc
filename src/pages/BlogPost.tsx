@@ -93,8 +93,7 @@ const POSTS: Post[] = [
       },
       {
         body:
-          "• Temperature rises above or below a defined threshold\n• Humidity spikes that could trigger mold or condensation\n• Power outages that affect cooling equipment\n• Doors left open past a set time limit\n• Compressor cycles that indicate an emerging mechanical issue\n
-Alerts go straight to the owner's phone via SMS, email, or app notification. The response time shrinks from hours to minutes, and that gap is where the money is saved.",
+          "• Temperature rises above or below a defined threshold\n• Humidity spikes that could trigger mold or condensation\n• Power outages that affect cooling equipment\n• Doors left open past a set time limit\n• Compressor cycles that indicate an emerging mechanical issue\n\nAlerts go straight to the owner's phone via SMS, email, or app notification. The response time shrinks from hours to minutes, and that gap is where the money is saved.",
       },
       {
         heading: "Predictive maintenance: fix it before it breaks",
@@ -108,8 +107,7 @@ Alerts go straight to the owner's phone via SMS, email, or app notification. The
       },
       {
         body:
-          "• Current temperature and humidity across all zones\n• Equipment status and upcoming maintenance dates\n• Alert history and response times\n• Compliance records ready for audits or certifications\n• Energy usage trends by unit and by facility\n
-The dashboard turns scattered data into operational clarity, so decisions get made on facts instead of memory.",
+          "• Current temperature and humidity across all zones\n• Equipment status and upcoming maintenance dates\n• Alert history and response times\n• Compliance records ready for audits or certifications\n• Energy usage trends by unit and by facility\n\nThe dashboard turns scattered data into operational clarity, so decisions get made on facts instead of memory.",
       },
       {
         heading: "Use cases: who benefits from cold storage automation",
@@ -118,8 +116,7 @@ The dashboard turns scattered data into operational clarity, so decisions get ma
       },
       {
         body:
-          "• Food distributors: protect inventory during receipt, storage, and outbound shipping; maintain customer contracts that require temperature proof\n• Produce farms: extend shelf life from harvest to market by keeping the cold chain unbroken from field cooler to buyer\n• Rural warehouses: reduce weekend anxiety with 24/7 remote monitoring and instant alerts when no staff is on site\n• Agricultural supply chains: track conditions across multiple handoff points so liability is clear and product quality is defendable\n
-Each of these use cases shares the same goal. Less waste, fewer emergencies, stronger customer trust, and more predictable margins.",
+          "• Food distributors: protect inventory during receipt, storage, and outbound shipping; maintain customer contracts that require temperature proof\n• Produce farms: extend shelf life from harvest to market by keeping the cold chain unbroken from field cooler to buyer\n• Rural warehouses: reduce weekend anxiety with 24/7 remote monitoring and instant alerts when no staff is on site\n• Agricultural supply chains: track conditions across multiple handoff points so liability is clear and product quality is defendable\n\nEach of these use cases shares the same goal. Less waste, fewer emergencies, stronger customer trust, and more predictable margins.",
       },
       {
         heading: "How Simplify Business Consultancy helps you implement cold storage automation",
@@ -128,8 +125,7 @@ Each of these use cases shares the same goal. Less waste, fewer emergencies, str
       },
       {
         body:
-          "• We start with a free conversation to understand your current cold storage setup, your pain points, and your budget\n• We map every zone, vehicle, and handoff point that touches your product\n• We recommend sensor and dashboard solutions that match your scale, not an oversized enterprise platform\n• We handle installation, staff training, and integration with your existing tools\n• We stay available for support, tuning, and expansion as your operation grows\n
-No complex jargon. No long-term contracts. Just cold storage automation that protects your product and your revenue.",
+          "• We start with a free conversation to understand your current cold storage setup, your pain points, and your budget\n• We map every zone, vehicle, and handoff point that touches your product\n• We recommend sensor and dashboard solutions that match your scale, not an oversized enterprise platform\n• We handle installation, staff training, and integration with your existing tools\n• We stay available for support, tuning, and expansion as your operation grows\n\nNo complex jargon. No long-term contracts. Just cold storage automation that protects your product and your revenue.",
       },
       {
         heading: "Conclusion: protecting product, profit, and reputation",

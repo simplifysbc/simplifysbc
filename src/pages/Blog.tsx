@@ -8,6 +8,14 @@ import SEO from "@/components/SEO";
 
 const posts = [
   {
+    title: "How Cold Storage Automation Reduces Food Waste and Protects Revenue",
+    excerpt:
+      "Cold storage automation, smart sensors, and predictive maintenance help food distributors, farms, and warehouses cut spoilage, protect revenue, and build a more reliable supply chain.",
+    date: "May 29, 2026",
+    readTime: "10 min read",
+    slug: "cold-storage-automation-food-waste",
+  },
+  {
     title: "Why Rural Businesses and SMB Farms Need Operational Automation in 2026",
     excerpt:
       "Rural business automation in 2026: how SMB farms and small operators cut downtime, gain visibility, and boost ROI with workflow automation.",

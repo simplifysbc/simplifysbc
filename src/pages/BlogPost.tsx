@@ -633,6 +633,63 @@ const BlogPost = () => {
         </div>
       </article>
 
+      {related.length > 0 && (
+        <section className="py-16 bg-background border-t border-border">
+          <div className="container max-w-6xl">
+            <h2 className="font-heading text-2xl font-bold text-foreground mb-8">
+              Related Posts
+            </h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {related.map((rp, i) => (
+                <motion.article
+                  key={rp.slug}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08 }}
+                  className="group rounded-lg bg-card border border-border hover:border-accent/40 hover:shadow-lg transition-all duration-300 flex flex-col"
+                >
+                  <Link to={`/blog/${rp.slug}`} className="flex flex-col flex-1">
+                    <div className="rounded-t-lg overflow-hidden aspect-[16/9] bg-muted">
+                      <img
+                        src={rp.image}
+                        srcSet={rp.imageSrcSet}
+                        sizes="(max-width: 768px) 100vw, 400px"
+                        alt={rp.imageAlt}
+                        width={400}
+                        height={225}
+                        loading="lazy"
+                        decoding="async"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                    <div className="p-6 flex flex-col flex-1">
+                      <h3 className="font-heading text-lg font-semibold text-foreground mb-2 group-hover:text-accent transition-colors">
+                        {rp.title}
+                      </h3>
+                      <p className="text-muted-foreground text-sm leading-relaxed mb-4 flex-1">
+                        {rp.description}
+                      </p>
+                      <div className="flex items-center gap-4 text-xs text-muted-foreground pt-3 border-t border-border">
+                        <span className="flex items-center gap-1">
+                          <Calendar size={12} /> {rp.date}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <Clock size={12} /> {rp.readTime}
+                        </span>
+                      </div>
+                      <span className="mt-3 inline-flex items-center gap-1 text-accent text-sm font-medium group-hover:gap-2 transition-all">
+                        Read post <ArrowRight size={14} />
+                      </span>
+                    </div>
+                  </Link>
+                </motion.article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       <section className="py-16 bg-primary text-center">
         <div className="container max-w-2xl space-y-6">
           <h2 className="font-heading text-3xl font-bold text-primary-foreground">

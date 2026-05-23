@@ -550,6 +550,8 @@ const BlogPost = () => {
   if (!post) return <NotFound />;
 
   const url = `/blog/${post.slug}`;
+  const related = getRelatedPosts(post);
+
 
   return (
     <div className="min-h-screen">

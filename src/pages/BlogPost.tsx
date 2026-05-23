@@ -533,6 +533,16 @@ const POSTS: Post[] = [
 
 export const blogPosts = POSTS;
 
+const getRelatedPosts = (currentPost: Post, limit = 3): Post[] => {
+  const scored = POSTS.filter((p) => p.slug !== currentPost.slug).map((p) => {
+    const shared = p.tags.filter((t) => currentPost.tags.includes(t)).length;
+    return { post: p, shared };
+  });
+  scored.sort((a, b) => b.shared - a.shared);
+  return scored.slice(0, limit).map((s) => s.post);
+};
+
+
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
   const post = POSTS.find((p) => p.slug === slug);

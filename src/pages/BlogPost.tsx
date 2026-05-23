@@ -49,7 +49,7 @@ const POSTS: Post[] = [
     slug: "cold-storage-automation-food-waste",
     title: "How Cold Storage Automation Reduces Food Waste and Protects Revenue",
     description:
-      "Cold storage automation, smart sensors, and predictive maintenance help food distributors, farms, and warehouses cut spoilage, protect revenue, and build a more reliable supply chain.",
+      "Cold storage automation helps food distributors and farms cut spoilage, protect revenue, and build a more reliable supply chain with smart sensors.",
     date: "May 29, 2026",
     publishedDate: "2026-05-29",
     readTime: "10 min read",

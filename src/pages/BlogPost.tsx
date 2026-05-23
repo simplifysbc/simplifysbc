@@ -544,10 +544,11 @@ const BlogPost = () => {
   return (
     <div className="min-h-screen">
       <SEO
-        title={`${post.title} | Simplify Business Consultancy Blog`}
+        title={post.title}
         description={post.description}
         canonical={url}
         type="article"
+        image={post.image}
         article={{
           author: "Simplify Business Consultancy",
           publishedDate: post.publishedDate,

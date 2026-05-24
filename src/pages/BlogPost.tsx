@@ -629,6 +629,7 @@ const BlogPost = () => {
 
   const url = `/blog/${post.slug}`;
   const related = getRelatedPosts(post);
+  const nextPost = getNextPost(post);
 
 
   return (

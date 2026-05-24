@@ -614,6 +614,12 @@ const getRelatedPosts = (currentPost: Post, limit = 3): Post[] => {
   return scored.slice(0, limit).map((s) => s.post);
 };
 
+const getNextPost = (current: Post): Post | null => {
+  const idx = POSTS.findIndex((p) => p.slug === current.slug);
+  if (idx === -1 || idx >= POSTS.length - 1) return null;
+  return POSTS[idx + 1];
+};
+
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();

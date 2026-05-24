@@ -533,12 +533,84 @@ const POSTS: Post[] = [
 
 export const blogPosts = POSTS;
 
+// Topic clusters boost relevance for rural/food automation themes.
+const TOPIC_CLUSTERS: Record<string, string[]> = {
+  rural: [
+    "rural business",
+    "rural business automation",
+    "rural internet",
+    "small business",
+    "small business software",
+    "service business",
+  ],
+  food: [
+    "cold storage automation",
+    "food supply chain technology",
+    "food logistics automation",
+    "agricultural operations",
+    "agricultural automation",
+    "smart irrigation",
+    "farm automation",
+  ],
+  automation: [
+    "automation",
+    "workflow automation",
+    "operational efficiency",
+    "predictive maintenance",
+    "process improvement",
+    "operations",
+  ],
+};
+
+const normalizeTag = (t: string) => t.toLowerCase().trim();
+
+const clustersFor = (tags: string[]): Set<string> => {
+  const set = new Set<string>();
+  const lower = tags.map(normalizeTag);
+  for (const [cluster, members] of Object.entries(TOPIC_CLUSTERS)) {
+    if (members.some((m) => lower.includes(m))) set.add(cluster);
+  }
+  return set;
+};
+
 const getRelatedPosts = (currentPost: Post, limit = 3): Post[] => {
+  const currentTags = currentPost.tags.map(normalizeTag);
+  const currentClusters = clustersFor(currentPost.tags);
+  const currentTime = new Date(currentPost.publishedDate).getTime();
+  const HALF_LIFE_DAYS = 120;
+  const DAY_MS = 1000 * 60 * 60 * 24;
+
   const scored = POSTS.filter((p) => p.slug !== currentPost.slug).map((p) => {
-    const shared = p.tags.filter((t) => currentPost.tags.includes(t)).length;
-    return { post: p, shared };
+    const pTags = p.tags.map(normalizeTag);
+
+    // Weighted shared tags: exact matches are strongest.
+    const sharedExact = pTags.filter((t) => currentTags.includes(t)).length;
+    const tagScore = sharedExact * 3;
+
+    // Cluster overlap rewards posts in the same rural/food/automation theme.
+    const pClusters = clustersFor(p.tags);
+    let clusterScore = 0;
+    currentClusters.forEach((c) => {
+      if (pClusters.has(c)) clusterScore += 2;
+    });
+
+    // Recency: exponential decay so newer posts edge out older near-ties.
+    const ageDays =
+      Math.abs(currentTime - new Date(p.publishedDate).getTime()) / DAY_MS;
+    const recencyScore = 2 * Math.pow(0.5, ageDays / HALF_LIFE_DAYS);
+
+    const score = tagScore + clusterScore + recencyScore;
+    return { post: p, score, publishedDate: p.publishedDate };
   });
-  scored.sort((a, b) => b.shared - a.shared);
+
+  scored.sort((a, b) => {
+    if (b.score !== a.score) return b.score - a.score;
+    return (
+      new Date(b.publishedDate).getTime() -
+      new Date(a.publishedDate).getTime()
+    );
+  });
+
   return scored.slice(0, limit).map((s) => s.post);
 };
 

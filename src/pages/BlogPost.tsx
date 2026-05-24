@@ -712,6 +712,32 @@ const BlogPost = () => {
         </div>
       </article>
 
+      {nextPost && (
+        <section className="py-10 bg-background border-t border-border">
+          <div className="container max-w-3xl flex justify-end">
+            <Link
+              to={`/blog/${nextPost.slug}`}
+              className="group flex items-center gap-3 text-right"
+            >
+              <div>
+                <span className="block text-xs text-muted-foreground uppercase tracking-wide mb-1">
+                  Next post
+                </span>
+                <span className="block font-heading text-lg font-semibold text-foreground group-hover:text-accent transition-colors">
+                  {nextPost.title}
+                </span>
+              </div>
+              <div className="w-10 h-10 rounded-full border border-border flex items-center justify-center group-hover:border-accent group-hover:bg-accent/10 transition-colors shrink-0">
+                <ArrowRight
+                  size={18}
+                  className="text-foreground group-hover:text-accent transition-colors"
+                />
+              </div>
+            </Link>
+          </div>
+        </section>
+      )}
+
       {related.length > 0 && (
         <section className="py-16 bg-background border-t border-border">
           <div className="container max-w-6xl">

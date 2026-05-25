@@ -34,7 +34,7 @@ const ContactForm = () => {
     try {
       const { error } = await supabase
         .from("contact_submissions")
-        .insert(parsed.data);
+        .insert([parsed.data]);
 
       if (error) throw error;
 

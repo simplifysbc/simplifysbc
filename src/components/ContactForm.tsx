@@ -1,46 +1,59 @@
 import { useState } from "react";
+import { z } from "zod";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "@/hooks/use-toast";
+
+const contactSchema = z.object({
+  name: z.string().trim().min(1, "Please enter your name").max(100),
+  email: z.string().trim().email("Please enter a valid email").max(255),
+  message: z.string().trim().min(1, "Please enter a message").max(2000),
+}).required();
 
 const ContactForm = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleChange = (e: any) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
+    const parsed = contactSchema.safeParse(formData);
+    if (!parsed.success) {
+      toast({
+        title: "Please check your details",
+        description: parsed.error.issues[0]?.message ?? "Invalid input",
+        variant: "destructive",
       });
-
-      if (res.ok) {
-        setIsSubmitted(true);
-        setFormData({ name: "", email: "", message: "" });
-      } else {
-        alert("Failed to send message.");
-      }
-    } catch (error) {
-      alert("Something went wrong.");
+      return;
     }
 
-    setIsSubmitting(false);
+    setIsSubmitting(true);
+    try {
+      const { error } = await supabase
+        .from("contact_submissions")
+        .insert([{ name: parsed.data.name, email: parsed.data.email, message: parsed.data.message }]);
+
+      if (error) throw error;
+
+      setIsSubmitted(true);
+      setFormData({ name: "", email: "", message: "" });
+      toast({
+        title: "Message sent",
+        description: "Thanks for reaching out. We will get back to you within 24 hours.",
+      });
+    } catch (err) {
+      console.error(err);
+      toast({
+        title: "Something went wrong",
+        description: "Please try again in a moment.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -52,7 +65,8 @@ const ContactForm = () => {
         value={formData.name}
         onChange={handleChange}
         required
-        className="w-full p-2 border rounded"
+        maxLength={100}
+        className="w-full px-4 py-3 rounded-lg bg-primary-foreground/10 border border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50 focus:outline-none focus:ring-2 focus:ring-accent"
       />
 
       <input
@@ -62,7 +76,8 @@ const ContactForm = () => {
         value={formData.email}
         onChange={handleChange}
         required
-        className="w-full p-2 border rounded"
+        maxLength={255}
+        className="w-full px-4 py-3 rounded-lg bg-primary-foreground/10 border border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50 focus:outline-none focus:ring-2 focus:ring-accent"
       />
 
       <textarea
@@ -71,21 +86,21 @@ const ContactForm = () => {
         value={formData.message}
         onChange={handleChange}
         required
-        className="w-full p-2 border rounded"
+        rows={5}
+        maxLength={2000}
+        className="w-full px-4 py-3 rounded-lg bg-primary-foreground/10 border border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50 focus:outline-none focus:ring-2 focus:ring-accent resize-none"
       />
 
       <button
         type="submit"
         disabled={isSubmitting}
-        className="px-4 py-2 bg-blue-600 text-white rounded"
+        className="w-full px-4 py-3 rounded-lg bg-accent text-accent-foreground font-medium hover:bg-accent/90 transition disabled:opacity-60"
       >
         {isSubmitting ? "Sending..." : "Send Message"}
       </button>
 
       {isSubmitted && (
-        <p className="text-green-600">
-          Message sent successfully!
-        </p>
+        <p className="text-sm text-accent">Message sent successfully!</p>
       )}
     </form>
   );

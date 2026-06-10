@@ -71,6 +71,57 @@ export type Database = {
         }
         Relationships: []
       }
+      customer_leads: {
+        Row: {
+          country: string | null
+          created_date: string
+          email: string
+          full_name: string
+          id: string
+          lead_id: string
+          lead_source: Database["public"]["Enums"]["lead_source_type"]
+          message: string | null
+          notes: string | null
+          preferred_package:
+            | Database["public"]["Enums"]["preferred_package_type"]
+            | null
+          status: string
+          whatsapp_number: string | null
+        }
+        Insert: {
+          country?: string | null
+          created_date?: string
+          email: string
+          full_name: string
+          id?: string
+          lead_id?: string
+          lead_source?: Database["public"]["Enums"]["lead_source_type"]
+          message?: string | null
+          notes?: string | null
+          preferred_package?:
+            | Database["public"]["Enums"]["preferred_package_type"]
+            | null
+          status?: string
+          whatsapp_number?: string | null
+        }
+        Update: {
+          country?: string | null
+          created_date?: string
+          email?: string
+          full_name?: string
+          id?: string
+          lead_id?: string
+          lead_source?: Database["public"]["Enums"]["lead_source_type"]
+          message?: string | null
+          notes?: string | null
+          preferred_package?:
+            | Database["public"]["Enums"]["preferred_package_type"]
+            | null
+          status?: string
+          whatsapp_number?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -79,7 +130,12 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      lead_source_type: "homepage" | "contact" | "packages"
+      preferred_package_type:
+        | "Digital Starter"
+        | "Growth Accelerator"
+        | "Enterprise Pro"
+        | "Others"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -206,6 +262,14 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      lead_source_type: ["homepage", "contact", "packages"],
+      preferred_package_type: [
+        "Digital Starter",
+        "Growth Accelerator",
+        "Enterprise Pro",
+        "Others",
+      ],
+    },
   },
 } as const

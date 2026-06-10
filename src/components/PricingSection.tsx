@@ -94,7 +94,10 @@ const PricingSection = () => (
                 </li>
               ))}
             </ul>
-            <a href="#contact" className="mt-8 block">
+            <a
+              href={`?package=${encodeURIComponent(plan.name)}#contact`}
+              className="mt-8 block"
+            >
               <Button
                 size="lg"
                 className={`w-full gap-2 ${

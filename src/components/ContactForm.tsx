@@ -72,7 +72,7 @@ const ContactForm = ({ defaultPackage, leadSource = "homepage" }: Props) => {
           country: parsed.data.country || null,
           preferred_package: parsed.data.preferred_package || null,
           message: parsed.data.message,
-          lead_source: leadSource,
+          lead_source: resolvedSource,
         },
       ]);
 

@@ -40,6 +40,7 @@ const ContactForm = ({ defaultPackage, leadSource = "homepage" }: Props) => {
     const pkg = params.get("package");
     if (pkg && (packages as readonly string[]).includes(pkg)) {
       setFormData((prev) => ({ ...prev, preferred_package: pkg }));
+      setResolvedSource("packages");
     }
   }, []);
 

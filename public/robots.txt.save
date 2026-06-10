@@ -1,0 +1,13 @@
+
+User-agent: *
+Allow: /
+
+Sitemap: https://simplifybusinessconsultancy.com/sitemap-index.xml
+Sitemap: https://simplifybusinessconsultancy.com/sitemap.xml
+Sitemap: https://simplifybusinessconsultancy.com/blog-sitemap.xml
+User-agent: *
+Allow: /
+
+
+Sitemap: https://simplifybusinessconsultancy.com
+

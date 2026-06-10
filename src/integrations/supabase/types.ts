@@ -73,50 +73,50 @@ export type Database = {
       }
       customer_leads: {
         Row: {
+          city: string | null
           country: string | null
           created_date: string
           email: string
           full_name: string
           id: string
+          internal_notes: string | null
           lead_id: string
-          lead_source: Database["public"]["Enums"]["lead_source_type"]
+          lead_source: string
           message: string | null
           notes: string | null
-          preferred_package:
-            | Database["public"]["Enums"]["preferred_package_type"]
-            | null
+          preferred_package: string | null
           status: string
           whatsapp_number: string | null
         }
         Insert: {
+          city?: string | null
           country?: string | null
           created_date?: string
           email: string
           full_name: string
           id?: string
+          internal_notes?: string | null
           lead_id?: string
-          lead_source?: Database["public"]["Enums"]["lead_source_type"]
+          lead_source?: string
           message?: string | null
           notes?: string | null
-          preferred_package?:
-            | Database["public"]["Enums"]["preferred_package_type"]
-            | null
+          preferred_package?: string | null
           status?: string
           whatsapp_number?: string | null
         }
         Update: {
+          city?: string | null
           country?: string | null
           created_date?: string
           email?: string
           full_name?: string
           id?: string
+          internal_notes?: string | null
           lead_id?: string
-          lead_source?: Database["public"]["Enums"]["lead_source_type"]
+          lead_source?: string
           message?: string | null
           notes?: string | null
-          preferred_package?:
-            | Database["public"]["Enums"]["preferred_package_type"]
-            | null
+          preferred_package?: string | null
           status?: string
           whatsapp_number?: string | null
         }
@@ -130,12 +130,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      lead_source_type: "homepage" | "contact" | "packages"
-      preferred_package_type:
-        | "Digital Starter"
-        | "Growth Accelerator"
-        | "Enterprise Pro"
-        | "Others"
+      [_ in never]: never
     }
     CompositeTypes: {
       [_ in never]: never
@@ -262,14 +257,6 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {
-      lead_source_type: ["homepage", "contact", "packages"],
-      preferred_package_type: [
-        "Digital Starter",
-        "Growth Accelerator",
-        "Enterprise Pro",
-        "Others",
-      ],
-    },
+    Enums: {},
   },
 } as const

@@ -20,7 +20,8 @@ type Props = {
   leadSource?: (typeof sources)[number];
 };
 
-const ContactForm = ({ defaultPackage, leadSource = "contact" }: Props) => {
+const ContactForm = ({ defaultPackage, leadSource = "homepage" }: Props) => {
+  const [resolvedSource, setResolvedSource] = useState<(typeof sources)[number]>(leadSource);
   const [formData, setFormData] = useState({
     full_name: "",
     email: "",

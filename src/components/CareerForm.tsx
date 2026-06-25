@@ -7,9 +7,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
+import { DialCodePhoneInput } from "@/components/forms/LocationFields";
 
 const CareerForm = () => {
-  const [formData, setFormData] = useState({ full_name: "", email: "", phone: "", position: "", message: "" });
+  const [formData, setFormData] = useState({ full_name: "", email: "", dial_code: "", phone: "", position: "", message: "" });
   const [cvFile, setCvFile] = useState<File | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);

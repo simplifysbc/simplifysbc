@@ -7,9 +7,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
+import { DialCodePhoneInput } from "@/components/forms/LocationFields";
 
 const CareerForm = () => {
-  const [formData, setFormData] = useState({ full_name: "", email: "", phone: "", position: "", message: "" });
+  const [formData, setFormData] = useState({ full_name: "", email: "", dial_code: "", phone: "", position: "", message: "" });
   const [cvFile, setCvFile] = useState<File | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -59,10 +60,14 @@ const CareerForm = () => {
         cv_url = fileName;
       }
 
+      const phoneCombined = formData.phone.trim()
+        ? `${formData.dial_code.trim()} ${formData.phone.trim()}`.trim()
+        : null;
+
       const { error } = await supabase.from("career_applications").insert({
         full_name: full_name.trim(),
         email: email.trim(),
-        phone: formData.phone.trim() || null,
+        phone: phoneCombined,
         position: formData.position.trim() || null,
         message: formData.message.trim() || null,
         cv_url,
@@ -71,7 +76,7 @@ const CareerForm = () => {
       if (error) throw error;
 
       setIsSubmitted(true);
-      setFormData({ full_name: "", email: "", phone: "", position: "", message: "" });
+      setFormData({ full_name: "", email: "", dial_code: "", phone: "", position: "", message: "" });
       setCvFile(null);
       toast({ title: "Application submitted successfully! We will review it shortly." });
     } catch {
@@ -107,7 +112,14 @@ const CareerForm = () => {
       <div className="grid sm:grid-cols-2 gap-4">
         <div className="space-y-2">
           <Label htmlFor="phone">Phone Number</Label>
-          <Input id="phone" name="phone" placeholder="+1 (555) 123 4567" value={formData.phone} onChange={handleChange} maxLength={20} />
+          <DialCodePhoneInput
+            id="phone"
+            dialCode={formData.dial_code}
+            phone={formData.phone}
+            onDialCodeChange={(v) => setFormData((p) => ({ ...p, dial_code: v }))}
+            onPhoneChange={(v) => setFormData((p) => ({ ...p, phone: v }))}
+            placeholder="555 123 4567"
+          />
         </div>
         <div className="space-y-2">
           <Label htmlFor="position">Position of Interest</Label>

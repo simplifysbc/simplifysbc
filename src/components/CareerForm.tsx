@@ -112,7 +112,14 @@ const CareerForm = () => {
       <div className="grid sm:grid-cols-2 gap-4">
         <div className="space-y-2">
           <Label htmlFor="phone">Phone Number</Label>
-          <Input id="phone" name="phone" placeholder="+1 (555) 123 4567" value={formData.phone} onChange={handleChange} maxLength={20} />
+          <DialCodePhoneInput
+            id="phone"
+            dialCode={formData.dial_code}
+            phone={formData.phone}
+            onDialCodeChange={(v) => setFormData((p) => ({ ...p, dial_code: v }))}
+            onPhoneChange={(v) => setFormData((p) => ({ ...p, phone: v }))}
+            placeholder="555 123 4567"
+          />
         </div>
         <div className="space-y-2">
           <Label htmlFor="position">Position of Interest</Label>

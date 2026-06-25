@@ -109,7 +109,7 @@ export const dialCodeOptions = allCountries
   .map((c) => {
     const raw = (c.phonecode || "").replace(/^\+/, "").trim();
     if (!raw) return null;
-    const code = `+${raw}`;
+    const code = raw.startsWith("1") ? "+1" : `+${raw}`;
     return { code, country: c.label };
   })
   .filter((x): x is { code: string; country: string } => !!x)

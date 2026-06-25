@@ -60,10 +60,14 @@ const CareerForm = () => {
         cv_url = fileName;
       }
 
+      const phoneCombined = formData.phone.trim()
+        ? `${formData.dial_code.trim()} ${formData.phone.trim()}`.trim()
+        : null;
+
       const { error } = await supabase.from("career_applications").insert({
         full_name: full_name.trim(),
         email: email.trim(),
-        phone: formData.phone.trim() || null,
+        phone: phoneCombined,
         position: formData.position.trim() || null,
         message: formData.message.trim() || null,
         cv_url,
@@ -72,7 +76,7 @@ const CareerForm = () => {
       if (error) throw error;
 
       setIsSubmitted(true);
-      setFormData({ full_name: "", email: "", phone: "", position: "", message: "" });
+      setFormData({ full_name: "", email: "", dial_code: "", phone: "", position: "", message: "" });
       setCvFile(null);
       toast({ title: "Application submitted successfully! We will review it shortly." });
     } catch {

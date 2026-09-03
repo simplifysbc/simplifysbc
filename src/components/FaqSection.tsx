@@ -99,6 +99,7 @@ const FaqSection = () => (
             <AccordionItem
               key={i}
               value={`faq-${i}`}
+              id={i === faqs.length - 1 ? "faq-refund-cancellation" : undefined}
               className="border border-border rounded-lg px-6 data-[state=open]:border-accent/40 transition-colors"
             >
               <AccordionTrigger className="text-left font-heading font-semibold text-foreground hover:no-underline">

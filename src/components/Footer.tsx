@@ -81,6 +81,12 @@ const Footer = () => (
               ))}
             </div>
             <p className="text-xs">© 2026 Simplify Business Consultancy. All rights reserved.</p>
+            <a
+              href="/#faq-refund-cancellation"
+              className="text-xs hover:text-primary-foreground transition-colors"
+            >
+              Refund & Cancellation Policy
+            </a>
           </div>
         </div>
       </div>

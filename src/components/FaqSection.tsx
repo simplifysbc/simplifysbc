@@ -58,6 +58,11 @@ const faqs = [
     answer:
       "Book a free call with our team. We will ask you a few questions about your business, learn about your biggest challenges, and show you exactly where you can save time and money. There is no pressure and no obligation. We just want to help you see what is possible.",
   },
+  {
+    question: "What is your refund and cancellation policy?",
+    answer:
+      "Simplify Business Consultancy provides customized business consulting and automation services. If you need to cancel a service before work begins, you may be eligible for a full refund if no substantial work or non-refundable costs have been incurred. If work has already started, any refund will be reviewed based on the work completed, deliverables provided, and costs incurred. Services that have been substantially completed or delivered may not be eligible for a refund. If you have a concern about a service, please contact us so we can review the situation and work toward a reasonable solution.",
+  },
 ];
 
 const FaqSection = () => (
@@ -94,6 +99,7 @@ const FaqSection = () => (
             <AccordionItem
               key={i}
               value={`faq-${i}`}
+              id={i === faqs.length - 1 ? "faq-refund-cancellation" : undefined}
               className="border border-border rounded-lg px-6 data-[state=open]:border-accent/40 transition-colors"
             >
               <AccordionTrigger className="text-left font-heading font-semibold text-foreground hover:no-underline">

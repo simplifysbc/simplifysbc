@@ -1,0 +1,1 @@
+COMMENT ON TABLE public.customer_leads IS 'Customer leads and booking pipeline';

@@ -14,6 +14,7 @@ interface SEOProps {
   };
   faqItems?: { question: string; answer: string }[];
   organizationSchema?: boolean;
+  noindex?: boolean;
 }
 
 const SITE_URL = "https://simplifybusinessconsultancy.com";
@@ -28,6 +29,7 @@ const SEO = ({
   article,
   faqItems,
   organizationSchema,
+  noindex,
 }: SEOProps) => {
   const fullTitle = `${title} | ${SITE_NAME}`;
   const url = canonical ? `${SITE_URL}${canonical}` : SITE_URL;
@@ -106,6 +108,7 @@ const SEO = ({
     <Helmet>
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
+      {noindex && <meta name="robots" content="noindex, nofollow" />}
       <link rel="canonical" href={url} />
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />

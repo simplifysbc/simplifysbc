@@ -19,6 +19,8 @@ import ArticleAiSmallTown from "./pages/articles/ArticleAiSmallTown.tsx";
 import ArticleStreamlineOperations from "./pages/articles/ArticleStreamlineOperations.tsx";
 import ArticleCommonInefficiencies from "./pages/articles/ArticleCommonInefficiencies.tsx";
 import ArticleReduceCosts from "./pages/articles/ArticleReduceCosts.tsx";
+import Auth from "./pages/Auth.tsx";
+import AdminPipeline from "./pages/AdminPipeline.tsx";
 import RouteTracker from "./components/RouteTracker.tsx";
 import CookieConsent from "./components/CookieConsent.tsx";
 
@@ -47,6 +49,8 @@ const App = () => (
           <Route path="/services/optimization" element={<ServiceOptimization />} />
           <Route path="/services/digital-transformation" element={<ServiceDigital />} />
           <Route path="/services/workflow-consulting" element={<ServiceWorkflow />} />
+          <Route path="/auth" element={<Auth />} />
+          <Route path="/admin" element={<AdminPipeline />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

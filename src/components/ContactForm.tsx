@@ -107,20 +107,32 @@ const ContactForm = ({ defaultPackage, leadSource = "Homepage" }: Props) => {
     setIsSubmitting(true);
     try {
       const whatsapp = `${parsed.data.dial_code} ${parsed.data.phone}`.trim();
-      const { error } = await supabase.from("customer_leads").insert([
-        {
-          full_name: parsed.data.full_name,
-          email: parsed.data.email,
-          whatsapp_number: whatsapp,
-          country: parsed.data.country,
-          city: parsed.data.city || null,
-          preferred_package: parsed.data.preferred_package || null,
-          message: parsed.data.message || null,
-          lead_source: resolvedSource,
-        } as never,
-      ]);
+      const { data: inserted, error } = await supabase
+        .from("customer_leads")
+        .insert([
+          {
+            full_name: parsed.data.full_name,
+            email: parsed.data.email,
+            whatsapp_number: whatsapp,
+            country: parsed.data.country,
+            city: parsed.data.city || null,
+            preferred_package: parsed.data.preferred_package || null,
+            message: parsed.data.message || null,
+            lead_source: resolvedSource,
+          } as never,
+        ])
+        .select("id")
+        .single();
 
       if (error) throw error;
+
+      // Fire the welcome email; never block the user's confirmation on it.
+      if (inserted?.id) {
+        supabase.functions
+          .invoke("send-lead-welcome", { body: { leadId: inserted.id } })
+          .catch((e) => console.error("welcome email failed", e));
+      }
+
 
       setIsSubmitted(true);
       setCountryIso("");

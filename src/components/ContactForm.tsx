@@ -107,8 +107,10 @@ const ContactForm = ({ defaultPackage, leadSource = "Homepage" }: Props) => {
     setIsSubmitting(true);
     try {
       const whatsapp = `${parsed.data.dial_code} ${parsed.data.phone}`.trim();
+      const leadId = crypto.randomUUID();
       const { error } = await supabase.from("customer_leads").insert([
         {
+          id: leadId,
           full_name: parsed.data.full_name,
           email: parsed.data.email,
           whatsapp_number: whatsapp,
@@ -121,6 +123,13 @@ const ContactForm = ({ defaultPackage, leadSource = "Homepage" }: Props) => {
       ]);
 
       if (error) throw error;
+
+      // Fire the welcome email; never block the user's confirmation on it.
+      supabase.functions
+        .invoke("send-lead-welcome", { body: { leadId } })
+        .catch((e) => console.error("welcome email failed", e));
+
+
 
       setIsSubmitted(true);
       setCountryIso("");

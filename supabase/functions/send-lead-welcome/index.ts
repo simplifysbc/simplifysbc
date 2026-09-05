@@ -17,22 +17,22 @@ const escapeHtml = (v: string) =>
 function buildHtml(firstName: string | null, pkg: string | null) {
   const greeting = firstName ? `Hi ${escapeHtml(firstName)},` : 'Hi there,';
   const pkgLine = pkg
-    ? `<p style="margin:0 0 16px;font-size:16px;line-height:26px;color:${TEXT};">We noticed you are interested in our <strong>${escapeHtml(pkg)}</strong> package. We will include details about it when we reach out.</p>`
+    ? `<p style="margin:0 0 16px;font-size:16px;line-height:26px;color:${TEXT};">We see that you're interested in our <strong>${escapeHtml(pkg)}</strong> package. We'll discuss the package and how it may fit your business when we reach out.</p>`
     : '';
   return `<!doctype html><html><body style="margin:0;padding:0;background:#ffffff;font-family:Helvetica,Arial,sans-serif;">
   <div style="display:none;max-height:0;overflow:hidden;">Thanks for reaching out to Simplify Business Consultancy.</div>
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#ffffff;">
     <tr><td align="center" style="padding:32px 16px;">
-      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:${CREAM};border-radius:12px;overflow:hidden;">
-        <tr><td align="center" style="background:${NAVY};padding:28px 24px;">
-          <img src="${LOGO}" alt="Simplify Business Consultancy" width="140" style="display:block;border:0;max-width:140px;height:auto;" />
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:${CREAM};border-radius:12px;overflow:hidden;border:1px solid #e5e1d8;">
+        <tr><td align="center" style="background:${CREAM};padding:36px 24px;border-bottom:4px solid ${AMBER};">
+          <img src="${LOGO}" alt="Simplify Business Consultancy" width="220" style="display:block;border:0;max-width:220px;height:auto;" />
         </td></tr>
         <tr><td style="padding:32px 28px;">
           <h1 style="margin:0 0 16px;font-size:24px;line-height:32px;color:${NAVY};">Thanks for getting in touch</h1>
           <p style="margin:0 0 16px;font-size:16px;line-height:26px;color:${TEXT};">${greeting}</p>
           <p style="margin:0 0 16px;font-size:16px;line-height:26px;color:${TEXT};">Thank you for contacting Simplify Business Consultancy. We received your message, and one of our consultants will get back to you shortly.</p>
           ${pkgLine}
-          <p style="margin:0 0 24px;font-size:16px;line-height:26px;color:${TEXT};">In the meantime, feel free to explore how we help businesses save time and work simpler every day.</p>
+          <p style="margin:0 0 24px;font-size:16px;line-height:26px;color:${TEXT};">In the meantime, feel free to explore how we help businesses save time, improve their processes, and work more efficiently.</p>
           <a href="${SITE}" style="display:inline-block;background:${AMBER};color:${TEXT};text-decoration:none;font-weight:bold;padding:13px 26px;border-radius:8px;font-size:16px;">Visit our website</a>
           <p style="margin:28px 0 0;font-size:15px;line-height:24px;color:${TEXT};">Warm regards,<br/>The Simplify Business Consultancy Team</p>
         </td></tr>

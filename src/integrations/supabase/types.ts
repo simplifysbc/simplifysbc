@@ -91,6 +91,10 @@ export type Database = {
           preferred_package: string | null
           status: string
           updated_at: string
+          welcome_email_attempts: number
+          welcome_email_error: string | null
+          welcome_email_sent_at: string | null
+          welcome_email_status: string
           whatsapp_number: string | null
         }
         Insert: {
@@ -112,6 +116,10 @@ export type Database = {
           preferred_package?: string | null
           status?: string
           updated_at?: string
+          welcome_email_attempts?: number
+          welcome_email_error?: string | null
+          welcome_email_sent_at?: string | null
+          welcome_email_status?: string
           whatsapp_number?: string | null
         }
         Update: {
@@ -133,6 +141,10 @@ export type Database = {
           preferred_package?: string | null
           status?: string
           updated_at?: string
+          welcome_email_attempts?: number
+          welcome_email_error?: string | null
+          welcome_email_sent_at?: string | null
+          welcome_email_status?: string
           whatsapp_number?: string | null
         }
         Relationships: []

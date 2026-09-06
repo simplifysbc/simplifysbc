@@ -149,6 +149,21 @@ export type Database = {
         }
         Relationships: []
       }
+      rls_test: {
+        Row: {
+          id: string
+          name: string | null
+        }
+        Insert: {
+          id?: string
+          name?: string | null
+        }
+        Update: {
+          id?: string
+          name?: string | null
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           id: string

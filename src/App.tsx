@@ -50,6 +50,7 @@ const App = () => (
           <Route path="/services/optimization" element={<ServiceOptimization />} />
           <Route path="/services/digital-transformation" element={<ServiceDigital />} />
           <Route path="/services/workflow-consulting" element={<ServiceWorkflow />} />
+          <Route path="/booking" element={<Booking />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/admin" element={<AdminPipeline />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

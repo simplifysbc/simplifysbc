@@ -20,6 +20,7 @@ import ArticleStreamlineOperations from "./pages/articles/ArticleStreamlineOpera
 import ArticleCommonInefficiencies from "./pages/articles/ArticleCommonInefficiencies.tsx";
 import ArticleReduceCosts from "./pages/articles/ArticleReduceCosts.tsx";
 import Auth from "./pages/Auth.tsx";
+import Booking from "./pages/Booking.tsx";
 import AdminPipeline from "./pages/AdminPipeline.tsx";
 import RouteTracker from "./components/RouteTracker.tsx";
 import CookieConsent from "./components/CookieConsent.tsx";

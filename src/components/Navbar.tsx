@@ -45,6 +45,7 @@ const Navbar = () => {
           <a href="/resources" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Resources</a>
           <a href="/blog" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Blog</a>
           <a href="#contact" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Contact</a>
+          <a href="/booking" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Book a Call</a>
           <a href="#contact"><Button size="sm">Get Started</Button></a>
         </div>
 
@@ -66,6 +67,7 @@ const Navbar = () => {
           <a href="/about" onClick={() => setOpen(false)} className="block text-sm font-medium text-muted-foreground hover:text-foreground">About</a>
           <a href="/resources" onClick={() => setOpen(false)} className="block text-sm font-medium text-muted-foreground hover:text-foreground">Resources</a>
           <a href="/blog" onClick={() => setOpen(false)} className="block text-sm font-medium text-muted-foreground hover:text-foreground">Blog</a>
+          <a href="/booking" onClick={() => setOpen(false)} className="block text-sm font-medium text-muted-foreground hover:text-foreground">Book a Call</a>
           <a href="#contact" onClick={() => setOpen(false)} className="block text-sm font-medium text-muted-foreground hover:text-foreground">Contact</a>
           <a href="#contact" onClick={() => setOpen(false)}><Button size="sm" className="w-full">Get Started</Button></a>
         </div>

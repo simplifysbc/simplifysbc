@@ -75,10 +75,14 @@ const Booking = () => {
   );
 
   useEffect(() => {
-    const pkg = new URLSearchParams(window.location.search).get("package");
-    if (pkg && (packages as readonly string[]).includes(pkg)) {
-      setForm((p) => ({ ...p, preferred_package: pkg }));
-    }
+    const params = new URLSearchParams(window.location.search);
+    const pkg = params.get("package");
+    const consultant = params.get("consultant");
+    setForm((p) => ({
+      ...p,
+      preferred_package: pkg && (packages as readonly string[]).includes(pkg) ? pkg : p.preferred_package,
+      consultant: consultant && consultants.includes(consultant) ? consultant : p.consultant,
+    }));
   }, []);
 
   useEffect(() => {

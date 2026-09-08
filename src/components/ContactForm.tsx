@@ -13,7 +13,6 @@ import { Country } from "country-state-city";
 const packages = ["Digital Starter", "Growth Accelerator", "Enterprise Pro", "Others"] as const;
 const sources = [
   "Homepage",
-  "Contact Page",
   "Packages Page",
   "WhatsApp Campaign",
   "Social Media",

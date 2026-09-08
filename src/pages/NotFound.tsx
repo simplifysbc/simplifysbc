@@ -11,7 +11,7 @@ const links = [
   { href: "/about", label: "About Us", desc: "Learn our story", icon: Info },
   { href: "/resources", label: "Resources", desc: "Guides and case studies", icon: BookOpen },
   { href: "/services/automation", label: "Services", desc: "See how we help", icon: Briefcase },
-  { href: "/#contact", label: "Contact", desc: "Get in touch", icon: MessageSquare },
+  { href: "/booking", label: "Book a Call", desc: "Schedule a free call", icon: MessageSquare },
 ];
 
 const NotFound = () => {

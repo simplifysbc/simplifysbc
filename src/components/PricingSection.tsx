@@ -95,7 +95,7 @@ const PricingSection = () => (
               ))}
             </ul>
             <a
-              href={`?package=${encodeURIComponent(plan.name)}#contact`}
+              href={`/booking?package=${encodeURIComponent(plan.name)}`}
               className="mt-8 block"
             >
               <Button

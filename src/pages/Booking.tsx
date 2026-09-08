@@ -14,15 +14,12 @@ import {
   useCityOptions,
 } from "@/components/forms/LocationFields";
 import { Country } from "country-state-city";
+import { Link } from "react-router-dom";
+import { ANY_CONSULTANT, consultantNames } from "@/data/consultants";
 
 const packages = ["Digital Starter", "Growth Accelerator", "Enterprise Pro", "Others"] as const;
 
-const consultants = [
-  "Any available consultant",
-  "Automation Consultant",
-  "Process Improvement Consultant",
-  "Digital Transformation Consultant",
-] as const;
+const consultants = [ANY_CONSULTANT, ...consultantNames];
 
 const timeSlots = [
   "09:00",

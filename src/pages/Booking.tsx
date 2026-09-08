@@ -297,6 +297,13 @@ const Booking = () => {
                   ))}
                 </select>
               </label>
+              <p className="text-xs text-muted-foreground -mt-2">
+                <Link to="/consultants" className="text-accent underline underline-offset-4">
+                  Meet our consultants
+                </Link>{" "}
+                to see their focus areas, availability and past projects.
+              </p>
+
 
               <textarea
                 name="message"

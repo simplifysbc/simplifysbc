@@ -119,7 +119,7 @@ const Booking = () => {
           city: parsed.data.city || null,
           preferred_package: parsed.data.preferred_package,
           message: parsed.data.message || null,
-          lead_source: "Contact Page",
+          lead_source: "Booking Page",
           status: "Confirmed",
           pipeline_stage: "Booked",
           booking_date: parsed.data.booking_date,

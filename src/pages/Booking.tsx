@@ -14,15 +14,12 @@ import {
   useCityOptions,
 } from "@/components/forms/LocationFields";
 import { Country } from "country-state-city";
+import { Link } from "react-router-dom";
+import { ANY_CONSULTANT, consultantNames } from "@/data/consultants";
 
 const packages = ["Digital Starter", "Growth Accelerator", "Enterprise Pro", "Others"] as const;
 
-const consultants = [
-  "Any available consultant",
-  "Automation Consultant",
-  "Process Improvement Consultant",
-  "Digital Transformation Consultant",
-] as const;
+const consultants = [ANY_CONSULTANT, ...consultantNames];
 
 const timeSlots = [
   "09:00",
@@ -78,10 +75,14 @@ const Booking = () => {
   );
 
   useEffect(() => {
-    const pkg = new URLSearchParams(window.location.search).get("package");
-    if (pkg && (packages as readonly string[]).includes(pkg)) {
-      setForm((p) => ({ ...p, preferred_package: pkg }));
-    }
+    const params = new URLSearchParams(window.location.search);
+    const pkg = params.get("package");
+    const consultant = params.get("consultant");
+    setForm((p) => ({
+      ...p,
+      preferred_package: pkg && (packages as readonly string[]).includes(pkg) ? pkg : p.preferred_package,
+      consultant: consultant && consultants.includes(consultant) ? consultant : p.consultant,
+    }));
   }, []);
 
   useEffect(() => {
@@ -296,6 +297,13 @@ const Booking = () => {
                   ))}
                 </select>
               </label>
+              <p className="text-xs text-muted-foreground -mt-2">
+                <Link to="/consultants" className="text-accent underline underline-offset-4">
+                  Meet our consultants
+                </Link>{" "}
+                to see their focus areas, availability and past projects.
+              </p>
+
 
               <textarea
                 name="message"

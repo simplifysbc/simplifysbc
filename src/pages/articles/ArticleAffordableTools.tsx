@@ -94,7 +94,7 @@ const ArticleAffordableTools = () => (
       <div className="container max-w-2xl space-y-6">
         <h2 className="font-heading text-3xl font-bold text-primary-foreground">Need Help Choosing the Right Tools?</h2>
         <p className="text-primary-foreground/80">We help rural businesses pick and set up the automation tools that make the biggest difference.</p>
-        <a href="/#contact"><Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">Book Your Free Call</Button></a>
+        <a href="/booking"><Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">Book Your Free Call</Button></a>
       </div>
     </section>
 

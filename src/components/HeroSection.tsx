@@ -28,7 +28,7 @@ const HeroSection = () => (
           We help businesses in rural America cut waste, bring in more revenue, and build operations that actually scale. No matter where you're located.
         </p>
         <div className="flex flex-wrap gap-4 pt-2">
-          <a href="#contact">
+          <a href="/booking">
             <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 gap-2">
               Schedule a Free Consultation <ArrowRight size={18} />
             </Button>

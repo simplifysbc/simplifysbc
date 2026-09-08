@@ -139,7 +139,7 @@ const About = () => (
         <p className="text-primary-foreground/80 text-lg">
           We believe you do not need complicated systems to grow. You need the right ones. If you are ready to make your business run more smoothly, we are here to help.
         </p>
-        <a href="/#contact">
+        <a href="/booking">
           <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 gap-2">
             Book Your Free Call <ArrowRight size={18} />
           </Button>

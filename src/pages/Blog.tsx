@@ -158,7 +158,7 @@ const Blog = () => (
           Book a free call and we will show you exactly where automation can
           save you time and grow revenue.
         </p>
-        <a href="/#contact">
+        <a href="/booking">
           <Button
             size="lg"
             className="bg-accent text-accent-foreground hover:bg-accent/90 gap-2"

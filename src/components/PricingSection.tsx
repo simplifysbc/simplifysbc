@@ -95,7 +95,7 @@ const PricingSection = () => (
               ))}
             </ul>
             <a
-              href={`?package=${encodeURIComponent(plan.name)}#contact`}
+              href={`/booking?package=${encodeURIComponent(plan.name)}`}
               className="mt-8 block"
             >
               <Button
@@ -123,7 +123,7 @@ const PricingSection = () => (
         <p className="text-muted-foreground mt-2">
           That's okay. Every business is different. We are happy to guide you.
         </p>
-        <a href="#contact">
+        <a href="/booking">
           <Button size="lg" className="mt-4 bg-accent text-accent-foreground hover:bg-accent/90 gap-2">
             Send Message <ArrowRight size={18} />
           </Button>

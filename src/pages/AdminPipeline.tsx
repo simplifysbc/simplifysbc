@@ -186,8 +186,15 @@ const AdminPipeline = () => {
         ) : visible.length === 0 ? (
           <p className="text-muted-foreground">No leads in this stage yet.</p>
         ) : (
-          <div className="space-y-4">
-            {visible.map((lead) => (
+          <div className="space-y-10">
+            {groups.map((group) => (
+            <section key={group.stage}>
+              <div className="flex items-center gap-2 mb-3">
+                <h2 className={`text-sm px-2.5 py-1 rounded-full ${stageTone[group.stage]}`}>{group.stage}</h2>
+                <span className="text-xs text-muted-foreground">{group.items.length} lead{group.items.length === 1 ? "" : "s"}</span>
+              </div>
+              <div className="space-y-4">
+            {group.items.map((lead) => (
               <article key={lead.id} className="bg-card border border-border rounded-xl p-5">
                 <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
                   <div>

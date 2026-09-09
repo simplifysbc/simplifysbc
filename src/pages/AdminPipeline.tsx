@@ -114,6 +114,9 @@ const AdminPipeline = () => {
   }, [leads]);
 
   const visible = filter === "All" ? leads : leads.filter((l) => l.pipeline_stage === filter);
+  const groups = STAGES.map((s) => ({ stage: s, items: visible.filter((l) => l.pipeline_stage === s) })).filter(
+    (g) => g.items.length > 0
+  );
 
   if (checking) {
     return <main className="min-h-screen grid place-items-center text-muted-foreground">Loading...</main>;
@@ -183,8 +186,15 @@ const AdminPipeline = () => {
         ) : visible.length === 0 ? (
           <p className="text-muted-foreground">No leads in this stage yet.</p>
         ) : (
-          <div className="space-y-4">
-            {visible.map((lead) => (
+          <div className="space-y-10">
+            {groups.map((group) => (
+            <section key={group.stage}>
+              <div className="flex items-center gap-2 mb-3">
+                <h2 className={`text-sm px-2.5 py-1 rounded-full ${stageTone[group.stage]}`}>{group.stage}</h2>
+                <span className="text-xs text-muted-foreground">{group.items.length} lead{group.items.length === 1 ? "" : "s"}</span>
+              </div>
+              <div className="space-y-4">
+            {group.items.map((lead) => (
               <article key={lead.id} className="bg-card border border-border rounded-xl p-5">
                 <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
                   <div>
@@ -275,7 +285,20 @@ const AdminPipeline = () => {
                     className={`${fieldClass} mt-1 resize-none`}
                   />
                 </label>
+
+                {lead.pipeline_stage !== "Booked" && (
+                  <button
+                    onClick={() => updateLead(lead.id, { pipeline_stage: "Booked" })}
+                    disabled={savingId === lead.id}
+                    className="mt-4 px-4 py-2 rounded-lg bg-accent text-accent-foreground text-sm font-medium hover:opacity-90 transition disabled:opacity-60"
+                  >
+                    Move to Booked
+                  </button>
+                )}
               </article>
+            ))}
+              </div>
+            </section>
             ))}
           </div>
         )}

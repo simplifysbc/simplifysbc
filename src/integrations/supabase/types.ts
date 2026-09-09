@@ -74,6 +74,10 @@ export type Database = {
       customer_leads: {
         Row: {
           booking_date: string | null
+          booking_email_attempts: number
+          booking_email_error: string | null
+          booking_email_sent_at: string | null
+          booking_email_status: string
           booking_time: string | null
           city: string | null
           consultant: string | null
@@ -99,6 +103,10 @@ export type Database = {
         }
         Insert: {
           booking_date?: string | null
+          booking_email_attempts?: number
+          booking_email_error?: string | null
+          booking_email_sent_at?: string | null
+          booking_email_status?: string
           booking_time?: string | null
           city?: string | null
           consultant?: string | null
@@ -124,6 +132,10 @@ export type Database = {
         }
         Update: {
           booking_date?: string | null
+          booking_email_attempts?: number
+          booking_email_error?: string | null
+          booking_email_sent_at?: string | null
+          booking_email_status?: string
           booking_time?: string | null
           city?: string | null
           consultant?: string | null

@@ -285,7 +285,20 @@ const AdminPipeline = () => {
                     className={`${fieldClass} mt-1 resize-none`}
                   />
                 </label>
+
+                {lead.pipeline_stage !== "Booked" && (
+                  <button
+                    onClick={() => updateLead(lead.id, { pipeline_stage: "Booked" })}
+                    disabled={savingId === lead.id}
+                    className="mt-4 px-4 py-2 rounded-lg bg-accent text-accent-foreground text-sm font-medium hover:opacity-90 transition disabled:opacity-60"
+                  >
+                    Move to Booked
+                  </button>
+                )}
               </article>
+            ))}
+              </div>
+            </section>
             ))}
           </div>
         )}

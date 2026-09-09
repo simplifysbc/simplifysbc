@@ -104,6 +104,13 @@ const AdminPipeline = () => {
     if (error) {
       toast({ title: "Update failed", description: error.message, variant: "destructive" });
       loadLeads();
+      return;
+    }
+    // Send the booking confirmation email when a lead becomes Booked.
+    if (patch.pipeline_stage === "Booked") {
+      supabase.functions
+        .invoke("send-booking-confirmation", { body: { leadId: id } })
+        .catch((err) => console.error("booking confirmation email failed", err));
     }
   };
 

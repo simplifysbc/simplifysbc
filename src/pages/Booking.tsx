@@ -133,6 +133,9 @@ const Booking = () => {
       supabase.functions
         .invoke("send-lead-welcome", { body: { leadId } })
         .catch((err) => console.error("welcome email failed", err));
+      supabase.functions
+        .invoke("send-booking-confirmation", { body: { leadId } })
+        .catch((err) => console.error("booking confirmation email failed", err));
 
       setConfirmed({
         date: parsed.data.booking_date,

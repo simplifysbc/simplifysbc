@@ -114,6 +114,9 @@ const AdminPipeline = () => {
   }, [leads]);
 
   const visible = filter === "All" ? leads : leads.filter((l) => l.pipeline_stage === filter);
+  const groups = STAGES.map((s) => ({ stage: s, items: visible.filter((l) => l.pipeline_stage === s) })).filter(
+    (g) => g.items.length > 0
+  );
 
   if (checking) {
     return <main className="min-h-screen grid place-items-center text-muted-foreground">Loading...</main>;

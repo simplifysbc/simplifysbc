@@ -1,0 +1,2 @@
+ALTER TABLE public.customer_leads DROP CONSTRAINT customer_leads_lead_source_check;
+ALTER TABLE public.customer_leads ADD CONSTRAINT customer_leads_lead_source_check CHECK (lead_source = ANY (ARRAY['Homepage','Contact Page','Packages Page','WhatsApp Campaign','Social Media','Booking Page']));

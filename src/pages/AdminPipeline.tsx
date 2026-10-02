@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { CalendarCheck, ClipboardList, Users } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 import SEO from "@/components/SEO";
@@ -120,6 +121,36 @@ const AdminPipeline = () => {
     return c;
   }, [leads]);
 
+  const stats = useMemo(() => {
+    const booked = leads.filter((l) => l.pipeline_stage === "Booked");
+
+    const bySource = new Map<string, number>();
+    booked.forEach((l) => {
+      const key = l.lead_source === "Booking Page" ? "Booking Page" : "Other sources";
+      bySource.set(key, (bySource.get(key) ?? 0) + 1);
+    });
+    // Keep the two headline rows first, then any named sources that have bookings.
+    booked.forEach((l) => {
+      if (l.lead_source !== "Booking Page") {
+        bySource.set(l.lead_source, (bySource.get(l.lead_source) ?? 0) + 1);
+      }
+    });
+
+    const byConsultant = new Map<string, number>();
+    booked.forEach((l) => {
+      const key = l.consultant?.trim() || "Unassigned";
+      byConsultant.set(key, (byConsultant.get(key) ?? 0) + 1);
+    });
+
+    const sort = (m: Map<string, number>) => [...m.entries()].sort((a, b) => b[1] - a[1]);
+    return {
+      total: leads.length,
+      booked: booked.length,
+      bySource: sort(bySource),
+      byConsultant: sort(byConsultant),
+    };
+  }, [leads]);
+
   const visible = filter === "All" ? leads : leads.filter((l) => l.pipeline_stage === filter);
   const groups = STAGES.map((s) => ({ stage: s, items: visible.filter((l) => l.pipeline_stage === s) })).filter(
     (g) => g.items.length > 0
@@ -171,6 +202,91 @@ const AdminPipeline = () => {
             Sign out
           </button>
         </div>
+
+        {/* Booking stats dashboard */}
+        <section className="mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
+            <div className="bg-card border border-border rounded-xl p-5 flex items-center gap-4">
+              <div className="p-3 rounded-lg bg-secondary text-secondary-foreground">
+                <ClipboardList size={20} />
+              </div>
+              <div>
+                <p className="text-2xl font-semibold text-foreground">{stats.total}</p>
+                <p className="text-xs text-muted-foreground">Total leads</p>
+              </div>
+            </div>
+            <div className="bg-card border border-border rounded-xl p-5 flex items-center gap-4">
+              <div className="p-3 rounded-lg bg-accent/20 text-foreground">
+                <CalendarCheck size={20} />
+              </div>
+              <div>
+                <p className="text-2xl font-semibold text-foreground">{stats.booked}</p>
+                <p className="text-xs text-muted-foreground">Bookings</p>
+              </div>
+            </div>
+            <div className="bg-card border border-border rounded-xl p-5 flex items-center gap-4">
+              <div className="p-3 rounded-lg bg-primary text-primary-foreground">
+                <Users size={20} />
+              </div>
+              <div>
+                <p className="text-2xl font-semibold text-foreground">{stats.byConsultant.length}</p>
+                <p className="text-xs text-muted-foreground">Consultants with bookings</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="bg-card border border-border rounded-xl p-5">
+              <h2 className="font-medium text-foreground mb-1">Bookings by source</h2>
+              <p className="text-xs text-muted-foreground mb-4">Booking page versus every other way a lead arrived.</p>
+              {stats.bySource.length === 0 ? (
+                <p className="text-sm text-muted-foreground">No bookings yet.</p>
+              ) : (
+                <div className="space-y-3">
+                  {stats.bySource.map(([source, count]) => (
+                    <div key={source}>
+                      <div className="flex justify-between text-sm mb-1">
+                        <span className="text-foreground">{source}</span>
+                        <span className="text-muted-foreground">{count}</span>
+                      </div>
+                      <div className="h-2 rounded-full bg-muted overflow-hidden">
+                        <div
+                          className="h-full rounded-full bg-accent transition-all"
+                          style={{ width: `${stats.booked ? Math.round((count / stats.booked) * 100) : 0}%` }}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div className="bg-card border border-border rounded-xl p-5">
+              <h2 className="font-medium text-foreground mb-1">Bookings by consultant</h2>
+              <p className="text-xs text-muted-foreground mb-4">Who each booked call is assigned to.</p>
+              {stats.byConsultant.length === 0 ? (
+                <p className="text-sm text-muted-foreground">No bookings yet.</p>
+              ) : (
+                <div className="space-y-3">
+                  {stats.byConsultant.map(([name, count]) => (
+                    <div key={name}>
+                      <div className="flex justify-between text-sm mb-1">
+                        <span className="text-foreground">{name}</span>
+                        <span className="text-muted-foreground">{count}</span>
+                      </div>
+                      <div className="h-2 rounded-full bg-muted overflow-hidden">
+                        <div
+                          className="h-full rounded-full bg-primary transition-all"
+                          style={{ width: `${stats.booked ? Math.round((count / stats.booked) * 100) : 0}%` }}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
 
         <div className="flex flex-wrap gap-2 mb-6">
           {(["All", ...STAGES] as const).map((s) => (

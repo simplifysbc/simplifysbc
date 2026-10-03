@@ -7,7 +7,7 @@ interface ShareBarProps {
   url: string;
 }
 
-const SITE_URL = "https://simplifybusinessconsultancy.com";
+const SITE_URL = "https://sbctest0063.lovable.app";
 
 const ShareBar = ({ title, url }: ShareBarProps) => {
   const [copied, setCopied] = useState(false);

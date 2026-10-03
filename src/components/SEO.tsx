@@ -17,7 +17,7 @@ interface SEOProps {
   noindex?: boolean;
 }
 
-const SITE_URL = "https://simplifybusinessconsultancy.com";
+const SITE_URL = "https://sbctest0063.lovable.app";
 const SITE_NAME = "Simplify Business Consultancy";
 
 const SEO = ({

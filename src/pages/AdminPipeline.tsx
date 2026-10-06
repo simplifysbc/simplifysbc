@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { CalendarCheck, ClipboardList, Users } from "lucide-react";
+import { CalendarCheck, ChevronLeft, ChevronRight, ClipboardList, Users } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 import SEO from "@/components/SEO";
@@ -48,6 +48,11 @@ const AdminPipeline = () => {
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<Stage | "All">("All");
   const [savingId, setSavingId] = useState<string | null>(null);
+  const [calendarMonth, setCalendarMonth] = useState(() => {
+    const now = new Date();
+    return { year: now.getFullYear(), month: now.getMonth() };
+  });
+  const [sortDir, setSortDir] = useState<"asc" | "desc">("asc");
 
   useEffect(() => {
     let active = true;
@@ -155,6 +160,31 @@ const AdminPipeline = () => {
   const groups = STAGES.map((s) => ({ stage: s, items: visible.filter((l) => l.pipeline_stage === s) })).filter(
     (g) => g.items.length > 0
   );
+
+  const bookedLeads = useMemo(
+    () =>
+      leads
+        .filter((l) => l.pipeline_stage === "Booked")
+        .sort((a, b) => {
+          const ka = `${a.booking_date ?? "9999-12-31"}T${a.booking_time ?? "23:59"}`;
+          const kb = `${b.booking_date ?? "9999-12-31"}T${b.booking_time ?? "23:59"}`;
+          return sortDir === "asc" ? ka.localeCompare(kb) : kb.localeCompare(ka);
+        }),
+    [leads, sortDir]
+  );
+
+  const bookingsByDay = useMemo(() => {
+    const m = new Map<string, Lead[]>();
+    bookedLeads.forEach((l) => {
+      if (!l.booking_date) return;
+      const arr = m.get(l.booking_date) ?? [];
+      arr.push(l);
+      m.set(l.booking_date, arr);
+    });
+    return m;
+  }, [bookedLeads]);
+
+  const unscheduled = useMemo(() => bookedLeads.filter((l) => !l.booking_date), [bookedLeads]);
 
   if (checking) {
     return <main className="min-h-screen grid place-items-center text-muted-foreground">Loading...</main>;

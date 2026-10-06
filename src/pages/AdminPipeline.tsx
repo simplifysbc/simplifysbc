@@ -31,6 +31,16 @@ type Lead = {
   internal_notes: string | null;
 };
 
+const formatTime = (t: string | null) => {
+  if (!t) return "";
+  const [h, m] = t.slice(0, 5).split(":");
+  const hour = Number(h);
+  if (Number.isNaN(hour)) return t;
+  const ampm = hour >= 12 ? "PM" : "AM";
+  const h12 = hour % 12 === 0 ? 12 : hour % 12;
+  return `${h12}:${m} ${ampm}`;
+};
+
 const stageTone: Record<Stage, string> = {
   New: "bg-muted text-muted-foreground",
   Contacted: "bg-secondary text-secondary-foreground",
@@ -315,6 +325,133 @@ const AdminPipeline = () => {
                 </div>
               )}
             </div>
+          </div>
+        </section>
+
+        {/* Booked calls calendar */}
+        <section className="mb-8 bg-card border border-border rounded-xl p-5">
+          <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <div>
+              <h2 className="font-medium text-foreground">Booked calls calendar</h2>
+              <p className="text-xs text-muted-foreground">Every booked call by date, time and consultant.</p>
+            </div>
+            <button
+              onClick={() => setSortDir((d) => (d === "asc" ? "desc" : "asc"))}
+              className="px-3 py-1.5 rounded-full text-sm border border-border hover:bg-muted transition"
+            >
+              Sort by date: {sortDir === "asc" ? "earliest first" : "latest first"}
+            </button>
+          </div>
+
+          {(() => {
+            const firstWeekday = new Date(calendarMonth.year, calendarMonth.month, 1).getDay();
+            const daysInMonth = new Date(calendarMonth.year, calendarMonth.month + 1, 0).getDate();
+            const monthLabel = new Date(calendarMonth.year, calendarMonth.month, 1).toLocaleDateString("en-US", {
+              month: "long",
+              year: "numeric",
+            });
+            const pad = (n: number) => String(n).padStart(2, "0");
+            return (
+              <>
+                <div className="flex items-center justify-between gap-3 mb-3">
+                  <button
+                    aria-label="Previous month"
+                    onClick={() =>
+                      setCalendarMonth((m) =>
+                        m.month === 0 ? { year: m.year - 1, month: 11 } : { ...m, month: m.month - 1 }
+                      )
+                    }
+                    className="p-2 rounded-md border border-border hover:bg-muted transition"
+                  >
+                    <ChevronLeft size={16} />
+                  </button>
+                  <p className="text-sm font-medium text-foreground">{monthLabel}</p>
+                  <button
+                    aria-label="Next month"
+                    onClick={() =>
+                      setCalendarMonth((m) =>
+                        m.month === 11 ? { year: m.year + 1, month: 0 } : { ...m, month: m.month + 1 }
+                      )
+                    }
+                    className="p-2 rounded-md border border-border hover:bg-muted transition"
+                  >
+                    <ChevronRight size={16} />
+                  </button>
+                </div>
+
+                <div className="grid grid-cols-7 gap-1 text-center text-xs text-muted-foreground mb-1">
+                  {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((d) => (
+                    <div key={d} className="py-1">
+                      {d}
+                    </div>
+                  ))}
+                </div>
+                <div className="grid grid-cols-7 gap-1">
+                  {Array.from({ length: firstWeekday }).map((_, i) => (
+                    <div key={`pad-${i}`} />
+                  ))}
+                  {Array.from({ length: daysInMonth }).map((_, i) => {
+                    const day = i + 1;
+                    const dateStr = `${calendarMonth.year}-${pad(calendarMonth.month + 1)}-${pad(day)}`;
+                    const items = bookingsByDay.get(dateStr) ?? [];
+                    return (
+                      <div
+                        key={day}
+                        className={`min-h-20 rounded-md border p-1.5 text-left ${
+                          items.length > 0 ? "border-accent/50 bg-accent/10" : "border-border bg-background"
+                        }`}
+                      >
+                        <p className="text-xs text-muted-foreground">{day}</p>
+                        {items.map((l) => (
+                          <p
+                            key={l.id}
+                            className="text-[11px] text-foreground truncate"
+                            title={`${formatTime(l.booking_time)} ${l.consultant ?? "Unassigned"} - ${l.full_name}`}
+                          >
+                            {formatTime(l.booking_time)} {l.consultant ?? "Unassigned"}
+                          </p>
+                        ))}
+                      </div>
+                    );
+                  })}
+                </div>
+              </>
+            );
+          })()}
+
+          <div className="mt-5">
+            <h3 className="text-sm font-medium text-foreground mb-2">All booked calls, sorted by date</h3>
+            {bookedLeads.length === 0 ? (
+              <p className="text-sm text-muted-foreground">No bookings yet.</p>
+            ) : (
+              <ul className="divide-y divide-border">
+                {bookedLeads.map((l) => (
+                  <li key={l.id} className="flex flex-wrap items-center justify-between gap-2 py-2">
+                    <div>
+                      <p className="text-sm text-foreground">
+                        {l.booking_date
+                          ? new Date(`${l.booking_date}T00:00:00`).toLocaleDateString("en-US", {
+                              weekday: "short",
+                              month: "short",
+                              day: "numeric",
+                            })
+                          : "Waiting for a date"}
+                        {l.booking_time ? ` · ${formatTime(l.booking_time)}` : ""}
+                      </p>
+                      <p className="text-xs text-muted-foreground">
+                        {l.full_name} · {l.preferred_package ?? l.lead_source}
+                      </p>
+                    </div>
+                    <span className="text-sm text-muted-foreground">{l.consultant ?? "Unassigned"}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {unscheduled.length > 0 && (
+              <p className="text-xs text-muted-foreground mt-2">
+                {unscheduled.length} booking{unscheduled.length === 1 ? "" : "s"} without a date yet.
+              </p>
+            )}
           </div>
         </section>
 

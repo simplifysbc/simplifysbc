@@ -54,7 +54,7 @@ const todayIso = () => new Date().toISOString().slice(0, 10);
 const Booking = () => {
   const [countryIso, setCountryIso] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [confirmed, setConfirmed] = useState<{ date: string; time: string; consultant: string } | null>(null);
+  const [confirmed, setConfirmed] = useState<{ date: string; time: string; consultant: string; emailSent: boolean } | null>(null);
   const [form, setForm] = useState({
     full_name: "",
     email: "",
@@ -130,21 +130,35 @@ const Booking = () => {
 
       if (error) throw error;
 
-      supabase.functions
-        .invoke("send-lead-welcome", { body: { leadId } })
-        .catch((err) => console.error("welcome email failed", err));
-      supabase.functions
-        .invoke("send-booking-confirmation", { body: { leadId } })
-        .catch((err) => console.error("booking confirmation email failed", err));
+      const [, confirmation] = await Promise.all([
+        supabase.functions
+          .invoke("send-lead-welcome", { body: { leadId } })
+          .catch((err) => {
+            console.error("welcome email failed", err);
+            return null;
+          }),
+        supabase.functions
+          .invoke("send-booking-confirmation", { body: { leadId } })
+          .catch((err) => {
+            console.error("booking confirmation email failed", err);
+            return null;
+          }),
+      ]);
+      const result = confirmation?.data as { sent?: boolean; reason?: string } | null;
+      const emailSent =
+        !confirmation?.error && (result?.sent === true || result?.reason === "already_sent");
 
       setConfirmed({
         date: parsed.data.booking_date,
         time: parsed.data.booking_time,
         consultant: parsed.data.consultant,
+        emailSent,
       });
       toast({
         title: "Booking confirmed",
-        description: "Your session is booked. We have sent a confirmation to your email.",
+        description: emailSent
+          ? "Your session is booked. We have sent a confirmation to your email."
+          : "Your session is booked. We could not send the email just now, but our team will follow up with you.",
       });
     } catch (err) {
       console.error(err);
@@ -196,7 +210,9 @@ const Booking = () => {
                 at {confirmed.time} with {confirmed.consultant}.
               </p>
               <p className="text-muted-foreground mt-2 text-sm">
-                A confirmation email is on its way. If anything changes, just reply to that email.
+                {confirmed.emailSent
+                  ? "We sent a confirmation email with these details. If anything changes, just reply to that email."
+                  : "We could not send your confirmation email just now. Your booking is saved, and our team will reach out to confirm."}
               </p>
             </div>
           ) : (
@@ -319,7 +335,7 @@ const Booking = () => {
               />
 
               <Button type="submit" size="lg" disabled={isSubmitting} className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
-                {isSubmitting ? "Booking..." : "Confirm booking"}
+                {isSubmitting ? "Booking and sending your email..." : "Confirm booking"}
               </Button>
               <p className="text-xs text-muted-foreground text-center">
                 Booking is free. Contact us for a customized quote tailored to your business needs.

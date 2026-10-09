@@ -166,6 +166,42 @@ const AdminPipeline = () => {
     };
   }, [leads]);
 
+  const conversion = useMemo(() => {
+    const isBooked = (l: Lead) => l.pipeline_stage === "Booked";
+    const isLost = (l: Lead) => l.pipeline_stage === "Lost";
+
+    // Funnel: how many leads reached each stage (a lead counts in every stage it passed through).
+    const stageOrder: Stage[] = ["New", "Contacted", "Qualified", "Scheduled", "Booked"];
+    const rank = (s: Stage) => (s === "Lost" ? -1 : stageOrder.indexOf(s));
+    const funnel = stageOrder.map((stage, i) => ({
+      stage,
+      count: leads.filter((l) => !isLost(l) && rank(l.pipeline_stage) >= i).length,
+    }));
+
+    // Conversion by source: total leads, booked, and conversion rate per source.
+    const bySource = new Map<string, { total: number; booked: number }>();
+    leads.forEach((l) => {
+      const entry = bySource.get(l.lead_source) ?? { total: 0, booked: 0 };
+      entry.total += 1;
+      if (isBooked(l)) entry.booked += 1;
+      bySource.set(l.lead_source, entry);
+    });
+    const sources = [...bySource.entries()]
+      .map(([source, v]) => ({
+        source,
+        ...v,
+        rate: v.total ? Math.round((v.booked / v.total) * 100) : 0,
+      }))
+      .sort((a, b) => b.rate - a.rate || b.total - a.total);
+
+    const bookedCount = leads.filter(isBooked).length;
+    return {
+      funnel,
+      sources,
+      overallRate: leads.length ? Math.round((bookedCount / leads.length) * 100) : 0,
+    };
+  }, [leads]);
+
   const visible = filter === "All" ? leads : leads.filter((l) => l.pipeline_stage === filter);
   const groups = STAGES.map((s) => ({ stage: s, items: visible.filter((l) => l.pipeline_stage === s) })).filter(
     (g) => g.items.length > 0

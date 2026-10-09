@@ -4,7 +4,7 @@ import sbcLogo from "@/assets/sbc-logo.png";
 const socialLinks = [
   {
     name: "LinkedIn",
-    href: "https://www.linkedin.com/in/simplifysbc",
+    href: "https://www.linkedin.com/in/simplifysbc?lang=en",
     Icon: Linkedin,
   },
   {

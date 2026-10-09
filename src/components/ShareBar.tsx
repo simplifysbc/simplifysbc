@@ -15,7 +15,7 @@ const ShareBar = ({ title, url }: ShareBarProps) => {
   const encodedUrl = encodeURIComponent(fullUrl);
   const encodedTitle = encodeURIComponent(title);
 
-  const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
+  const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}&lang=en`;
   const instagramUrl = "https://www.instagram.com/simplify.sbc/";
 
   const copyLink = async () => {

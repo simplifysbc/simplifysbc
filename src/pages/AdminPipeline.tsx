@@ -364,6 +364,60 @@ const AdminPipeline = () => {
           </div>
         </section>
 
+        {/* Conversion tracking */}
+        <section className="mb-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="bg-card border border-border rounded-xl p-5">
+            <h2 className="font-medium text-foreground mb-1">Lead journey</h2>
+            <p className="text-xs text-muted-foreground mb-4">
+              How many leads reached each step, from first contact to a booked call. Overall conversion:{" "}
+              <span className="font-medium text-foreground">{conversion.overallRate}%</span>
+            </p>
+            <div className="space-y-3">
+              {conversion.funnel.map((f) => (
+                <div key={f.stage}>
+                  <div className="flex justify-between text-sm mb-1">
+                    <span className="text-foreground">{f.stage}</span>
+                    <span className="text-muted-foreground">
+                      {f.count}
+                      {stats.total ? ` · ${Math.round((f.count / stats.total) * 100)}%` : ""}
+                    </span>
+                  </div>
+                  <div className="h-2 rounded-full bg-muted overflow-hidden">
+                    <div
+                      className={`h-full rounded-full transition-all ${f.stage === "Booked" ? "bg-accent" : "bg-primary"}`}
+                      style={{ width: `${stats.total ? Math.round((f.count / stats.total) * 100) : 0}%` }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="bg-card border border-border rounded-xl p-5">
+            <h2 className="font-medium text-foreground mb-1">Conversion by source</h2>
+            <p className="text-xs text-muted-foreground mb-4">Which sources turn into booked calls most often.</p>
+            {conversion.sources.length === 0 ? (
+              <p className="text-sm text-muted-foreground">No leads yet.</p>
+            ) : (
+              <div className="space-y-3">
+                {conversion.sources.map((s) => (
+                  <div key={s.source}>
+                    <div className="flex justify-between text-sm mb-1">
+                      <span className="text-foreground">{s.source}</span>
+                      <span className="text-muted-foreground">
+                        {s.booked}/{s.total} booked · {s.rate}%
+                      </span>
+                    </div>
+                    <div className="h-2 rounded-full bg-muted overflow-hidden">
+                      <div className="h-full rounded-full bg-accent transition-all" style={{ width: `${s.rate}%` }} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+
         {/* Booked calls calendar */}
         <section className="mb-8 bg-card border border-border rounded-xl p-5">
           <div className="flex flex-wrap items-center justify-between gap-3 mb-4">

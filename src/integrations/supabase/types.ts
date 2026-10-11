@@ -47,6 +47,54 @@ export type Database = {
         }
         Relationships: []
       }
+      consultants: {
+        Row: {
+          active: boolean
+          availability: Json
+          bio: string
+          created_at: string
+          id: string
+          name: string
+          photo_url: string | null
+          projects: Json
+          role: string
+          slug: string
+          sort_order: number
+          specialties: string[]
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          availability?: Json
+          bio?: string
+          created_at?: string
+          id?: string
+          name: string
+          photo_url?: string | null
+          projects?: Json
+          role?: string
+          slug: string
+          sort_order?: number
+          specialties?: string[]
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          availability?: Json
+          bio?: string
+          created_at?: string
+          id?: string
+          name?: string
+          photo_url?: string | null
+          projects?: Json
+          role?: string
+          slug?: string
+          sort_order?: number
+          specialties?: string[]
+          updated_at?: string
+        }
+        Relationships: []
+      }
       contact_submissions: {
         Row: {
           created_at: string | null

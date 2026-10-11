@@ -15,11 +15,10 @@ import {
 } from "@/components/forms/LocationFields";
 import { Country } from "country-state-city";
 import { Link } from "react-router-dom";
-import { ANY_CONSULTANT, consultantNames } from "@/data/consultants";
+import { ANY_CONSULTANT } from "@/data/consultants";
+import { useConsultants } from "@/hooks/useConsultants";
 
 const packages = ["Digital Starter", "Growth Accelerator", "Enterprise Pro", "Others"] as const;
-
-const consultants = [ANY_CONSULTANT, ...consultantNames];
 
 const timeSlots = [
   "09:00",
@@ -52,6 +51,11 @@ const bookingSchema = z.object({
 const todayIso = () => new Date().toISOString().slice(0, 10);
 
 const Booking = () => {
+  const { consultants: team } = useConsultants();
+  const consultants = useMemo(
+    () => [ANY_CONSULTANT, ...team.map((c) => c.name)],
+    [team],
+  );
   const [countryIso, setCountryIso] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [confirmed, setConfirmed] = useState<{ date: string; time: string; consultant: string; emailSent: boolean } | null>(null);
@@ -64,7 +68,7 @@ const Booking = () => {
     preferred_package: "",
     booking_date: "",
     booking_time: "",
-    consultant: consultants[0],
+    consultant: ANY_CONSULTANT,
     message: "",
   });
 
@@ -77,13 +81,18 @@ const Booking = () => {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const pkg = params.get("package");
-    const consultant = params.get("consultant");
     setForm((p) => ({
       ...p,
       preferred_package: pkg && (packages as readonly string[]).includes(pkg) ? pkg : p.preferred_package,
-      consultant: consultant && consultants.includes(consultant) ? consultant : p.consultant,
     }));
   }, []);
+
+  useEffect(() => {
+    const wanted = new URLSearchParams(window.location.search).get("consultant");
+    if (!wanted || team.length === 0) return;
+    const match = team.find((c) => c.name === wanted || c.slug === wanted || c.role === wanted);
+    if (match) setForm((p) => ({ ...p, consultant: match.name }));
+  }, [team]);
 
   useEffect(() => {
     setForm((p) => ({ ...p, city: "" }));

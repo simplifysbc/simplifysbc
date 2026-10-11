@@ -4,6 +4,8 @@ import { CalendarCheck, ChevronLeft, ChevronRight, ClipboardList, Users } from "
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 import SEO from "@/components/SEO";
+import ConsultantManager from "@/components/admin/ConsultantManager";
+import { useConsultants } from "@/hooks/useConsultants";
 
 // The generated database types lag behind the new pipeline columns.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -58,6 +60,8 @@ const AdminPipeline = () => {
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<Stage | "All">("All");
   const [savingId, setSavingId] = useState<string | null>(null);
+  const { consultants: team, reload: reloadTeam } = useConsultants(true);
+  const teamNames = useMemo(() => team.map((c) => c.name), [team]);
   const [calendarMonth, setCalendarMonth] = useState(() => {
     const now = new Date();
     return { year: now.getFullYear(), month: now.getMonth() };
@@ -278,6 +282,8 @@ const AdminPipeline = () => {
             Sign out
           </button>
         </div>
+
+        <ConsultantManager consultants={team} reload={reloadTeam} />
 
         {/* Booking stats dashboard */}
         <section className="mb-8">
@@ -639,16 +645,21 @@ const AdminPipeline = () => {
                   </label>
                   <label className="text-xs text-muted-foreground">
                     Consultant
-                    <input
-                      type="text"
-                      defaultValue={lead.consultant ?? ""}
-                      placeholder="Assign a consultant"
-                      onBlur={(e) => {
-                        const v = e.target.value.trim();
-                        if (v !== (lead.consultant ?? "")) updateLead(lead.id, { consultant: v || null });
-                      }}
+                    <select
+                      value={lead.consultant ?? ""}
+                      onChange={(e) => updateLead(lead.id, { consultant: e.target.value || null })}
                       className={`${fieldClass} mt-1`}
-                    />
+                    >
+                      <option value="">Unassigned</option>
+                      {lead.consultant && !teamNames.includes(lead.consultant) && (
+                        <option value={lead.consultant}>{lead.consultant}</option>
+                      )}
+                      {teamNames.map((n) => (
+                        <option key={n} value={n}>
+                          {n}
+                        </option>
+                      ))}
+                    </select>
                   </label>
                 </div>
 

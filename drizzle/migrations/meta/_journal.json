@@ -1,0 +1,20 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1791743461465,
+      "tag": "0000_create_consultants",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1791743559018,
+      "tag": "0001_consultants_public_read_fix",
+      "breakpoints": true
+    }
+  ]
+}

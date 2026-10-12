@@ -52,7 +52,10 @@ const stageTone: Record<Stage, string> = {
   Lost: "bg-destructive/10 text-destructive",
 };
 
+const WEEKDAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
 const AdminPipeline = () => {
+  const [calendarConsultant, setCalendarConsultant] = useState("all");
   const navigate = useNavigate();
   const [checking, setChecking] = useState(true);
   const [allowed, setAllowed] = useState(false);
@@ -211,16 +214,26 @@ const AdminPipeline = () => {
     (g) => g.items.length > 0
   );
 
+  const selectedConsultant = useMemo(
+    () => team.find((c) => c.id === calendarConsultant) ?? null,
+    [team, calendarConsultant]
+  );
+
   const bookedLeads = useMemo(
     () =>
       leads
         .filter((l) => l.pipeline_stage === "Booked")
+        .filter((l) => {
+          if (!selectedConsultant) return true;
+          const v = l.consultant?.trim();
+          return v === selectedConsultant.name || (!!selectedConsultant.role && v === selectedConsultant.role);
+        })
         .sort((a, b) => {
           const ka = `${a.booking_date ?? "9999-12-31"}T${a.booking_time ?? "23:59"}`;
           const kb = `${b.booking_date ?? "9999-12-31"}T${b.booking_time ?? "23:59"}`;
           return sortDir === "asc" ? ka.localeCompare(kb) : kb.localeCompare(ka);
         }),
-    [leads, sortDir]
+    [leads, sortDir, selectedConsultant]
   );
 
   const bookingsByDay = useMemo(() => {
@@ -428,16 +441,55 @@ const AdminPipeline = () => {
         <section className="mb-8 bg-card border border-border rounded-xl p-5">
           <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
             <div>
-              <h2 className="font-medium text-foreground">Booked calls calendar</h2>
-              <p className="text-xs text-muted-foreground">Every booked call by date, time and consultant.</p>
+              <h2 className="font-medium text-foreground">
+                {selectedConsultant ? `${selectedConsultant.name}'s calendar` : "Booked calls calendar"}
+              </h2>
+              <p className="text-xs text-muted-foreground">
+                {selectedConsultant
+                  ? "This consultant's free days and booked calls only."
+                  : "Every booked call by date, time and consultant."}
+              </p>
             </div>
-            <button
-              onClick={() => setSortDir((d) => (d === "asc" ? "desc" : "asc"))}
-              className="px-3 py-1.5 rounded-full text-sm border border-border hover:bg-muted transition"
-            >
-              Sort by date: {sortDir === "asc" ? "earliest first" : "latest first"}
-            </button>
+            <div className="flex flex-wrap gap-2">
+              <select
+                aria-label="Choose consultant calendar"
+                value={calendarConsultant}
+                onChange={(e) => setCalendarConsultant(e.target.value)}
+                className="px-3 py-1.5 rounded-full text-sm border border-border bg-background text-foreground"
+              >
+                <option value="all">All consultants</option>
+                {team.map((c) => (
+                  <option key={c.id} value={c.id}>
+                    {c.name}
+                  </option>
+                ))}
+              </select>
+              <button
+                onClick={() => setSortDir((d) => (d === "asc" ? "desc" : "asc"))}
+                className="px-3 py-1.5 rounded-full text-sm border border-border hover:bg-muted transition"
+              >
+                Sort by date: {sortDir === "asc" ? "earliest first" : "latest first"}
+              </button>
+            </div>
           </div>
+
+          {selectedConsultant && (
+            <div className="mb-4 flex flex-wrap gap-2 text-xs">
+              <span className="text-muted-foreground">Weekly availability:</span>
+              {selectedConsultant.availability.length === 0 ? (
+                <span className="text-muted-foreground">Not set yet. Add it in the Consultants section above.</span>
+              ) : (
+                selectedConsultant.availability.map((a) => (
+                  <span key={a.day} className="px-2 py-0.5 rounded-full bg-secondary/20 text-foreground">
+                    {a.day} {a.hours}
+                  </span>
+                ))
+              )}
+              <span className="text-muted-foreground">
+                {bookedLeads.length} booked call{bookedLeads.length === 1 ? "" : "s"}
+              </span>
+            </div>
+          )}
 
           {(() => {
             const firstWeekday = new Date(calendarMonth.year, calendarMonth.month, 1).getDay();
@@ -490,14 +542,21 @@ const AdminPipeline = () => {
                     const day = i + 1;
                     const dateStr = `${calendarMonth.year}-${pad(calendarMonth.month + 1)}-${pad(day)}`;
                     const items = bookingsByDay.get(dateStr) ?? [];
+                    const weekday = WEEKDAYS[new Date(calendarMonth.year, calendarMonth.month, day).getDay()];
+                    const slot = selectedConsultant?.availability.find((a) => a.day.toLowerCase() === weekday.toLowerCase());
                     return (
                       <div
                         key={day}
                         className={`min-h-20 rounded-md border p-1.5 text-left ${
-                          items.length > 0 ? "border-accent/50 bg-accent/10" : "border-border bg-background"
+                          items.length > 0
+                            ? "border-accent/50 bg-accent/10"
+                            : slot
+                              ? "border-secondary bg-secondary/10"
+                              : "border-border bg-background"
                         }`}
                       >
                         <p className="text-xs text-muted-foreground">{day}</p>
+                        {slot && <p className="text-[10px] text-muted-foreground truncate">Free {slot.hours}</p>}
                         {items.map((l) => (
                           <p
                             key={l.id}

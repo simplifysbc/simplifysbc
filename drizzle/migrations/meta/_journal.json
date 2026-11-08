@@ -15,6 +15,13 @@
       "when": 1791743559018,
       "tag": "0001_consultants_public_read_fix",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1794124335939,
+      "tag": "0002_protect_consultant_booking_slots",
+      "breakpoints": true
     }
   ]
 }

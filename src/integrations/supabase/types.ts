@@ -129,6 +129,7 @@ export type Database = {
           booking_time: string | null
           city: string | null
           consultant: string | null
+          consultant_id: string | null
           country: string | null
           created_date: string
           email: string
@@ -158,6 +159,7 @@ export type Database = {
           booking_time?: string | null
           city?: string | null
           consultant?: string | null
+          consultant_id?: string | null
           country?: string | null
           created_date?: string
           email: string
@@ -187,6 +189,7 @@ export type Database = {
           booking_time?: string | null
           city?: string | null
           consultant?: string | null
+          consultant_id?: string | null
           country?: string | null
           created_date?: string
           email?: string
@@ -207,7 +210,15 @@ export type Database = {
           welcome_email_status?: string
           whatsapp_number?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "customer_leads_consultant_id_fkey"
+            columns: ["consultant_id"]
+            isOneToOne: false
+            referencedRelation: "consultants"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       rls_test: {
         Row: {
@@ -247,6 +258,13 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      get_booked_slots: {
+        Args: { p_date: string }
+        Returns: {
+          booking_time: string
+          consultant_id: string
+        }[]
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]

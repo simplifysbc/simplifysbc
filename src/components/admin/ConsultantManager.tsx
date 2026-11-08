@@ -3,6 +3,9 @@ import { Plus, Trash2, UserRound } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 import { ConsultantRow, consultantPhoto } from "@/hooks/useConsultants";
+import ConsultantProjectsEditor from "@/components/admin/ConsultantProjectsEditor";
+import { validateProjects } from "@/lib/consultant-projects";
+import { Button } from "@/components/ui/button";
 
 const fieldClass =
   "w-full px-3 py-2 rounded-lg bg-background border border-border text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-accent";
@@ -55,12 +58,18 @@ const ConsultantCard = ({ c, reload }: { c: ConsultantRow; reload: () => void })
     availability: availabilityToText(c.availability),
     photo_url: c.photo_url,
     active: c.active,
+    projects: c.projects ?? [],
   });
   const [saving, setSaving] = useState(false);
 
   const save = async () => {
     if (!form.name.trim()) {
       toast({ title: "Please add a name", variant: "destructive" });
+      return;
+    }
+    const projectError = validateProjects(form.projects);
+    if (projectError) {
+      toast({ title: "Check your projects", description: projectError, variant: "destructive" });
       return;
     }
     setSaving(true);
@@ -74,6 +83,12 @@ const ConsultantCard = ({ c, reload }: { c: ConsultantRow; reload: () => void })
         availability: textToAvailability(form.availability),
         photo_url: form.photo_url,
         active: form.active,
+        projects: form.projects.map((project) => ({
+          title: project.title.trim(),
+          result: project.result.trim(),
+          description: project.description?.trim() ?? "",
+          caseStudyUrl: project.caseStudyUrl?.trim() ?? "",
+        })),
       })
       .eq("id", c.id);
     setSaving(false);
@@ -135,22 +150,23 @@ const ConsultantCard = ({ c, reload }: { c: ConsultantRow; reload: () => void })
         Availability (one per line, e.g. Monday: 09:00 - 13:00)
         <textarea rows={3} className={`${fieldClass} mt-1 resize-none`} value={form.availability} onChange={(e) => setForm({ ...form, availability: e.target.value })} />
       </label>
+      <ConsultantProjectsEditor projects={form.projects} onChange={(projects) => setForm((previous) => ({ ...previous, projects }))} />
       <div className="flex flex-wrap items-center gap-3 mt-4">
         <label className="flex items-center gap-2 text-sm text-foreground">
           <input type="checkbox" checked={form.active} onChange={(e) => setForm({ ...form, active: e.target.checked })} />
           Show on website
         </label>
         <div className="flex-1" />
-        <button onClick={remove} className="p-2 rounded-lg border border-border text-muted-foreground hover:text-destructive" aria-label="Remove consultant">
+        <Button onClick={remove} variant="outline" size="icon" aria-label="Remove consultant">
           <Trash2 size={16} />
-        </button>
-        <button
+        </Button>
+        <Button
           onClick={save}
           disabled={saving}
           className="px-4 py-2 rounded-lg bg-accent text-accent-foreground text-sm font-medium hover:opacity-90 disabled:opacity-60"
         >
           {saving ? "Saving..." : "Save"}
-        </button>
+        </Button>
       </div>
     </article>
   );

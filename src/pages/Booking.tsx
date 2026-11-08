@@ -17,20 +17,9 @@ import { Country } from "country-state-city";
 import { Link } from "react-router-dom";
 import { ANY_CONSULTANT } from "@/data/consultants";
 import { useConsultants } from "@/hooks/useConsultants";
+import { availableConsultantIds, bookingTimeSlots as timeSlots, BookedSlot, isSlotConflict } from "@/lib/booking-slots";
 
 const packages = ["Digital Starter", "Growth Accelerator", "Enterprise Pro", "Others"] as const;
-
-const timeSlots = [
-  "09:00",
-  "10:00",
-  "11:00",
-  "12:00",
-  "13:00",
-  "14:00",
-  "15:00",
-  "16:00",
-  "17:00",
-] as const;
 
 const phoneRegex = /^[0-9\s\-()]{6,20}$/;
 
@@ -58,6 +47,11 @@ const Booking = () => {
   );
   const [countryIso, setCountryIso] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [slots, setSlots] = useState<BookedSlot[]>([]);
+  const [slotsDate, setSlotsDate] = useState("");
+  const [slotsLoading, setSlotsLoading] = useState(false);
+  const [slotsError, setSlotsError] = useState(false);
+  const [slotsRefresh, setSlotsRefresh] = useState(0);
   const [confirmed, setConfirmed] = useState<{ date: string; time: string; consultant: string; emailSent: boolean } | null>(null);
   const [form, setForm] = useState({
     full_name: "",
@@ -98,8 +92,40 @@ const Booking = () => {
     setForm((p) => ({ ...p, city: "" }));
   }, [countryIso]);
 
-  const change = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
-    setForm({ ...form, [e.target.name]: e.target.value });
+  useEffect(() => {
+    let cancelled = false;
+    const date = form.booking_date;
+    if (!date) return;
+    const refresh = async () => {
+      setSlotsLoading(true);
+      const { data, error } = await supabase.rpc("get_booked_slots", { p_date: date });
+      if (cancelled) return;
+      setSlotsLoading(false);
+      setSlotsError(Boolean(error));
+      if (!error) {
+        setSlots(data ?? []);
+        setSlotsDate(date);
+      }
+    };
+    void refresh();
+    const timer = window.setInterval(() => void refresh(), 30000);
+    return () => { cancelled = true; window.clearInterval(timer); };
+  }, [form.booking_date, slotsRefresh]);
+
+  const candidateIds = team.filter((c) => form.consultant === ANY_CONSULTANT || c.name === form.consultant).map((c) => c.id);
+  const slotsReady = Boolean(form.booking_date) && slotsDate === form.booking_date && !slotsLoading && !slotsError;
+  const freeIds = (time: string) => availableConsultantIds(time, candidateIds, slots);
+
+  useEffect(() => {
+    if (slotsReady && form.booking_time && availableConsultantIds(form.booking_time, candidateIds, slots).length === 0) {
+      setForm((p) => ({ ...p, booking_time: "" }));
+    }
+  }, [slots, slotsReady, form.booking_time, form.consultant, team]);
+
+  const change = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setForm((p) => ({ ...p, [name]: value, ...(["booking_date", "consultant"].includes(name) ? { booking_time: "" } : {}) }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -112,6 +138,13 @@ const Booking = () => {
         description: parsed.error.issues[0]?.message ?? "Invalid input",
         variant: "destructive",
       });
+      return;
+    }
+
+    const selectedId = freeIds(parsed.data.booking_time)[0];
+    const selectedConsultant = team.find((c) => c.id === selectedId);
+    if (!slotsReady || !selectedConsultant) {
+      toast({ title: "Choose an available time", description: "That time is unavailable. Please choose another slot.", variant: "destructive" });
       return;
     }
 
@@ -133,7 +166,8 @@ const Booking = () => {
           pipeline_stage: "Booked",
           booking_date: parsed.data.booking_date,
           booking_time: parsed.data.booking_time,
-          consultant: parsed.data.consultant,
+          consultant: selectedConsultant.name,
+          consultant_id: selectedConsultant.id,
         } as never,
       ]);
 
@@ -160,7 +194,7 @@ const Booking = () => {
       setConfirmed({
         date: parsed.data.booking_date,
         time: parsed.data.booking_time,
-        consultant: parsed.data.consultant,
+        consultant: selectedConsultant.name,
         emailSent,
       });
       toast({
@@ -170,6 +204,12 @@ const Booking = () => {
           : "Your session is booked. We could not send the email just now, but our team will follow up with you.",
       });
     } catch (err) {
+      if (isSlotConflict(err)) {
+        setForm((p) => ({ ...p, booking_time: "" }));
+        setSlotsRefresh((p) => p + 1);
+        toast({ title: "That time was just booked", description: "Your booking was not saved. Please choose another available time.", variant: "destructive" });
+        return;
+      }
       console.error(err);
       toast({
         title: "Something went wrong",
@@ -304,14 +344,15 @@ const Booking = () => {
                 </label>
                 <label className="block text-sm text-muted-foreground">
                   Time *
-                  <select name="booking_time" value={form.booking_time} onChange={change} className={`${fieldClass} mt-1`}>
-                    <option value="">Select a time</option>
+                  <select name="booking_time" value={form.booking_time} onChange={change} disabled={!slotsReady || isSubmitting} className={`${fieldClass} mt-1`}>
+                    <option value="">{slotsLoading ? "Checking times..." : "Select a time"}</option>
                     {timeSlots.map((t) => (
-                      <option key={t} value={t}>
-                        {t}
+                      <option key={t} value={t} disabled={freeIds(t).length === 0}>
+                        {t}{freeIds(t).length === 0 ? " (Unavailable)" : ""}
                       </option>
                     ))}
                   </select>
+                  {slotsError && <span role="alert" className="block mt-2 text-destructive">We could not check times. Please try again shortly.</span>}
                 </label>
               </div>
 
@@ -343,7 +384,7 @@ const Booking = () => {
                 className={fieldClass}
               />
 
-              <Button type="submit" size="lg" disabled={isSubmitting} className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
+              <Button type="submit" size="lg" disabled={isSubmitting || !slotsReady || !form.booking_time} className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
                 {isSubmitting ? "Booking and sending your email..." : "Confirm booking"}
               </Button>
               <p className="text-xs text-muted-foreground text-center">

@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { consultantPhoto, useConsultants } from "@/hooks/useConsultants";
 import { CalendarClock, CheckCircle2, Users } from "lucide-react";
+import { caseStudyLink } from "@/lib/consultant-projects";
 
 const Consultants = () => {
   const { consultants, loading } = useConsultants();
@@ -74,22 +75,32 @@ const Consultants = () => {
                       </ul>
                     </div>
                   )}
-                  {c.projects.length > 0 && (
-                    <div>
-                      <h3 className="font-heading font-semibold flex items-center gap-2">
-                        <CheckCircle2 size={18} className="text-accent" /> Past projects
-                      </h3>
-                      <ul className="mt-3 space-y-3">
-                        {c.projects.map((p) => (
-                          <li key={p.title} className="text-sm">
-                            <span className="font-medium">{p.title}</span>
-                            <span className="block text-muted-foreground">{p.result}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
                 </div>
+
+                {c.projects.length > 0 && (
+                  <section className="mt-8 border-t border-border pt-6" aria-label={`${c.name}'s past projects`}>
+                    <h3 className="font-heading font-semibold flex items-center gap-2">
+                      <CheckCircle2 size={18} className="text-accent" /> Past projects & case studies
+                    </h3>
+                    <ul className="mt-4 divide-y divide-border">
+                      {c.projects.map((project, index) => {
+                        const href = caseStudyLink(project.caseStudyUrl);
+                        return (
+                          <li key={`${project.title}-${index}`} className="py-4 first:pt-0 text-sm space-y-2 break-words">
+                            <h4 className="font-medium text-base">{project.title}</h4>
+                            {project.description && <p className="text-muted-foreground whitespace-pre-line">{project.description}</p>}
+                            <p className="text-foreground/80"><span className="font-medium">Result: </span>{project.result}</p>
+                            {href && (
+                              <Button asChild variant="link" className="h-auto p-0 text-accent">
+                                {href.startsWith("/") ? <Link to={href}>Read case study</Link> : <a href={href} target="_blank" rel="noopener noreferrer">Read case study</a>}
+                              </Button>
+                            )}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </section>
+                )}
 
                 <div className="mt-8">
                   <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">

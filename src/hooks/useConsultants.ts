@@ -3,6 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import consultant1 from "@/assets/consultants/consultant-1.jpg";
 import consultant2 from "@/assets/consultants/consultant-2.jpg";
 import consultant3 from "@/assets/consultants/consultant-3.jpg";
+import { ConsultantProject } from "@/lib/consultant-projects";
 
 export interface ConsultantRow {
   id: string;
@@ -13,7 +14,7 @@ export interface ConsultantRow {
   bio: string;
   specialties: string[];
   availability: { day: string; hours: string }[];
-  projects: { title: string; result: string }[];
+  projects: ConsultantProject[];
   active: boolean;
   sort_order: number;
 }

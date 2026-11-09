@@ -1,5 +1,9 @@
 # Tasks
 
+- [ ] Review Google and AI search visibility and correct verified on-site issues.
+- [ ] Research realistic search targets and audience communities and directories.
+- [ ] Deliver checked outreach drafts and a prioritized marketing plan.
+
 - [x] Enforce consultant slot exclusivity and expose occupied times without customer details.
 - [x] Disable unavailable booking times and handle simultaneous-booking conflicts.
 - [ ] Test slot protections and verify the booking page.

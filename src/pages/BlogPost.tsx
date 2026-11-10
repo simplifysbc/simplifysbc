@@ -69,7 +69,7 @@ const POSTS: Post[] = [
       {
         heading: "The real financial cost of food spoilage",
         body:
-          "Food waste is not just an environmental issue. It is a direct hit to revenue. According to industry estimates, perishable food businesses lose 5 to 10 percent of inventory annually to temperature excursions, equipment failures, and human error. For a mid-sized produce distributor moving $2 million in goods per year, that translates to $100,000 to $200,000 in preventable losses. The bigger problem is that most of this waste is invisible until it is too late. By the time someone smells a problem, the damage is done, the customer has been let down, and the money is gone.",
+          "Food waste is a direct cost to a business. A cooling failure can mean lost stock, refunds, cleanup, and missed deliveries. The cost depends on the product, the time outside its required storage range, and how quickly staff respond. Keep a record of discarded stock and the reason for each loss before estimating what a monitoring system might save.",
       },
       {
         heading: "Why cold-chain failures hit rural and mid-sized operations hardest",
@@ -79,7 +79,7 @@ const POSTS: Post[] = [
       {
         heading: "Real-time monitoring: the foundation of a reliable cold chain",
         body:
-          "Real-time monitoring is the first and most important layer of protection. Wireless temperature and humidity sensors are placed inside every cooler, freezer, and transport compartment. They record conditions every few minutes and transmit that data to a central dashboard accessible from any phone or computer. Instead of discovering a problem on Monday morning, the owner gets an alert the moment the temperature drifts outside the safe zone. That single change, from reactive to proactive, is what separates a $500 compressor repair from a $50,000 inventory loss.",
+          "Real-time monitoring is the first and most important layer of protection. Wireless temperature and humidity sensors are placed inside every cooler, freezer, and transport compartment. They record conditions every few minutes and transmit that data to a central dashboard accessible from any phone or computer. Instead of discovering a problem on Monday morning, the owner gets an alert the moment the temperature drifts outside the safe zone. An alert can help staff respond sooner. It does not repair equipment or guarantee that food remains safe. Keep a response plan and use storage limits appropriate to the product.",
       },
       {
         heading: "Smart sensors: affordable, accurate, and built for food environments",
@@ -125,7 +125,7 @@ const POSTS: Post[] = [
       },
       {
         body:
-          "• We start with a free conversation to understand your current cold storage setup, your pain points, and your budget\n• We map every zone, vehicle, and handoff point that touches your product\n• We recommend sensor and dashboard solutions that match your scale, not an oversized enterprise platform\n• We handle installation, staff training, and integration with your existing tools\n• We stay available for support, tuning, and expansion as your operation grows\n\nNo complex jargon. No long-term contracts. Just cold storage automation that protects your product and your revenue.",
+          "• We start with a free conversation to understand your current cold storage setup, your pain points, and your budget\n• We map every zone, vehicle, and handoff point that touches your product\n• We recommend sensor and dashboard solutions that match your scale, not an oversized enterprise platform\n• We handle installation, staff training, and integration with your existing tools\n• We stay available for support, tuning, and expansion as your operation grows\n\nThe scope, support, and terms are agreed with you before work begins.",
       },
       {
         heading: "Conclusion: protecting product, profit, and reputation",
@@ -204,11 +204,11 @@ const POSTS: Post[] = [
       {
         heading: "The ROI case for SMB automation in 2026",
         body:
-          "The numbers behind operational efficiency are hard to argue with. Most rural businesses that automate inventory, scheduling, and basic workflows see:",
+          "Measure the work before making changes. Track the time spent on a repeated task, the number of errors, and the cost of the tools you use. Then compare those figures after a small trial.",
       },
       {
         body:
-          "• 5 to 15 hours per week given back to the owner and key staff\n• 10 to 30 percent reduction in stock carrying costs\n• Noticeable drops in equipment downtime within the first year\n• Faster invoicing, which improves cash flow almost immediately\n• Clearer numbers to support pricing, hiring, and financing decisions\n\nFor a typical SMB farm or rural business, a well-designed automation rollout usually pays for itself within 6 to 12 months and keeps paying after that.",
+          "• Record staff time spent on the task before and after the change\n• Count missed orders, duplicate entries, and stock errors\n• Include setup, subscriptions, training, and ongoing support in the cost\n• Check whether reminders and records still work when the internet is down\n• Review the trial with the staff who use it\n\nResults vary. Estimate payback using your own figures rather than a promised savings percentage or timeline.",
       },
       {
         heading: "How Simplify Business Consultancy helps rural businesses modernize",
@@ -217,7 +217,7 @@ const POSTS: Post[] = [
       },
       {
         body:
-          "• We start with a free conversation to understand your real day\n• We map your current workflow, equipment, and team\n• We pick one or two high-impact areas to automate first\n• We set up the tools, train your team, and stay available for support\n• We review results with you and plan the next improvement together\n\nNo oversized enterprise software. No long contracts. Just rural business automation that fits your land, your shop, and your team.",
+          "• We start with a free conversation to understand your real day\n• We map your current workflow, equipment, and team\n• We pick one or two high-impact areas to automate first\n• We set up the tools, train your team, and stay available for support\n• We review results with you and plan the next improvement together\n\nThe tools and support should fit your land, your shop, and your team. Scope and terms are agreed before work begins.",
       },
       {
         heading: "Conclusion: the year to modernize is now",
@@ -262,7 +262,7 @@ const POSTS: Post[] = [
       {
         heading: "What smart irrigation actually means",
         body:
-          "Smart irrigation is a connected system that decides when, where, and how much to water based on real data from the field. Instead of running on a fixed timer, it pulls in soil moisture readings, weather forecasts, crop growth stage, and even evaporation rates. The result is water delivered only where it is needed, only when it is needed, and only in the amount the crop can actually use. For most farms, this alone cuts water use by 20 to 50 percent in the first season.",
+          "Smart irrigation is a connected system that decides when, where, and how much to water based on real data from the field. Instead of running on a fixed timer, it pulls in soil moisture readings, weather forecasts, crop growth stage, and even evaporation rates. The result is water delivered only where it is needed, only when it is needed, and only in the amount the crop can actually use. Water savings depend on the crop, soil, weather, equipment, and the schedule used before the change. Measure your own water use before and after a trial.",
       },
       {
         heading: "Sensor-based monitoring: your field, in real time",
@@ -290,7 +290,7 @@ const POSTS: Post[] = [
       {
         heading: "Operational efficiency that compounds over time",
         body:
-          "The real story of agtech automation is not a single big win. It is dozens of small wins that compound. Lower water bills. Lower energy bills from pumps running only when needed. Fewer labor hours spent on manual checks. Less crop loss from over or under-watering. Cleaner records for compliance and grant applications. Better data to make next year's planting decisions. Within 12 to 24 months, most small and mid-sized USA farms see a clear, measurable return on a well-designed smart irrigation system.",
+          "The real story of agtech automation is not a single big win. It is dozens of small wins that compound. Lower water bills. Lower energy bills from pumps running only when needed. Fewer labor hours spent on manual checks. Less crop loss from over or under-watering. Cleaner records for compliance and grant applications. Better data to make next year's planting decisions. The time needed to recover the setup cost varies. Compare measured savings with the cost of equipment, installation, training, connectivity, and maintenance.",
       },
       {
         heading: "Why now is the right moment for agricultural automation",
@@ -304,7 +304,7 @@ const POSTS: Post[] = [
       },
       {
         body:
-          "• We walk the fields with you and map the current irrigation workflow\n• We identify the highest impact zones to automate first\n• We recommend sensors, controllers, and software that match your crops, soil, and budget\n• We help you apply for available cost-share and grant funding\n• We handle setup, staff training, and ongoing support so the system keeps paying back\n\nNo jargon, no oversized enterprise tools, no long sales cycles. Just practical agricultural automation built for the way rural USA farms really run.",
+          "• We walk the fields with you and map the current irrigation workflow\n• We identify the highest impact zones to automate first\n• We recommend sensors, controllers, and software that match your crops, soil, and budget\n• Check funding eligibility with your local USDA service center before including a grant in your budget\n• We handle setup, staff training, and ongoing support so the system keeps paying back\n\nNo jargon, no oversized enterprise tools, no long sales cycles. Just practical agricultural automation built for the way rural USA farms really run.",
       },
       {
         heading: "Conclusion: a simpler, smarter way to run your fields",

@@ -45,7 +45,8 @@ const plans = [
 ];
 
 const PricingSection = () => (
-  <section id="pricing" className="py-24 bg-card">
+  <section id="packages" className="py-24 bg-card">
+    <span id="pricing" aria-hidden="true" />
     <div className="container">
       <motion.div
         initial={{ opacity: 0, y: 20 }}

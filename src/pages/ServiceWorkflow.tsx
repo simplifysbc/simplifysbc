@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowLeft, GitBranch, Settings, BarChart3, Users, CheckCircle2, Star, Quote } from "lucide-react";
+import { ArrowLeft, GitBranch, Settings, BarChart3, Users, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -22,19 +22,11 @@ const industries = [
   "Professional Services and Legal",
 ];
 
-const testimonial = {
-  name: "Tom Bradley",
-  role: "Operations Director, Prairie Grain Co op",
-  location: "Hutchinson, Kansas",
-  quote: "SBC mapped out our entire operation and showed us where we were wasting hours every week on things that could be automated. They picked the right tools, connected everything, and trained our whole crew. We are running smoother than ever.",
-  result: "30% faster order processing",
-};
-
 const ServiceWorkflow = () => (
   <div className="min-h-screen">
     <SEO
-      title="Workflow Automation Consulting USA – Expert Guidance"
-      description="Replace manual workflows with intelligent automation. Workflow mapping, tool integration, performance dashboards, and team training for American businesses of all sizes."
+      title="Workflow Automation Consulting for Rural US Businesses"
+      description="Get help with repeated tasks, connected tools, work tracking, and staff training. Practical workflow automation consulting for rural US businesses."
       canonical="/services/workflow-consulting"
     />
     <Navbar />
@@ -95,29 +87,6 @@ const ServiceWorkflow = () => (
             </div>
           ))}
         </div>
-      </div>
-    </section>
-
-    <section className="py-20 bg-background">
-      <div className="container max-w-3xl">
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-          className="relative p-10 rounded-lg bg-card border border-border">
-          <Quote className="text-accent/15 absolute top-6 right-6" size={48} />
-          <div className="flex gap-1 mb-4">
-            {Array.from({ length: 5 }).map((_, j) => (
-              <Star key={j} className="text-accent fill-accent" size={16} />
-            ))}
-          </div>
-          <p className="text-foreground leading-relaxed mb-6">"{testimonial.quote}"</p>
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="font-heading font-semibold text-foreground">{testimonial.name}</p>
-              <p className="text-muted-foreground text-sm">{testimonial.role}</p>
-              <p className="text-muted-foreground text-xs">{testimonial.location}</p>
-            </div>
-            <span className="px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-medium">{testimonial.result}</span>
-          </div>
-        </motion.div>
       </div>
     </section>
 

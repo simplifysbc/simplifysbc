@@ -32,8 +32,8 @@ const SEO = ({
   noindex,
 }: SEOProps) => {
   const fullTitle = `${title} | ${SITE_NAME}`;
-  const url = canonical ? `${SITE_URL}${canonical}` : SITE_URL;
-  const ogImage = image ? `${SITE_URL}${image}` : `${SITE_URL}/og-image.jpg`;
+  const url = new URL(canonical || "/", SITE_URL).href;
+  const ogImage = new URL(image || "/og-image.jpg", SITE_URL).href;
 
   const schemas: object[] = [];
 
@@ -44,7 +44,7 @@ const SEO = ({
       name: SITE_NAME,
       url: SITE_URL,
       description:
-        "Simplify Business Consultancy helps rural and small businesses across the USA streamline operations with automation, AI tools, and process optimization.",
+        "Simplify Business Consultancy helps rural and small businesses across the USA reduce repetitive work with automation, connected tools, and practical process improvements.",
       slogan: "Simplifying Business, Empowering Communities",
       areaServed: {
         "@type": "Country",
@@ -80,6 +80,7 @@ const SEO = ({
         name: SITE_NAME,
       },
       datePublished: article.publishedDate,
+      image: ogImage,
       articleSection: article.section,
       keywords: article.tags.join(", "),
       mainEntityOfPage: {

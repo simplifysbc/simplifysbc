@@ -29,6 +29,13 @@
       "when": 1794254945894,
       "tag": "0003_restrict_resume_reads_and_close_test_table",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1794404808215,
+      "tag": "0004_validate_public_submissions",
+      "breakpoints": true
     }
   ]
 }

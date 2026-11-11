@@ -53,7 +53,7 @@ const CareerForm = () => {
       let cv_url: string | null = null;
 
       if (cvFile) {
-        const ext = cvFile.name.split(".").pop();
+        const ext = (cvFile.name.split(".").pop() || "").toLowerCase();
         const fileName = `${Date.now()}_${Math.random().toString(36).slice(2)}.${ext}`;
         const { error: uploadError } = await supabase.storage.from("career-cvs").upload(fileName, cvFile);
         if (uploadError) throw uploadError;

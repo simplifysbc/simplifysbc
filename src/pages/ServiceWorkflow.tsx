@@ -42,10 +42,10 @@ const ServiceWorkflow = () => (
             <ArrowLeft size={16} /> Back to Home
           </a>
           <h1 className="font-heading text-4xl md:text-5xl font-bold text-primary-foreground leading-tight">
-            Workflow Automation Consulting (USA)
+            Workflow Automation Consulting for Rural Businesses
           </h1>
           <p className="text-lg text-primary-foreground/80 max-w-xl leading-relaxed">
-            From coast to coast, we help American businesses replace manual, error prone workflows with intelligent automation that saves time, cuts costs, and drives growth.
+            We help small rural teams hand off repeated tasks like invoice reminders, booking follow ups and stock alerts. We plan for spotty internet, small staff and simple handoffs.
           </p>
           <a href="/booking">
             <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">

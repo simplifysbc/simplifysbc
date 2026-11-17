@@ -151,9 +151,11 @@ const Booking = () => {
     setIsSubmitting(true);
     try {
       const leadId = crypto.randomUUID();
+      const emailToken = `${crypto.randomUUID()}${crypto.randomUUID()}`.replace(/-/g, "");
       const { error } = await supabase.from("customer_leads").insert([
         {
           id: leadId,
+          email_token: emailToken,
           full_name: parsed.data.full_name,
           email: parsed.data.email,
           whatsapp_number: `${parsed.data.dial_code} ${parsed.data.phone}`.trim(),
@@ -175,13 +177,13 @@ const Booking = () => {
 
       const [, confirmation] = await Promise.all([
         supabase.functions
-          .invoke("send-lead-welcome", { body: { leadId } })
+          .invoke("send-lead-welcome", { body: { leadId, token: emailToken } })
           .catch((err) => {
             console.error("welcome email failed", err);
             return null;
           }),
         supabase.functions
-          .invoke("send-booking-confirmation", { body: { leadId } })
+          .invoke("send-booking-confirmation", { body: { leadId, token: emailToken } })
           .catch((err) => {
             console.error("booking confirmation email failed", err);
             return null;

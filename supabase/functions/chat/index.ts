@@ -10,7 +10,20 @@ serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
   try {
-    const { messages } = await req.json();
+    const body = await req.json().catch(() => ({}));
+    const raw = Array.isArray(body?.messages) ? body.messages.slice(-30) : [];
+    // Only visitor and assistant turns are accepted; caller-supplied system instructions are dropped.
+    const messages = raw
+      .filter((m: unknown): m is { role: string; content: string } =>
+        !!m && typeof m === "object" &&
+        ((m as { role?: unknown }).role === "user" || (m as { role?: unknown }).role === "assistant") &&
+        typeof (m as { content?: unknown }).content === "string")
+      .map((m) => ({ role: m.role, content: m.content.slice(0, 2000) }));
+    if (messages.length === 0 || messages[messages.length - 1].role !== "user") {
+      return new Response(JSON.stringify({ error: "Please send a message." }), {
+        status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY is not configured");
 

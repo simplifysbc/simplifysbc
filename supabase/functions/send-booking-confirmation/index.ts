@@ -95,7 +95,7 @@ Deno.serve(async (req) => {
     new Response(JSON.stringify(b), { status, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
 
   try {
-    const { leadId } = await req.json().catch(() => ({ leadId: null }));
+    const { leadId, token } = await req.json().catch(() => ({ leadId: null, token: null }));
     if (typeof leadId !== 'string' || !/^[0-9a-f-]{36}$/i.test(leadId)) {
       return json({ error: 'A valid leadId is required' }, 400);
     }
@@ -107,14 +107,32 @@ Deno.serve(async (req) => {
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!,
     );
 
+    const authHeader = req.headers.get('Authorization') ?? '';
+    const jwt = authHeader.replace(/^Bearer\s+/i, '');
+    let isStaff = false;
+    if (jwt) {
+      const { data: userData } = await supabase.auth.getUser(jwt);
+      if (userData?.user) {
+        const { data: roles } = await supabase.from('user_roles').select('role')
+          .eq('user_id', userData.user.id).in('role', ['admin', 'consultant']);
+        isStaff = !!roles && roles.length > 0;
+      }
+    }
+
     const { data: lead, error: leadError } = await supabase
       .from('customer_leads')
-      .select('id, full_name, email, preferred_package, booking_date, booking_time, consultant, booking_email_status')
+      .select('id, full_name, email, preferred_package, booking_date, booking_time, consultant, booking_email_status, email_token, created_date')
       .eq('id', leadId)
       .maybeSingle();
 
-    if (leadError) return json({ error: leadError.message }, 500);
-    if (!lead) return json({ error: 'Lead not found' }, 404);
+    if (leadError) {
+      console.error('lead lookup failed', leadError);
+      return json({ error: 'Could not process request' }, 500);
+    }
+    // Only staff, or the visitor who just created this lead (matching one-time token, within 30 minutes), may trigger it.
+    const recent = lead && Date.now() - new Date(lead.created_date).getTime() < 30 * 60 * 1000;
+    const tokenOk = !!lead && typeof token === 'string' && token.length >= 32 && lead.email_token === token && recent;
+    if (!lead || !(isStaff || tokenOk)) return json({ error: 'Not allowed' }, 403);
 
     // Duplicate protection: only send once per lead.
     if (lead.booking_email_status === 'sent' || lead.booking_email_status === 'sending') {
@@ -174,6 +192,6 @@ Deno.serve(async (req) => {
     return result.ok ? json({ sent: true, attempts: result.attempts }) : json({ sent: false, error: result.error }, 502);
   } catch (e) {
     console.error('send-booking-confirmation error', e);
-    return json({ error: String(e) }, 500);
+    return json({ error: 'Could not process request' }, 500);
   }
 });

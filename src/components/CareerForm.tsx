@@ -53,11 +53,11 @@ const CareerForm = () => {
       let cv_url: string | null = null;
 
       if (cvFile) {
-        const ext = (cvFile.name.split(".").pop() || "").toLowerCase();
-        const fileName = `${Date.now()}_${Math.random().toString(36).slice(2)}.${ext}`;
-        const { error: uploadError } = await supabase.storage.from("career-cvs").upload(fileName, cvFile);
-        if (uploadError) throw uploadError;
-        cv_url = fileName;
+        const body = new FormData();
+        body.append("file", cvFile);
+        const { data: up, error: uploadError } = await supabase.functions.invoke("upload-career-cv", { body });
+        if (uploadError || !up?.path) throw uploadError ?? new Error("Upload failed");
+        cv_url = up.path as string;
       }
 
       const phoneCombined = formData.phone.trim()
